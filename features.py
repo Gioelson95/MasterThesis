@@ -9,7 +9,7 @@ so before using this script you could
 transform MP3s into WAVs by transformat.sh.
 '''
 
-__author__ = 'huizhang'
+#__author__ = 'huizhang'
 
 import csv
 import os
