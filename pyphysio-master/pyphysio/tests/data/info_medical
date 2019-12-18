@@ -1,3 +1,0 @@
-fsamp:      1024
-signals:    ecg,eda,bvp,resp
-length:     120 s
