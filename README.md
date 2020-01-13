@@ -6,7 +6,7 @@ PMEmo is a popular music dataset with emotional annotations:
 
 > It contain emotion annotations of 794 songs as well as the simultaneous electrodermal activity (EDA) signals. A Music Emotion Experiment was well-designed for collecting the affective-annotated music corpus of high quality, which recruited 457 subjects.  
 
-Article: [The PMEmo Dataset for Music Emotion Recognition] (https://dl.acm.org/citation.cfm?id=3206037)
+Article: https://dl.acm.org/citation.cfm?id=3206037
 
 To briefly summarize, the PMEmo dataset provides:
 
@@ -18,11 +18,11 @@ To briefly summarize, the PMEmo dataset provides:
 * song lyrics (.lrc);
 * song comments from online music websites (Chinese and English texts).
 
-Whole dataset available at [here] (https://drive.google.com/drive/folders/1qDk6hZDGVlVXgckjLq9LvXLZ9EgK9gw0?usp=sharing)
+Whole dataset available at https://drive.google.com/drive/folders/1qDk6hZDGVlVXgckjLq9LvXLZ9EgK9gw0?usp=sharing
 the acoustic features and the annotations are all stored in CSV files
 (delimited by comma).
 
-The data about the features extraction etc. can be downloaded [here] (https://mega.nz/#F!b4MAzIBI!X9lQqEUzETixcimU0d6RCw)
+The data about the features extraction etc. can be downloaded at https://mega.nz/#F!b4MAzIBI!X9lQqEUzETixcimU0d6RCw
 
 In the `code` folder there are all the jupyter notebooks:
 * `PMEmo_implementation`: code to get the same results of the PMEmo article
