@@ -24,7 +24,7 @@
 
 % modify the caption of the figures
 \usepackage{caption}
-\captionsetup[figure]{font=small,labelfont=small}
+%\captionsetup[figure]{font=small,labelfont=small}
 
 % packages for tables
 \usepackage{booktabs}
@@ -34,10 +34,10 @@
 % Insert fancy headers, titles and other elements
 \usepackage{fancyhdr}
 \fancyfoot{}
-\fancyhead[RO,LE]{\thepage}
+\fancyhead[RO,L]{\thepage}
 \fancyhead[LO]{\nouppercase{\leftmark}}
-\fancyhead[RE]{\nouppercase{\rightmark}}
-\fancyhead[RE]{\if@mainmatter Chapter \thechapter\fi}
+\fancyhead[R]{\nouppercase{\rightmark}}
+\fancyhead[R]{\if@mainmatter Chapter \thechapter\fi}
 \renewcommand{\chaptermark}[1]{\markboth{#1}{}}
 \pagestyle{fancy}
 \usepackage[palatino]{quotchap}
@@ -88,9 +88,9 @@
 	
 	\setcounter{page}{1}
 	
-	\frontmatter
-	\input{../chapters/0a_abstract.tex}
-	% \input{0a_sommario.tex} % italian abstract
+	\frontmatter % for roman page numbering
+	\input{../chapters/0a_abstract-eng.tex}
+	\input{../chapters/0a_abstract-ita.tex}
 	\input{../chapters/0b_acknowledgments.tex}
 	\tableofcontents
 	\listoffigures
@@ -99,7 +99,7 @@
 	\addcontentsline{toc}{chapter}{List of Tables}
 	\input{../chapters/0c_introduction.tex} 
 	
-	\mainmatter
+	\mainmatter % for arabian page numbering
 	\input{../chapters/1_sota.tex} 
 	\input{../chapters/2_background.tex}
 	\input{../chapters/3_methodology.tex} 

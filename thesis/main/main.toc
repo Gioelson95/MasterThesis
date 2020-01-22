@@ -1,9 +1,10 @@
 \babel@toc {english}{}
 \contentsline {chapter}{Abstract}{i}{chapter*.1}
-\contentsline {chapter}{Ringraziamenti}{ii}{chapter*.2}
-\contentsline {chapter}{List of Figures}{iv}{chapter*.4}
-\contentsline {chapter}{List of Tables}{v}{chapter*.5}
-\contentsline {chapter}{Introduction}{vi}{chapter*.6}
+\contentsline {chapter}{Sommario}{ii}{chapter*.2}
+\contentsline {chapter}{Acknowledgements}{iii}{chapter*.3}
+\contentsline {chapter}{List of Figures}{v}{chapter*.5}
+\contentsline {chapter}{List of Tables}{vi}{chapter*.6}
+\contentsline {chapter}{Introduction}{vii}{chapter*.7}
 \contentsline {chapter}{\numberline {1}State of the Art}{1}{chapter.1}
 \contentsline {section}{\numberline {1.1}Some different sections}{1}{section.1.1}
 \contentsline {section}{\numberline {1.2}Conclusive Remarks}{1}{section.1.2}
@@ -23,6 +24,6 @@
 \contentsline {paragraph}{Generalization}{5}{section.5.1}
 \contentsline {paragraph}{Challenging scenarios}{5}{section.5.1}
 \contentsline {paragraph}{Different approaches}{5}{section.5.1}
-\contentsline {chapter}{Appendices}{6}{appendix*.7}
+\contentsline {chapter}{Appendices}{6}{appendix*.8}
 \contentsline {section}{\numberline {A}Equipment 1}{6}{section.Alph0.1}
 \contentsline {section}{\numberline {B}Proofs of Mathematical Theories1}{6}{section.Alph0.2}
