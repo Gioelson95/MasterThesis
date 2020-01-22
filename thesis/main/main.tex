@@ -89,23 +89,25 @@
 	\setcounter{page}{1}
 	
 	\frontmatter % for roman page numbering
-	\input{../chapters/0a_abstract-eng.tex}
-	\input{../chapters/0a_abstract-ita.tex}
+	\input{../chapters/0a_abstract.tex}
+	\input{../chapters/0a_sommario.tex}
 	\input{../chapters/0b_acknowledgments.tex}
 	\tableofcontents
 	\listoffigures
 	\addcontentsline{toc}{chapter}{List of Figures} % this command adds the "List of Figures" page to the table of content as if it was a chapter.
 	\listoftables
 	\addcontentsline{toc}{chapter}{List of Tables}
-	\input{../chapters/0c_introduction.tex} 
+	
 	
 	\mainmatter % for arabian page numbering
-	\input{../chapters/1_sota.tex} 
-	\input{../chapters/2_background.tex}
-	\input{../chapters/3_methodology.tex} 
-	\input{../chapters/4_results.tex} 
-	\input{../chapters/5_conclusions.tex} 
-	\input{../chapters/6_appendices.tex} 	
+	\input{../chapters/1_introduction.tex} 
+	\input{../chapters/2_background_MIR_MER.tex} 
+	\input{../chapters/3_background_EDA.tex}
+	\input{../chapters/4_state_of_the_art.tex} 
+	\input{../chapters/5_implementation.tex} 
+	\input{../chapters/6_improvements.tex} 
+	\input{../chapters/7_conclusions.tex} 	
+	\input{../chapters/8_appendices.tex} 
 	
 	%% print the bibliography
 	%\nocite{*}
