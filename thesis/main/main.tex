@@ -1,0 +1,115 @@
+\documentclass[a4paper,12pt,oneside]{book}
+
+% output a PDF/A file
+\usepackage[a-1b]{pdfx} 
+
+% Fonts and symbols
+\usepackage[utf8]{inputenc} % accepts accented characters
+\usepackage[T1]{fontenc} % outputs with fonts of T1 series
+\usepackage[english]{babel} % language support
+\usepackage{amsmath, amssymb, accents, bm, siunitx}
+
+% define margins
+\usepackage[width=130mm,top=35mm,bottom=25mm,headheight=15pt]{geometry}
+
+% graphics and layout packages
+\usepackage{graphicx}
+\graphicspath{{pictures/}}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{enumerate}
+\usepackage[toc,page]{appendix}
+\usepackage{titlesec}
+\usepackage{emptypage}
+\usepackage{pdfpages}
+
+% modify the caption of the figures
+\usepackage{caption}
+\captionsetup[figure]{font=small,labelfont=small}
+
+% packages for tables
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{multirow, multicol, array, makecell}
+
+% Insert fancy headers, titles and other elements
+\usepackage{fancyhdr}
+\fancyfoot{}
+\fancyhead[RO,LE]{\thepage}
+\fancyhead[LO]{\nouppercase{\leftmark}}
+\fancyhead[RE]{\nouppercase{\rightmark}}
+\fancyhead[RE]{\if@mainmatter Chapter \thechapter\fi}
+\renewcommand{\chaptermark}[1]{\markboth{#1}{}}
+\pagestyle{fancy}
+\usepackage[palatino]{quotchap}
+
+\setcounter{secnumdepth}{3} % do numbering also for subsubsections
+% \setcounter{tocdepth}{3} % add subsubsections to Table of Contents
+
+% define your own hypenation if the babel package is not precise
+\hyphenation{} 
+
+%---- Links ----
+\usepackage{csquotes}
+\usepackage{hyperref}
+\hypersetup{ % transorm the references into hyperlinks
+	colorlinks,
+	linkcolor=Blue, % link to figures and equations
+	linktoc=page,
+	citecolor=OliveGreen, % link to bibliography
+}
+
+%---- Document -----
+\title{Thesis Title}
+\author{Name Surname}
+\date{Day Month Year}
+
+
+\begin{document}
+
+	% hacking the header
+	\pagestyle{fancy}
+	\makeatletter
+	\renewcommand\chaptermark[1]{%
+	  \markboth{\MakeUppercase{%
+	    \ifnum \c@secnumdepth >\m@ne
+	      \if@mainmatter
+	        \@chapapp\ \thechapter. \ %
+	      \fi
+	    \fi
+	    #1}}{}%
+	}
+	\renewcommand\@mkboth[2]{\markboth{#1}{}}
+	\makeatother
+	
+	%% include frontispieces and chapters
+	\includepdf[pages={1}]{../frontispiece/front-eng.pdf}
+	\includepdf[pages={1}]{../frontispiece/front-ita.pdf}
+
+	
+	\setcounter{page}{1}
+	
+	\frontmatter
+	\input{../chapters/0a_abstract.tex}
+	% \input{0a_sommario.tex} % italian abstract
+	\input{../chapters/0b_acknowledgments.tex}
+	\tableofcontents
+	\listoffigures
+	\addcontentsline{toc}{chapter}{List of Figures} % this command adds the "List of Figures" page to the table of content as if it was a chapter.
+	\listoftables
+	\addcontentsline{toc}{chapter}{List of Tables}
+	\input{../chapters/0c_introduction.tex} 
+	
+	\mainmatter
+	\input{../chapters/1_sota.tex} 
+	\input{../chapters/2_background.tex}
+	\input{../chapters/3_methodology.tex} 
+	\input{../chapters/4_results.tex} 
+	\input{../chapters/5_conclusions.tex} 
+	\input{../chapters/6_appendices.tex} 	
+	
+	%% print the bibliography
+	%\nocite{*}
+	\bibliographystyle{ieeetr} % IEEE has its own bibliography style. Bibtex is the baseline bibliography engine, you can use also biber to gain control on the layout.
+	\bibliography{bibliography.bib}
+
+\end{document}
