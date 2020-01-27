@@ -34,10 +34,10 @@
 % Insert fancy headers, titles and other elements
 \usepackage{fancyhdr}
 \fancyfoot{}
-\fancyhead[RO,L]{\thepage}
+\fancyhead[RO,LE]{\thepage}
 \fancyhead[LO]{\nouppercase{\leftmark}}
-\fancyhead[R]{\nouppercase{\rightmark}}
-\fancyhead[R]{\if@mainmatter Chapter \thechapter\fi}
+\fancyhead[RE]{\nouppercase{\rightmark}}
+\fancyhead[RE]{\if@mainmatter Chapter \thechapter\fi}
 \renewcommand{\chaptermark}[1]{\markboth{#1}{}}
 \pagestyle{fancy}
 \usepackage[palatino]{quotchap}
@@ -58,10 +58,12 @@
 	citecolor=OliveGreen, % link to bibliography
 }
 
+\graphicspath{ {../img/} }
+
 %---- Document -----
 \title{Thesis Title}
-\author{Name Surname}
-\date{Day Month Year}
+\author{Gioele Pozzi}
+\date{29-04-2020}
 
 
 \begin{document}
@@ -83,9 +85,10 @@
 	
 	%% include frontispieces and chapters
 	\includepdf[pages={1}]{../frontispiece/front-eng.pdf}
+	\newpage \thispagestyle{empty} \mbox{}
 	\includepdf[pages={1}]{../frontispiece/front-ita.pdf}
 
-	
+	\newpage \thispagestyle{empty} \mbox{}
 	\setcounter{page}{1}
 	
 	\frontmatter % for roman page numbering
@@ -97,8 +100,7 @@
 	\addcontentsline{toc}{chapter}{List of Figures} % this command adds the "List of Figures" page to the table of content as if it was a chapter.
 	\listoftables
 	\addcontentsline{toc}{chapter}{List of Tables}
-	
-	
+		
 	\mainmatter % for arabian page numbering
 	\input{../chapters/1_introduction.tex} 
 	\input{../chapters/2_background_MIR_MER.tex} 
@@ -112,6 +114,6 @@
 	%% print the bibliography
 	%\nocite{*}
 	\bibliographystyle{ieeetr} % IEEE has its own bibliography style. Bibtex is the baseline bibliography engine, you can use also biber to gain control on the layout.
-	\bibliography{bibliography.bib}
+	\bibliography{../bibliography}
 
 \end{document}
