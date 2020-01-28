@@ -127,11 +127,71 @@ After training, the automatic model can be applied to classify the emotion of an
 \subsection{Open issues of Music Emotion Recognition}
 As MER is a quite new domain, there are some elements that have no clear answer. Four of these issues are:
 \begin{enumerate}
-	\item Ambiguity and Granularity of emotion description:
-	\item Heavy cognitive load of emotion annotation
-	\item Subjectivity of emotional perception:
-	\item Semantic gap between Low-Level (LL) and audio signal and High Level (HL) Human perception:
+	\item Ambiguity and Granularity of emotion description: issue related to the relationship between emotions and the affective terms that denote emotions and the problem of choosing which and how many affective terms to be included in the taxonomy. Emotions are fuzzy concepts, there are main synonyms and similarities between different terms. In general, classification accuracy of an automatic model is inversely proportional to the number of classes considered \cite{van2006emotion}.
+	\item Heavy cognitive load of emotion annotation: to collect data for training an automatic model, is typically conducted a subjective test by inviting human subjects to annotate the emotion of music pieces. The problem is that to reduce amministrative effort, each music piece is annotated by two or three musical \textit{experts} to gain consensus of the annotation result. Everyday contexts in which musical experts experience is so different from those non-experts require separate treatment. Since MER system is expected to be used in the everyday context, the emotion annotation should be carried out by \textit{ordinary people}.
+	\item Subjectivity of emotional perception: music perception is intrinsically subjective and is under the influence of many factors such as cultural background, age, gender, personality and so forth. Thereforem conventional categorical approaches that simply assign one emotion class to each music piece in a deterministic manner do not perform very well in practice.
+	\item Semantic gap between Low-Level (LL) and audio signal and High Level (HL) Human perception: it is difficult to accurately compute emotion values, and what intrinsic element of music causes a listener to create a specific emotional perception is still far from well unserstood.
 \end{enumerate}
+
+\subsection{Emotion description}
+Many researchers have suggested that music is an excellent medium for studying emotion, because people tend to make judjements abous music and their affective responses to music.
+\\
+Music represent emotions that are perceived by the listener or induced emotions that are felt by the listener. Now we will focus on the emotion conceptualization alone, since it's central to have a theoretical background to apply then to MER.
+\\
+The celebrated paper of Hevner \cite{hevner1935expression} , studied the relationship between music and emotions though experiments where subjects are asked to report some adjectives that came to their mind as the most representative part of a music played. From this have been proposed a large variety of emotion models, like the one presented and used in this thesis.
+\\ \indent
+The idea of emotion conceptualization is to divide in two different approaches, the \textbf{Categorical approach} and the \textbf{Dimensional approach}.
+
+\paragraph{Categorical approach}
+\mbox{} \\ \\ \indent
+The first assumption of this emotion conceptualization is that emotions are categorized and categories are distinct from each other. For this approach, there is the idea that there are a limited number of innate and universal emotion categories such as:
+\begin{itemize}
+	\item Happiness
+	\item Sadness
+	\item Anger
+	\item Fear
+	\item Disgust
+	\item Surprise
+\end{itemize}
+All other emotions can be derived from these "\textit{basic emotions}".
+\\
+In psychological studies, different researchers have come up with different sets of basic emotions.
+\\
+For example, another famous categorical approach to emotion conceptualization is Hevner's adjective checklist. He found eight clusters positioned in circle as in figure \ref{fig:Hevner_clusters}. The adjective within a cluster are similar, neighbor clusters varies in a cumulative way until reaching the opposite position where there is the contrast cluster. 
+\begin{figure}[h]
+    \centering
+    \includegraphics[scale=0.5]{Hevner_clusters.png} 
+	\caption{Eight clusters proposed by Hevner}
+    \label{fig:Hevner_clusters}
+\end{figure}
+Hevner's checklist proposed in 1935 was suddently updated and regrouped into ten groups by Fansworth and into nine groups in 2003 by Schubert.
+\\ \indent
+Drawbacks of cathegorical approach is that the number of primary emotion classes is very small in comparison with the richness of music emotion perceived by humans. The problem is in the sense that using a finer granularity, does not necessarily solve the problem because the language for describing emotions is inherently ambiguous and varies from person to person. Using a large number of emotion classes could submerge the subject and is impratical for psycological studies falsing results.
+
+\paragraph{Dimensional approach}
+\mbox{} \\ \\ \indent
+Categorical approach focuses mainly on the characteristics that distinguish emotions from one another, dimensional approach focuses on identifying emotions based on their position on a small number of emotion "dimensions" called axes, intended to correspond to internal human representation of emotion. These internal emotion dimensions are found by analyzing the correlation between affective terms.
+\\ \indent
+There are several different names from past researchers gave very similar interpretations of the resulting factors like tension/energy, intensity/softness, tension/relaxation for example. Most of the factors correspond to the two dimensions of emotion the \textit{valence} (positive and negative affective states) and \textit{arousal} (energy and stimulation level).
+\\
+Russel, proposed a circumplex model of emotion in \cite{russell1980circumplex} which consist in a two-dimensional, circular structure as in figure \ref{fig:Russel_va_model} involving the dimensions of valence and arousal. In this structure, emotions that are inversely correlated, are placed across the circle from one another.
+\begin{figure}[h]
+    \centering
+    \includegraphics[scale=0.5]{Russel_va_model.png} 
+	\caption{Russel's circumplex model of affect}
+    \label{fig:Russel_va_model}
+\end{figure}
+
+Emotions that are easy to be confused, such as calm and sadness, appear to have similar valence and arousal values. This result implies that valence and arousal may be the most fundamental and most clearly communicated emotion dimensions among others.
+
+
+
+
+
+
+
+
+
 
 
 
