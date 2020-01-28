@@ -3,46 +3,44 @@ Capacity: max_strings=100000, hash_size=100000, hash_prime=85009
 The top-level auxiliary file: main.aux
 The style file: ieeetr.bst
 Database file #1: ../bibliography.bib
-Warning--I didn't find a database entry for "russell1980circumplex"
-You've used 6 entries,
+You've used 7 entries,
             1876 wiz_defined-function locations,
-            520 strings with 4481 characters,
-and the built_in function-call counts, 1595 in all, are:
-= -- 160
-> -- 43
+            528 strings with 4615 characters,
+and the built_in function-call counts, 1830 in all, are:
+= -- 186
+> -- 47
 < -- 0
-+ -- 17
-- -- 11
-* -- 101
-:= -- 216
-add.period$ -- 7
-call.type$ -- 6
-change.case$ -- 6
++ -- 19
+- -- 12
+* -- 114
+:= -- 247
+add.period$ -- 8
+call.type$ -- 7
+change.case$ -- 7
 chr.to.int$ -- 0
-cite$ -- 6
-duplicate$ -- 98
-empty$ -- 165
-format.name$ -- 11
-if$ -- 403
+cite$ -- 7
+duplicate$ -- 115
+empty$ -- 187
+format.name$ -- 12
+if$ -- 465
 int.to.chr$ -- 0
-int.to.str$ -- 6
-missing$ -- 7
-newline$ -- 22
-num.names$ -- 6
-pop$ -- 27
+int.to.str$ -- 7
+missing$ -- 8
+newline$ -- 25
+num.names$ -- 7
+pop$ -- 29
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 0
-skip$ -- 67
+skip$ -- 80
 stack$ -- 0
-substring$ -- 82
-swap$ -- 40
+substring$ -- 90
+swap$ -- 49
 text.length$ -- 0
 text.prefix$ -- 0
 top$ -- 0
 type$ -- 0
 warning$ -- 0
-while$ -- 15
-width$ -- 7
-write$ -- 65
-(There was 1 warning)
+while$ -- 17
+width$ -- 8
+write$ -- 76

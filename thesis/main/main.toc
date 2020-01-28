@@ -9,7 +9,7 @@
 \contentsline {section}{\numberline {1.2}Outline of the thesis}{1}{section.1.2}
 \contentsline {section}{\numberline {1.3}Application fields}{2}{section.1.3}
 \contentsline {chapter}{\numberline {2}Theoretical Background on MIR and MER}{3}{chapter.2}
-\contentsline {section}{\numberline {2.1}Music Infomation Retrieval}{3}{section.2.1}
+\contentsline {section}{\numberline {2.1}Music Information Retrieval}{3}{section.2.1}
 \contentsline {section}{\numberline {2.2}Music Emotion Recognition}{4}{section.2.2}
 \contentsline {subsection}{\numberline {2.2.1}Importance of Music Emotion Recognition}{4}{subsection.2.2.1}
 \contentsline {subsection}{\numberline {2.2.2}Recognizing the perceived emotion of music}{6}{subsection.2.2.2}
@@ -17,23 +17,26 @@
 \contentsline {subsection}{\numberline {2.2.4}Emotion description}{8}{subsection.2.2.4}
 \contentsline {paragraph}{Categorical approach}{9}{subsection.2.2.4}
 \contentsline {paragraph}{Dimensional approach}{10}{figure.caption.10}
-\contentsline {chapter}{\numberline {3}Theoretical Background on EDA}{11}{chapter.3}
-\contentsline {section}{\numberline {3.1}Some different sections}{11}{section.3.1}
-\contentsline {section}{\numberline {3.2}Remarks}{11}{section.3.2}
-\contentsline {chapter}{\numberline {4}State of the Art}{12}{chapter.4}
-\contentsline {section}{\numberline {4.1}Some different sections}{12}{section.4.1}
-\contentsline {section}{\numberline {4.2}Conclusive Remarks}{12}{section.4.2}
-\contentsline {chapter}{\numberline {5}Implementation and Results}{13}{chapter.5}
-\contentsline {section}{\numberline {5.1}Some different sections}{13}{section.5.1}
-\contentsline {section}{\numberline {5.2}Conclusive Remarks}{13}{section.5.2}
-\contentsline {chapter}{\numberline {6}Dataset Improvements}{14}{chapter.6}
-\contentsline {section}{\numberline {6.1}Some different sections}{14}{section.6.1}
-\contentsline {section}{\numberline {6.2}Conclusive Remarks}{14}{section.6.2}
-\contentsline {chapter}{\numberline {7}Conclusions and Future Works}{15}{chapter.7}
-\contentsline {section}{\numberline {7.1}Future Works}{15}{section.7.1}
-\contentsline {paragraph}{Generalization}{15}{section.7.1}
-\contentsline {paragraph}{Challenging scenarios}{15}{section.7.1}
-\contentsline {paragraph}{Different approaches}{15}{section.7.1}
-\contentsline {chapter}{Appendices}{16}{appendix*.12}
-\contentsline {section}{\numberline {A}Equipment 1}{16}{section.Alph0.1}
-\contentsline {section}{\numberline {B}Proofs of Mathematical Theories1}{16}{section.Alph0.2}
+\contentsline {paragraph}{Music Emotion Variation Detection}{11}{figure.caption.11}
+\contentsline {subsection}{\numberline {2.2.5}Emotion recognition}{11}{subsection.2.2.5}
+\contentsline {paragraph}{Categorical approach}{12}{Item.8}
+\contentsline {chapter}{\numberline {3}Theoretical Background on EDA}{13}{chapter.3}
+\contentsline {section}{\numberline {3.1}Some different sections}{13}{section.3.1}
+\contentsline {section}{\numberline {3.2}Remarks}{13}{section.3.2}
+\contentsline {chapter}{\numberline {4}State of the Art}{14}{chapter.4}
+\contentsline {section}{\numberline {4.1}Some different sections}{14}{section.4.1}
+\contentsline {section}{\numberline {4.2}Conclusive Remarks}{14}{section.4.2}
+\contentsline {chapter}{\numberline {5}Implementation and Results}{15}{chapter.5}
+\contentsline {section}{\numberline {5.1}Some different sections}{15}{section.5.1}
+\contentsline {section}{\numberline {5.2}Conclusive Remarks}{15}{section.5.2}
+\contentsline {chapter}{\numberline {6}Dataset Improvements}{16}{chapter.6}
+\contentsline {section}{\numberline {6.1}Some different sections}{16}{section.6.1}
+\contentsline {section}{\numberline {6.2}Conclusive Remarks}{16}{section.6.2}
+\contentsline {chapter}{\numberline {7}Conclusions and Future Works}{17}{chapter.7}
+\contentsline {section}{\numberline {7.1}Future Works}{17}{section.7.1}
+\contentsline {paragraph}{Generalization}{17}{section.7.1}
+\contentsline {paragraph}{Challenging scenarios}{17}{section.7.1}
+\contentsline {paragraph}{Different approaches}{17}{section.7.1}
+\contentsline {chapter}{Appendices}{18}{appendix*.13}
+\contentsline {section}{\numberline {A}Equipment 1}{18}{section.Alph0.1}
+\contentsline {section}{\numberline {B}Proofs of Mathematical Theories1}{18}{section.Alph0.2}
