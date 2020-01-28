@@ -221,13 +221,27 @@ Advantage of categorical approach is that it is easy to be incorporated into a t
 The commonly adopted methods follows these points:
 \begin{enumerate}
 	\item Data collection: nowadays there are several large-scale dataset covering all sort of music types and genres. Otherwise is desirable to collect data of the different types, getting rid of the effects called "\textit{album effect}" or "\textit{artist effect}" and collect a variety of music pieces. One problem is that there is no consensus on which emotion model or how many emotion categories should be used. Comparing systems that use different emotion categories  and different dataset is impossible. However the issue concerning how many and which emotion classes should be used seem to remain open.
-	\item Data preprocessing:
-	\item Subjective test:
-	\item Features extraction:
-	\item Model training:
+	\item Data preprocessing: to compare music pieces fairly, music pieces are normally converted to a standard format, and since a complete music piece can contain sections with different emotions,a 20 to 30 second segment is often selected, which is representative of the song (like the chorus part). A good remark of the segment length can be found in \cite{macdorman2007automatic}.
+	\item Subjective test: emotion is a subjective matter, so the collection of the ground truth data should be conducted carefully. Annotation methods can be grouped into two categories:
+	\begin{itemize}
+		\item Expert-based method: which employs a few musical experts to annotate emotions.
+		\item Subject-based method: employs a large number of untrained subjects to annotate emotions.
+	\end{itemize}
+	The ground truth is set by averaging the opinion of all subjects (typically more than 10 subjects per song).
+	\\
+	It became important to not make a long test, in order to not compromise the reliability of the emotion annotations. Nowadays is introduced the use of listening games.
+	\item Features extraction: a certain number of features are extracted from the music signal to represent the different dimension of music listening like melody, timbre and rhythm.
+	\\ After features extraction, is applied feature normalization, in order to 
+	\item Model training: the following step is to train a Machine Learning (ML) model to learn the relationship between emotion and music. Music emotion classification is carried out with classification ML algorithms, such as Neural Network, k-nearest neighbor (kNN), decision tree, Support Vector Machine (SVM) and Support Vector Classification (SVC).
 \end{enumerate}
 
-
+\paragraph{Dimensional approach}
+\mbox{} \\ \\ \indent
+The attractive part of dimensional approach is the valence-arousal plane and the associated emotion-based retrieval methods. Due to the fact that the emotion plane contain an infinite number of emotion descriptions, the granularity and ambiguity issues are relieved.
+\\
+Dimensional perspective is adopted to track the emotion variation of a classical song. The idea of representing the overall emotion of a popular song as a point in the emotion plane for music retrieval, under the assumption that the dominant emotion of a popular song undergoes less changes than a classical song. MER problem became a regression problem, and two independent models, called regressors, are trained to predict the valence-arousal values.
+\\
+The dimensional approach requires the subjects to annotate the numerical valence-arousal values. This requirement impose an high cognitive load on the subjects.
 
 
 
