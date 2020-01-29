@@ -242,7 +242,48 @@ The attractive part of dimensional approach is the valence-arousal plane and the
 Dimensional perspective is adopted to track the emotion variation of a classical song. The idea of representing the overall emotion of a popular song as a point in the emotion plane for music retrieval, under the assumption that the dominant emotion of a popular song undergoes less changes than a classical song. MER problem became a regression problem, and two independent models, called regressors, are trained to predict the valence-arousal values.
 \\
 The dimensional approach requires the subjects to annotate the numerical valence-arousal values. This requirement impose an high cognitive load on the subjects.
+\\ \\
+Pros and cons of categorical and dimensional approach are schematized in the following table:
+\begin{table}[h!]
+	\centering
+	\begin{tabular}{|c|p{0.35\textwidth}|p{0.35\textwidth}|}
+	\hline
+	& Pros & Cons\\ [0.5ex] 
+	\hline\hline Categorical & Intuitive \newline Natural language \newline Atomic description & Lack a unifying model \newline Ambiguous \newline Subjective \newline Difficult to offer fine-grained differentiation \\
+	\hline Dimensional & Focus on a few dimensions \newline Good user interface & Less intuitive \newline Semantic loss in projection \newline Difficult to obtain ground truth \\
+	\hline
+	\end{tabular}
+	\caption{Pros and cons of categorical and dimensional approaches}
+	\label{table:pros_cons_categorical_dimensional}
+\end{table}
 
+\subsection{Valence and Arousal}
+As already mentioned before, the valence-arousal plane is the most used dimension plane to represent emotion.
+\\
+In general, emotional experiences can be described by these two terms, \textit{valence} (positive or negative affectivity) and \textit{arousal} (calming or exciting). Some studies found that valence as well as intensity, is triggered by the amygdala, while the arousal by the reptilian brain.
+\\
+The common framework for dealing with emotional experience is characterized in a two-dimensional space. Valence ranges from highly negative to highly positive, and arousal ranges from calming/soothing to exciting/agitating:
+\begin{figure}[h]
+    \centering
+    \includegraphics[scale=0.75]{va_plane.png} 
+	\caption{Valence and arousal plane, described in \cite{kensinger2004remembering}}
+    \label{fig:va_plane}
+\end{figure}
+High arousal emotional events are encoded better that non-arousing events. Instead of increasing overall attention to an event, an emotionally arousing stimulus decreased attentional resources available for information processing and focused attention only on the arousal-eliciting stimulus.
+\\ \indent
+The experience of music listening is multidimensional. Different emotions are associated with different music patterns. For example, arousal is associated to:
+\begin{itemize}
+	\item tempo (fast/slow)
+	\item pitch (high/low)
+	\item loudness (high/low)
+	\item timbre (bright/soft)
+\end{itemize}
+while valence is associated to:
+\begin{itemize}
+	\item mode (major/minor)
+	\item harmony (consonant/dissonant)
+\end{itemize}
+as expressed in \cite{gabrielsson2001influence}. Emotion perception is correlated to the combination of music factor, rarely from just one of them. For example, loud chords and high-pitched chords tends to be feel as more positive valence than soft chords and low-pitched chords.
 
 
 
