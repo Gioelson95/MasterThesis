@@ -209,6 +209,14 @@ Nowdays are applied several machine learning techniques to recognize emotion fro
 	\item Apply a learning algorithm between music features and emotion labels/values.
 	\item Predict emotion of an input song from the resulting computational model.
 \end{enumerate}
+The music emotion recognition process can be schematized in the figure from \cite{yang2018review}:
+\begin{figure}[h]
+    \centering
+    \includegraphics[scale=0.5]{MER_process.png} 
+	\caption{MER process}
+    \label{fig:MER_process}
+\end{figure}
+\\
 Researches that work on MER can be classified into three approaches.
 \\ \indent
 The \textbf{categorical approach} that categorizes emotions into a number of discrete classes and applies machine learning techniques to train a classifier. The predicted emotion labels can be incorporated into a text-based or metadata-based music retrieval system.
@@ -285,7 +293,51 @@ while valence is associated to:
 \end{itemize}
 as expressed in \cite{gabrielsson2001influence}. Emotion perception is correlated to the combination of music factor, rarely from just one of them. For example, loud chords and high-pitched chords tends to be feel as more positive valence than soft chords and low-pitched chords.
 
+\subsection{Music features}
+In MER analysis, an important step to define audio signals is to extract audio features and than apply a feature selection method.
+\\
+There are several features that can be extracted from audio signal in order to represent five of the most useful perceptual dimensions of music listening:
+\begin{itemize}
+	\item Energy: dynamic loudness, audio power, total loudness, specific loudness sensation coefficients.
+	\item Rhythm: beat histogram, rhythm pattern, rhythm regularity, rhythm clarity, average onset frequency, average tempo.
+	\item Temporal: zero-crossing, temporal centroid, log-attack-time.
+	\item Spectrum: spectral centroid, spectral rolloff, spectral flux, spectral flatness.
+	\item Harmony: salient pitch, chromagram centroid, harmonic change, pitch histogram.
+\end{itemize}
+These features are just an example of an infinite series of features that can be extracted from audio signals.
+\\ \indent
+Gabrielsson et al. \cite{gabrielsson2001influence} noted that there are corresponding relations between the dimensional models and music features. Among these features, intensity is a basic feature, which is highly correlated with arousal and is used to classify the arousal dimension \cite{zhang2017feature}.
+\\
+Nowadays is not really clear the relationship between low-level and mid-level features and mood. In order to capture different aspects is extracted a large set of features. This create a feature matrix that is then normalized in order to map them on the same range of values.
+\\ \indent
+After the feature matrix is created is applied a feature selection or feature reduction algorithm to select the best set of features. Feature selection algorithms are based on two different ideas:
+\begin{itemize}
+	\item High-level point of view: find the set of features that best model the concept. This lead to the accuracy of machine learning techniques being limited because of the limitation of the hypothesis done.
+	\item Low level point of view: find the set of features that produces the best classification rate.
+\end{itemize}
+From the machine learning point of view, features are not necessarily of equal importance or quality, and irrelevant or redundant features may lead to inaccurate conclusion. Experiments have shown that, although the performance can thus be improved to a certain extent, using too many features leads to performance degradation \cite{zhang2017feature}.
+\\
+With an highly discriminant sets of features, is not true that their combination produces a better discriminant power, for example if the set of features is 60, the number of possible combinations are:
+\begin{equation}
+	n_{combinations} = \sum_{n=1}^{60} \binom{60}{k}
+\end{equation}
+which is clearly impossible to compute, for this reason is applied some feature selection algorithms.
+\\ \indent
+An example of feature selection for the categorical approach is the Sequential Feature Selection. It starts from an initial condition, and features are added or removed from a candidate subset while evaluating the \textit{criterion} in two possibilities:
+\begin{enumerate}
+	\item Sequential Forward Selection (SFS): features are sequentially added to an empty candidate set until the addition of further features does not decrease the criterion.
+	\item Sequential Backward Selection (SBS): features are sequentially removed from a full candidate set until the removal of further features increases the chosen criterion.
+\end{enumerate}
+Another feature selection method is the Minimum-Redundancy-Maximum-Relevance (mRMR) which select the features with the highest relevance to the target class. Relevance is characterized in terms of \textit{mutual information} which is defined as (given $X$ and $Y$ a pair of random variables):
+\begin{equation}
+	I(x,y)=\iint p(x,y) \log\dfrac{p(x,y)}{p(x)p(y)} dxdy
+\end{equation}
+where $p(x,y$ is the joint probability mass function of $X$ and $Y$, $p(x)$ and $p(y)$ are the marginal probability mass function of $X$ and $Y$ respectively.
+\\ \indent
+On the other side, for dimensional approach, feature selection is for example RReliefF \cite{robnik2003theoretical}. Basic idea of this algorithm is that try to estimate the quality of each attribute (in this context the features) according to how well their values distinguish between instances that are close each other.
+\\ \indent
+Another feature selection for dimensional approach is Principal Component Analysis (PCA) and Independent Component Analysis (ICA). The method starts with all features and reduces them one by one, and hence is similar to backward selection. The goal of ICA is to find a linear representation of non-gaussian data so that the components are statistically independent, or as independent as possible. While the other well known linear transformation methods ( PCA) benefit from the gaussianity of the data, ICA improves the classifier performance in the opposite case.
 
-
+\subsection{Machine learning}
 
 
