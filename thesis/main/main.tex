@@ -22,6 +22,7 @@
 \usepackage{emptypage}
 \usepackage{pdfpages}
 \usepackage{array}
+\usepackage{listings}
 
 % modify the caption of the figures
 \usepackage{caption}
@@ -35,10 +36,10 @@
 % Insert fancy headers, titles and other elements
 \usepackage{fancyhdr}
 \fancyfoot{}
-\fancyhead[RO,LE]{\thepage}
+\fancyhead[RO,L]{\thepage}
 \fancyhead[LO]{\nouppercase{\leftmark}}
-\fancyhead[RE]{\nouppercase{\rightmark}}
-\fancyhead[RE]{\if@mainmatter Chapter \thechapter\fi}
+\fancyhead[R]{\nouppercase{\rightmark}}
+\fancyhead[R]{\if@mainmatter Chapter \thechapter\fi}
 \renewcommand{\chaptermark}[1]{\markboth{#1}{}}
 \pagestyle{fancy}
 \usepackage[palatino]{quotchap}

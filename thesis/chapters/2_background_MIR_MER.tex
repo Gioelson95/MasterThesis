@@ -1,7 +1,6 @@
 \chapter{Theoretical Background on MIR and MER}
 \label{chap:TheoreticalBackgroundMIRMER}
-\thispagestyle{plain}
-
+\pagestyle{plain}
 \vspace{0.5cm}
 
 \noindent This chapter introduces the readers to the main basics about Music Information Retrieval and Music Emotion Recognition.
@@ -39,34 +38,34 @@ According to a study of \href{https://www.last.fm/home}{Last.fm}\footnote{https:
 \\ Even if emotion-based music retrieval was a new idea, a survey conducted in 2004 from \cite{lee2004survey} showed that about 28.2\% of the participants identified emotion as an important criterion in music seeking and organization.
 \\ The table \ref{table:browse_music} represent the responses of 427 subjects to the question \textit{"When you search for music or music information, how likely are you to use the following search/browse options?"} \cite{lee2004survey}.
 \begin{table}[h!]
-\centering
-\begin{tabular}{|l | c|}
-\hline
-Search/Browse by & Positive rate\\ [0.5ex] 
-\hline\hline Singer/Performer 			&		96.2\%	\\ 
-\hline	Title of work(s) 					& 		91.6\%	\\ 
-\hline	Some words of the lyrics 	& 		74.0\% 	\\
-\hline	Music style/genre 				&		62.7\%	\\
-\hline	Reccomendations 				&		62.2\%	\\
-\hline	Similar artist(s)					&		59.3\%	\\
-\hline	Similar music 					&		54.2\%	\\
-\hline	Associated usage				&		41.9\% 	\\
-\hline	Singing								&		34.8\% 	\\
-\hline	Theme(main subject)			&		33.4\% 	\\
-\hline	Popularity							&		31.0\% 	\\
-\hline	\textbf{Mood/emotional state	}	&		\textbf{28.2\%} 	\\
-\hline	Time period						&		23.8\% 	\\
-\hline	Occasions to use				&		23.6\% 	\\
-\hline	Instrument(s)					&		20.8\% 	\\
-\hline	Place/event where heard	&		20.7\% 	\\
-\hline	Storyline of music			&		17.9\% 	\\
-\hline	Tempo								&		14.2\% 	\\
-\hline	Record label						&		11.7\% 	\\
-\hline	Publisher							&		6.0\% 	\\
-\hline
-\end{tabular}
-\caption{Responses of 427 subjects to the question \textit{"When you search for music or music information, how likely are you to use the following search/browse options?"}}
-\label{table:browse_music}
+	\centering
+	\begin{tabular}{|l | c|}
+		\hline
+		Search/Browse by & Positive rate\\ [0.5ex] 
+		\hline\hline Singer/Performer 			&		96.2\%	\\ 
+		\hline	Title of work(s) 					& 		91.6\%	\\ 
+		\hline	Some words of the lyrics 	& 		74.0\% 	\\
+		\hline	Music style/genre 				&		62.7\%	\\
+		\hline	Reccomendations 				&		62.2\%	\\
+		\hline	Similar artist(s)					&		59.3\%	\\
+		\hline	Similar music 					&		54.2\%	\\
+		\hline	Associated usage				&		41.9\% 	\\
+		\hline	Singing								&		34.8\% 	\\
+		\hline	Theme(main subject)			&		33.4\% 	\\
+		\hline	Popularity							&		31.0\% 	\\
+		\hline	\textbf{Mood/emotional state	}	&		\textbf{28.2\%} 	\\
+		\hline	Time period						&		23.8\% 	\\
+		\hline	Occasions to use				&		23.6\% 	\\
+		\hline	Instrument(s)					&		20.8\% 	\\
+		\hline	Place/event where heard	&		20.7\% 	\\
+		\hline	Storyline of music				&		17.9\% 	\\
+		\hline	Tempo								&		14.2\% 	\\
+		\hline	Record label						&		11.7\% 	\\
+		\hline	Publisher							&		6.0\% 	\\
+		\hline
+	\end{tabular}
+	\caption{Responses of 427 subjects to the question \textit{"When you search for music or music information, how likely are you to use the following search/browse options?"}}
+	\label{table:browse_music}
 \end{table}
 
 Into another survey \cite{juslin2004expression}, they present findings from an exploratory questionnaire study featuring 141 music listeners (between 17 and 74 years of age) that offers some novel insights.
@@ -74,23 +73,23 @@ Into another survey \cite{juslin2004expression}, they present findings from an e
 One of the most exciting but difficult endeavors in research on music is to understand how listeners respond to music. It has often been suggested that a great deal of the attraction of music comes from its “emotional powers”. That is, people tend to value music because it expresses and induces emotions.
 The table  \ref{table:motivation_music} tries to resume the motivations to the answer \textit{"Why do we listen to music?"}
 \begin{table}[h!]
-\centering
-\begin{tabular}{|l | c|}
-\hline
-Motive & Ratio\\ [0.5ex] 
-\hline\hline "To express, release and influence emotions"	&	47\%	\\ 
-\hline "To relax and settle down"										&	33\%	\\
-\hline "For enjoyment, fun, and pleasure"							&	22\%	\\
-\hline "As company and background sound"						&	16\%	\\
-\hline "Because it makes me feel good"								&	13\%	\\
-\hline "Because it's a basic need, I can't live without it"		&	12\%	\\
-\hline "Because I like, love music"										&	11\%	\\
-\hline "To get energized"													&	9\%	\\
-\hline "To evoke memories"												&	4\%	\\ 
-\hline
-\end{tabular}
-\caption{Responses of 141 subjects to the question \textit{"Why do you listen to music?"}}
-\label{table:motivation_music}
+	\centering
+	\begin{tabular}{|l | c|}
+		\hline
+		Motive & Ratio\\ [0.5ex] 
+		\hline\hline "To express, release and influence emotions"	&	47\%	\\ 
+		\hline "To relax and settle down"										&	33\%	\\
+		\hline "For enjoyment, fun, and pleasure"							&	22\%	\\
+		\hline "As company and background sound"						&	16\%	\\
+		\hline "Because it makes me feel good"								&	13\%	\\
+		\hline "Because it's a basic need, I can't live without it"		&	12\%	\\
+		\hline "Because I like, love music"										&	11\%	\\
+		\hline "To get energized"													&	9\%	\\
+		\hline "To evoke memories"												&	4\%	\\ 
+		\hline
+	\end{tabular}
+	\caption{Responses of 141 subjects to the question \textit{"Why do you listen to music?"}}
+	\label{table:motivation_music}
 \end{table}
 
 \indent
@@ -308,6 +307,32 @@ These features are just an example of an infinite series of features that can be
 \\ \indent
 Gabrielsson et al. \cite{gabrielsson2001influence} noted that there are corresponding relations between the dimensional models and music features. Among these features, intensity is a basic feature, which is highly correlated with arousal and is used to classify the arousal dimension \cite{zhang2017feature}.
 \\
+In \cite{panda2018novel} is shown a table summary of musical characteristics relevant to emotion, reported in \ref{table:musical_features_relevant}.
+\begin{table}[h!]
+\centering
+	\begin{tabular}{|l|l|}
+		\hline
+		Features & Examples\\ [0.5ex] 
+		\hline\hline Timing		&	Tempo, variation, duration, contrast \\ 
+		\hline Dynamics			&	Overall level, crescendo/diminuendo, accents \\
+		\hline Articulation		&	Overall staccato, legato, variability	 \\
+		\hline Timbre				&	Spectral richness, harmonic richness \\
+		\hline Pitch				&	High or low \\
+		\hline Interval			&	Small or large \\
+		\hline Melody			&	Range, direction \\
+		\hline Tonality			&	Chromatic-atonal, key-oriented \\
+		\hline Rhythm			&	Regular, irregular, smooth, firm, flowing, rough \\ 
+		\hline Mode				&	 Major or minor \\ 
+		\hline Loudness			&	 High or low \\ 
+		\hline Musical form	&	 Complexity, repetition, disruption \\ 
+		\hline Vibrato				&	 Extent, range, speed \\ 
+		\hline
+	\end{tabular}
+	\caption{Musical features relevant to MER for \cite{panda2018novel}}
+	\label{table:musical_features_relevant}
+\end{table}
+Despite the identification of these relations, many of them are not fully understood, still requiring further musicological and psychological studies, while others are difficult to extract from audio signals. Nevertheless, several computational audio features have been proposed over the years. While the number of existent audio features is high, many were developed to solve other problems (e.g., Mel-frequency cepstral coefficients (MFCCs) for speech recognition) and may not be directly relevant to MER.
+\\ \indent
 Nowadays is not really clear the relationship between low-level and mid-level features and mood. In order to capture different aspects is extracted a large set of features. This create a feature matrix that is then normalized in order to map them on the same range of values.
 \\ \indent
 After the feature matrix is created is applied a feature selection or feature reduction algorithm to select the best set of features. Feature selection algorithms are based on two different ideas:
@@ -335,9 +360,109 @@ Another feature selection method is the Minimum-Redundancy-Maximum-Relevance (mR
 where $p(x,y$ is the joint probability mass function of $X$ and $Y$, $p(x)$ and $p(y)$ are the marginal probability mass function of $X$ and $Y$ respectively.
 \\ \indent
 On the other side, for dimensional approach, feature selection is for example RReliefF \cite{robnik2003theoretical}. Basic idea of this algorithm is that try to estimate the quality of each attribute (in this context the features) according to how well their values distinguish between instances that are close each other.
+\\
+The pseudocode of the RReliefF feature selection algorithm from \cite{robnik2003theoretical}:
+\begin{figure}[h]
+    \centering
+    \includegraphics[scale=0.5]{RreliefF_pseudocode.png} 
+	\caption{RReliefF pseudocode}
+    \label{fig:RreliefF_pseudocode}
+\end{figure}
 \\ \indent
-Another feature selection for dimensional approach is Principal Component Analysis (PCA) and Independent Component Analysis (ICA). The method starts with all features and reduces them one by one, and hence is similar to backward selection. The goal of ICA is to find a linear representation of non-gaussian data so that the components are statistically independent, or as independent as possible. While the other well known linear transformation methods ( PCA) benefit from the gaussianity of the data, ICA improves the classifier performance in the opposite case.
+Another feature selection for dimensional approach is Principal Component Analysis (PCA) and Independent Component Analysis (ICA). The method starts with all features and reduces them one by one, and hence is similar to backward selection. The goal of ICA is to find a linear representation of non-Gaussian data so that the components are statistically independent, or as independent as possible. While the other well known linear transformation methods ( PCA) benefit from the gaussianity of the data, ICA improves the classifier performance in the opposite case.
 
 \subsection{Machine learning}
+Machine learning (ML) is the scientific study of algorithms and statistical models that computer systems use to perform a specific task without using explicit instructions, relying on patterns and inference instead. It is seen as a subset of artificial intelligence (AI). Machine learning algorithms build a mathematical model based on sample data, known as "training data", in order to make predictions or decisions without being explicitly programmed to perform the task.
+\\ \indent
+When most people hear about ML they picture a robot, but it not just fantasy, it's already here, it has been around for decades in some specialized applications like \textit{Optical Character Recognition}. The first ML application that became mainstream was done in 1990s, the \textit{spam filter} \cite{geron2019hands}.
+\\
+A classical definition came from \textit{Arthur Samuel} in 1959:
+\begin{center}
+"\textit{Machine Learning is the field of study that gives computers the ability to learn without being explicitly programmed}" 
+\end{center}
+Another definition, more engineering-oriented is by \textit{Tom Mitchell} in 1997:
+\begin{center}
+"\textit{A computer program is said to learn form experience E with respect to some task T and some performance measure P, if its performance on T, as measured by P, improves with experience E}"
+\end{center}
+The main difference between traditional programming and ML is well schematized in the figure \ref{fig:ML_vs_traditional}
+\begin{figure}[h]
+    \centering
+    \includegraphics[scale=0.5]{ML_vs_traditional.png} 
+	\caption{Traditional programming versus Machine Learning}
+    \label{fig:ML_vs_traditional}
+\end{figure}
+There are many different Machine Learning systems. They can be classified in categories based on:
+\begin{itemize}
+	\item Whether or not they are trained with human supervision (supervised, unsupervised, reinforcement learning).
+	\item Whether or not they can learn incrementally on the fly (online and bach learning).
+	\item Whether they work by comparing new data points to know data points, or instead detect patterns in the training data and build a predictive model (instance-based and model-based learning).
+\end{itemize}
+These criteria are not exclusive, they can be combined together.
+\\ \indent
+In supervised learning, the algorithm builds a mathematical model from a set of data that contains both the inputs and the desired outputs. For example, if the task were determining whether an image contained a certain object, the training data for a supervised learning algorithm would include images with and without that object (the input), and each image would have a label (the output) designating whether it contained the object.
+\\
+Semi-supervised learning algorithms develop mathematical models from incomplete training data, where a portion of the sample input doesn't have labels.
+\\
+In unsupervised learning, the algorithm builds a mathematical model from a set of data that contains only inputs and no desired output labels.
+\\ \indent
+Classification algorithms and regression algorithms are types of supervised learning. Classification algorithms are used when the outputs are restricted to a limited set of values. For a classification algorithm that filters emails, the input would be an incoming email, and the output would be the name of the folder in which to file the email. For an algorithm that identifies spam emails, the output would be the prediction of either "spam" or "not spam", represented by the Boolean values true and false. Regression algorithms are named for their continuous outputs, meaning they may have any value within a range.
+\\
+In this thesis the focus will be on \textbf{supervised learning}.
+\\ \indent
+Supervised learning algorithms build a mathematical model of a set of data that contains both the inputs and the desired outputs. The data is known as \textbf{training data}, and consists of a set of training examples. Each training example has one or more inputs and the desired output, also known as a supervisory signal. In the mathematical model, each training example is represented by an array or vector, called \textbf{feature vector}, and the training data is represented by a \textbf{matrix}. Through iterative optimization of an objective function, supervised learning algorithms learn a function that can be used to predict the output associated with new inputs. An optimal function will allow the algorithm to correctly determine the output for inputs that were not a part of the training data. An algorithm that improves the accuracy of its outputs or predictions over time is said to have learned to perform that task.
+\\
+In order to solve a problem of supervised learning, one has to perform steps:
+\begin{enumerate}
+	\item Determine the training data type.
+	\item Gather a training set.
+	\item Determine the input feature representation of the learned function. Here input objects are transformed into feature vector which contains a number of features that describe the object.
+	\item Determine the structure of the learned function and corresponding algorithm.
+	\item Run the algorithm on the training set and optimize performances on a subset called \textit{validation set} of the training set, or through \textit{cross-validation}.
+	\item Evaluate the accuracy of the model.
+\end{enumerate}
+There are several algorithms of supervised learning, there are no one that works best on all problems, due to this different algorithms are tested. Most widely used learning algorithms are:
+\begin{itemize}
+	\item Support Vector Machines (SVM).
+	\item Support Vector Regression (SVR).
+	\item Linear Regression (LR).
+	\item Decision Tree (DT).
+	\item Neural Networks (NN).
+\end{itemize}
+Regression and Classification are both problems of supervised machine learning, the main difference between them is that the output variable in regression is numerical (or continuous) while that for classification is categorical (or discrete).
+\\ \indent
+The task of MER is a regression problem both for dimensional, categorical and MEVD. In dimensional approach, the valence-arousal plane with a continuous space. Each point of the plane is considered an emotion state. This allow to overcome the categorical problem of granularity issue since the emotion plane implicitly offers an infinite number of emotion descriptions.
+\\
+The regression approach applies a computational model that predicts the valence and arousal values of a music piece, which determine the placement of the music piece in the emotion plane \cite{yang2011music}.
+\\ \indent
+A user can then retrieve music by specifying a point in the emotion plane according to his/her emotion state, and the system would return the music pieces whose locations are closest to the specified point. Because the 2D emotion plane provides a simple means for user interface, novel emotion-based music organization, browsing, and retrieval can be easily created for mobile devices.
+
+\paragraph{Regression approach}
+\mbox{} \\ \\ \indent
+A schematic diagram of the regression approach is in \ref{fig:Regression_scheme} where in the training phase, regression model are trained by learning the relationship between music features $x$ and ground truth emotion values $y$. To denote regressors for valence and arousal are used $r_V$ and $r_A$. In the test phase, given the features $x_*$ of an input song, the regressors $r_V$ and $r_A$ can be applied to predict its emotion values $y_*=[v_*,a_*]^T = [r_V(x_*), r_A(x_*)]^T$.
+\begin{figure}[h]
+    \centering
+    \includegraphics[scale=0.5]{Regression_scheme.png} 
+	\caption{Schematic diagram of a regression approach}
+    \label{fig:Regression_scheme}
+\end{figure}
+The regression theory aim at predicting a real value from observed variables, in MER application music features.  The VA values are predicted directly from music features and due to this MER can be approached as a regression problem.
+\\ \indent
+Given $N$ inputs $(\textbf{x}_i,y_i)$, with $i \in {1, ..., N}$ where $\textbf{x}_i$ is the feature vector of an object $d_i$ (music piece), and $y_i$ is the real value to be predicted (valence or arousal), a regressor $r(\cdot)$ is created by minimizing the mean squared error (MSE) $\varepsilon$:
+\begin{equation}
+	\varepsilon = \dfrac{1}{N} \sum_{i=1}^{N} (y_i-r(\textbf{x}_i))^2
+\end{equation}
+where $r(\textbf{x}_i)$ is the prediction result for $d_i$.
+\\
+In this thesis in mathematical expressions, \textbf{bold} font represent vectors and matrices.
+\\ \indent
+To evaluate the performances of the regression approach with various ground truth data spaces, feature spaces and regression algorithms is used the $R^2$ statistics, which is a standard way for measuring the goodness of fit of regression models. It is calculated as:
+\begin{equation}
+	R^2(\textbf{y},r(\textbf{X}))=1-\dfrac{N\varepsilon}{\sum_{i=1}^{N} (y_i-\widehat{y})^2}=1-\dfrac{\sum_{i=1}^{N} (y_i-r(\textbf{x}_i))^2}{\sum_{i=1}^{N} (y_i-\widehat{y})^2}
+\end{equation}
+where $\widehat{y}$ is the mean of the ground truth. $R^2$ is comparable between experiments because of the normalization of the total squared error $N\varepsilon$ by the energy of the ground truth. The value of $R^2$  lies in $[-\inf;1]$ where $R^2=1$ means the model perfectly fits the data, while a negative $R^2$ means the model is even worse than simply taking the sample mean.
+\\ \indent
+The regression approach to MER, however, is not free of issues. First, the regression approach suffers from the subjectivity issue of emotion perception as it assigns the valence and arousal values to a music piece in a deterministic way. It is likely that different users perceive different emotion values in the music piece. Second, the regression approach requires numerical emotion ground truth to train the computational model, but performing such an emotion rating is a heavy cognitive load to the subjects.
+
+
 
 
