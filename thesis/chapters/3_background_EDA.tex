@@ -82,7 +82,92 @@ They may be mistaken for a skin conductance response, and this must be avoided.
 Typically, as Boucsein \cite{boucsein2012electrodermal} report, the shape of an SCR typically lasts between $1a$ to $5s$, has a steep onset and an exponentially decay and reaches an amplitude of at least $0.01 \mu S$. An example of a typical SCR in figure \ref{fig:SCR_example}.
 \begin{figure}[h]
     \centering
-    \includegraphics[scale=0.5]{SCR_example.png} 
+    \includegraphics[scale=0.4]{SCR_example.png} 
 	\caption{Example of a SCR shape}
     \label{fig:SCR_example}
 \end{figure}
+\\
+Currently, many researchers deal with signal artifacts and noise by applying exponential smoothing or low-pass filtering.
+\\
+Additionally, filter cutoff frequencies are based only loosely on prior knowledge of typical characteristics of SCR shape, and vary widely study to study (1 and 5 Hz). The cutoff frequency ultimately chosen for a study is specific to that particular study, making generalization difficult.
+\\ \indent
+There are much relevant techniques that are also able to recognize and compensate for large-magnitude artifacts that can result from pressure or movement of the device during recordings.
+\\
+In \cite{taylor2015automatic} is presented a figure reported here \ref{fig:eda_artifacts}, which shows a portion of signal that contains three artifacts, in which the fast decrease could not be produced by human physiology. Comparing the raw signal and the filtered version, the low-pass filter has not removed the artifacts.
+\begin{figure}[h]
+    \centering
+    \includegraphics[scale=0.4]{eda_artifacts.png} 
+	\caption{Portion of an EDA signal, the raw signal on the left in red, a 1 Hz low-pass filter applied on the signal to the left in blue}
+    \label{fig:eda_artifacts}
+\end{figure}
+\\
+Some researchers, as Boucsein analysis \cite{boucsein2012electrodermal}, develop heuristic techniques for removing atypical portion of the EDA signal. Someone decide to discard portion of their data where the signal increased more than 20\% per second or decreased more than 10\% per second.
+\\
+In another case, a study which collected EDA from two sensors (on both the ankle and wrist) \cite{hedman2010situ} was able to detect artifacts by looking for epochs when only one of the two sensors had an abnormally low signal, or showed an unusually rapid increase or decrease.
+\\ \indent
+In \cite{taylor2015automatic} developed a Machine Learning algorithm for automatically detecting EDA artifacts, providing empirical evaluation of classification performances.
+
+\subsection{EDA features}
+As for MER analysis, also in EDA data analysis, is important to find which features need to be extracted and than which feature selection method must be carried.
+\\ \indent
+Emotion recognition from EDA has been commonly used for the assessment of user's experience in a variety of contexts such as recreational and games \cite{drachen2010correlation} and driving \cite{healey2005detecting}. Previous research has explored the predictive power of a diverse set of EDA features of different types, including time domain, frequency domain, and time-frequency domain features.
+\\ \indent
+Regarding time domain features, most usually features considered are the statistical parameters of the signal as:
+\begin{itemize}
+	\item Mean value: $\mu$ is the central value of a discrete set of numbers $x_1,x_2,...,x_n$, specifically, the sum of the values divided by the number of values:
+		\begin{equation}
+		\mu=\dfrac{1}{n} \sum_{i=1}^{n}{x_i}
+		\end{equation}
+	\item Standard deviation:  is a measure of the amount of variation or dispersion of a set of values:
+		\begin{equation}
+		\sigma=\sqrt{\dfrac{1}{n}\sum_{i=1}^{n}({x_i-\mu})^2}
+		\end{equation}
+	\item Kurtosis: is a measure of the "tailedness" of the probability distribution of a real-valued random variable:
+		\begin{equation}
+		kurt=\dfrac{\dfrac{1}{n} \sum_{i=1}^{n}{(x_i-\mu)^4}}{\sigma^4}
+		\end{equation}
+	\item Skewness: is a measure of the asymmetry of the probability distribution of a real-valued random variable about its mean:
+		\begin{equation}
+		skew=\dfrac{\dfrac{1}{n} \sum_{i=1}^{n}{(x_i-\mu)^3}}{\sigma^3}
+		\end{equation}
+\end{itemize}
+In \cite{ghaderyan2016efficient}, as an example, were extracted the features for EDA data shown in table .
+\begin{table}[h!]
+	\centering
+	\begin{tabular}{|l |p{0.36\textwidth} | p{0.3\textwidth}|}
+		\hline
+		Domain & Feature vector & Number of features\\ [0.5ex] 
+		\hline\hline Time & SCR related \newline Statistical features \newline Hjorth features \newline Higher Order Crossing & 7 \newline 8 \newline 2 \newline 5 \\ 
+		\hline	Frequency	 & Statistical features \newline Band power & 8 \newline 9 \\ 
+		\hline	Time-Frequency & DWT coefficients \newline SWT features \newline MFCCs \newline Statistical features MFCC & 56 \newline 40 \newline 481 \newline 5 \\
+		\hline
+	\end{tabular}
+	\caption{Features extracted in \cite{ghaderyan2016efficient}}
+	\label{table:browse_music}
+\end{table}
+Other cases, researchers have focused on event-related features of EDA. They are useful when are presented to the subjects some events, stimulus, like images or sounds.
+\\
+Examples of event-related aspects of EDA considered in other studies are SCR amplitude, SCR peak count, mean SCR rise time, or the sum of SCR areas.
+\\ \indent
+Fewer researches, as \cite{shukla2019feature} remarks, fewer researchers has focused on the predictive power of EDA related to the frequency domain. The frequency domain analysis has shown superior capability for the gradient component's detection of individual SCR.
+\\
+Due to the different rate of physiological process, EDA signals vary significantly with the frequency \cite{ghaderyan2016efficient}.
+\\
+Frequency oscillations of EDA signals can be divided into different frequency sub-bands to analyze it. Indeed previous researchers has considered statistical aspects.
+\\ \indent
+As for audio, also for EDA data, after constructing a feature matrix, need to apply an algorithm of feature selection to improve data reliability.
+\\ \\
+Some examples of feature selection could be:
+\begin{itemize}
+	\item Joint Mutual Information (JMI): focuses on the increasing complementary information between features.
+	\item Conditional Mutual Information Maximization (CMIM): it can properly identify truly redundant features and noisy features, and gives preference to informative, uncorrelated features.
+	\item Double Input Symmetrical Relevance (DISR): a normalized variant of JMI.
+\end{itemize}
+In general it is not known which features are most appropriate for emotion recognition from EDA and previous works have made limited contributions on a systematic comparison of EDA features. 
+
+
+
+
+
+
+
