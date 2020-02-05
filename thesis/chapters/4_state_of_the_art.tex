@@ -10,7 +10,7 @@ In this section will be defined a general overview on physiological signals that
 \\ \indent
 Emotions, which affect both human physiological and psychological status, play a very important role in human life. Positive emotions help improve human health and work efficiency, while negative emotions may cause health problems. Long term accumulations of negative emotions are predisposing factors for depression, which might lead to suicide in the worst cases.
 \\
-The emotion often refers ti a mental state that arises spontaneously rather than through conscious effert and it is accompanied by physical and physiological changes, relevant to the human organs and tissues such as brain, heart, skin, blood flow, muscle, facial expressions, voice, etc. \cite{shu2018review}.
+The emotion often refers ti a mental state that arises spontaneously rather than through conscious effort and it is accompanied by physical and physiological changes, relevant to the human organs and tissues such as brain, heart, skin, blood flow, muscle, facial expressions, voice, etc. \cite{shu2018review}.
 \\ \indent
 Emotion recognition has been applied in many areas such as safe driving \cite{de2016enhancing}, health care especially mental health monitoring \cite{guo2013pervasive}, social security \cite{verschuere2006psychopathy}, and so on.
 \\
@@ -22,12 +22,15 @@ In general, emotion recognition methods could be classified into two major categ
 		\item Electroencephalogram (EEG)
 		\item Electrocardiogram (ECG)
 		\item Electromyogram (EMG)
-		\item Temperature (T)
-		\item Blood pressure
-		\item Hearth Rate (HR)
-		\item Skin Resistance (SR)
-		\item Electrodermal Activity (EDA)
-		\item Galvanic Skin Response (GSR)
+		\item Blood Pressure (BP)
+		\item Hearth Rate Variability (HRV)
+		\item Electrodermal Activity (EDA) as:
+		\begin{itemize}
+			\item Skin Resistance (SR)
+			\item Skin Temperature (ST)
+			\item Skin Conductivity (SC)
+			\item Galvanic Skin Response (GSR)
+		\end{itemize}
 		\item Respiration (RSP)
 	\end{itemize}
 	These signals are produced by the Nervous System which is divided into:
@@ -54,29 +57,177 @@ In the table \ref{table:biological_signals} is shown a summary of various papers
 	\caption{Papers with correspondent biological signal used}
 	\label{table:biological_signals}
 \end{table}
-\\
+\newpage
+In table \ref{table:physiological_features_relation} is presented the relationship between emotions and physiological features, thanks to \cite{shu2018review}. Arrows indicate increased ($\uparrow$), decreased ($\downarrow$), no change in activation from the baseline ($-$) or both increases and decreases in different studies ($\uparrow\downarrow$).
+\begin{table}[h!]
+\begin{adjustwidth}{-3cm}{-1cm}
+	\centering
+	\begin{tabular}{|c|c|c|c|c|c|c|c|}
+		\hline
+		Signal & Anger & Anxiety & Embarrassment & Fear & Amusement & Happiness & Joy\\ [0.5ex] 
+		\hline \hline \textbf{Cardiovascular} &&&&&&& \\ 
+		\hline HR & $\uparrow$ & $\uparrow$ &  $\uparrow$ & $\uparrow$ & $\uparrow\downarrow$ & $\uparrow$ & $\uparrow$ \\
+		\hline HRV & $\downarrow$ & $\downarrow$ & $\downarrow$ & $\downarrow$ & $\uparrow$ & $\downarrow$ & $\uparrow$ \\
+		\hline LF & & $\uparrow$ & & $(-)$ & & $(-)$ & \\
+		\hline LF/HF & & $\uparrow$ & & & $(-)$ & & \\
+		\hline PWA & & & & $\uparrow$ & & & \\
+		\hline PEP & $\downarrow$ & & $\downarrow$ & $\downarrow$ & $\uparrow$ & $\uparrow$ & $\uparrow\downarrow$ \\
+		\hline SV & $\uparrow\downarrow$ & $(-)$ & & $\downarrow$ & & $(-)$ & $\downarrow$\\
+		\hline CO & $\uparrow\downarrow$ & $\uparrow$ & $(-)$ & $\uparrow$ & $\downarrow$ & $(-)$ & $(-)$ \\
+		\hline SBP & $\uparrow$ & $\uparrow$ & $\uparrow$ & $\uparrow$ & $\uparrow$ & $\uparrow$ & $\uparrow$ \\
+		\hline DBP & $\uparrow$ & $\uparrow$ & $\uparrow$ & $\uparrow$ & $\uparrow$ & $\uparrow$ & $(-)$\\
+		\hline MAP & & & $\uparrow$ & $\uparrow$ & $\uparrow$ & $\uparrow$ & \\
+		\hline TPR & $\uparrow$ & & & $\downarrow$ & $\uparrow$ & $\uparrow$ & $(-)$ \\
+		\hline FPA & $\downarrow$ & $\downarrow$ & & $\downarrow$ & $\downarrow$ & $\uparrow\downarrow$ & \\
+		\hline FPTT  & $\downarrow$ & $\downarrow$ & & $\downarrow$ & & $\uparrow$ & \\
+		\hline EPTT & & $\downarrow$ & & $\downarrow$ & & $\uparrow$ & \\
+		\hline FT  & $\downarrow$ & $\downarrow$ & & $\downarrow$ & $(-)$ & $\uparrow$ &\\
+		\hline \hline \textbf{Electrodermal} &&&&&&& \\ 
+		\hline SCR & $\uparrow$ & $\uparrow$ & & $\uparrow$ & $\uparrow$ & & \\
+		\hline nSRR & $\uparrow$ & $\uparrow$ & & $\uparrow$ & $\uparrow$ & $\uparrow$ & $\uparrow$ \\
+		\hline SCL & $\uparrow$ & $\uparrow$ & $\uparrow$ & $\uparrow$ & $\uparrow$ & $\uparrow$ & $(-)$ \\
+		\hline \hline \textbf{Respiratory} &&&&&&& \\ 
+		\hline RR & $\uparrow$ & $\uparrow$ & & $\uparrow$ & $\uparrow$ & $\uparrow$ & $\uparrow$ \\
+		\hline Ti & $\downarrow$ & $\downarrow$ & & $\downarrow$ & $\downarrow$ & $\downarrow$ & \\
+		\hline Te & $\downarrow$ & $\downarrow$ & & $\downarrow$ & & $\downarrow$ & \\
+		\hline Pi & $\uparrow$ & & & $\uparrow$ & & $\downarrow$ & \\
+		\hline Ti/Ttot & & & & $\uparrow$ & $\downarrow$ & & \\
+		\hline Vt & $\uparrow\downarrow$ & $\downarrow$ & & $\uparrow\downarrow$ & $\uparrow\downarrow$ & $\uparrow\downarrow$ & \\
+		\hline Vi/Ti & & & & & & $\uparrow$ & \\
+		\hline \hline \textbf{Electroencephalography} &&&&&&& \\ 
+		\hline PSD($\alpha$ wave) & $\uparrow$ & $\uparrow$ & & $\downarrow$ & $\uparrow$ & $\uparrow$ &  $\uparrow$ \\
+		\hline PSD($\beta$ wave) & $\downarrow$ & & & & $\uparrow$ & & \\
+		\hline PSD($\gamma$ wave) & & & & $\downarrow$ & $\uparrow$ & $\uparrow$ & $\uparrow$ \\
+		\hline DE (avg) & $\uparrow$ & $(-)$ & & $\downarrow$ & & $\uparrow$ & $\uparrow$ \\
+		\hline DASM (avg) & $(-)$ & & & $\uparrow$ & $\downarrow$ & $\downarrow$ & $\downarrow$ \\
+		\hline RASMs (avg) & $\uparrow$ & & & $\uparrow$ & & $\downarrow$ & \\
+		\hline
+	\end{tabular}
+	\end{adjustwidth}
+	\caption{Relationship between emotions and physiological features}
+	\label{table:physiological_features_relation}
+\end{table}
+\newpage
 The position of different biosensors is shown in figure \ref{fig:biosensors_position}.
 \begin{figure}[h]
     \centering
-    \includegraphics[scale=0.5]{biosensors_position.png} 
+    \includegraphics[width=0.8\textwidth]{biosensors_position.png} 
 	\caption{Position of the bio-sensors}
     \label{fig:biosensors_position}
 \end{figure}
-Also, in table is presented the relationship between emotions and physiological features, thanks to \cite{shu2018review}.
-\begin{table}[h!]
-	\centering
-	\begin{tabular}{|l|l|l|l|l|l|l|l|}
-		\hline
-		Signal & Anger & Anxiety & Embarrassment & Fear & Amusement & Happiness & Joy\\ [0.5ex] 
-		\hline \hline Cardiovascular &&&&&&& \\ 
-		\hline  \\
-		
-		\hline
-	\end{tabular}
-	\caption{Papers with correspondent biological signal used}
-	\label{table:biological_signals}
-\end{table}
 
+\subsection{Electroencephalogram}
+Electroencephalogram (EEG) is an electrophysiological monitoring method to record electrical activity of the brain. EEG measures voltage fluctuations resulting from ionic current within the neurons of the brain. Clinically, EEG refers to the recording of the brain's spontaneous electrical activity over a period of time, as recorded from multiple electrodes placed on the scalp.
+\\ \indent
+EEG is most often used to diagnose epilepsy, which causes abnormalities in EEG readings.[2] It is also used to diagnose sleep disorders, depth of anesthesia, coma, encephalopathies, and brain death.
+\\ 
+Many studies have indicated that the physiological correlates of emotions are likely to be found in the central nervous system rather than simply in peripheral physiological responses. Researchers have supported this viewpoint using EEG or other neuroimaging (e.g., functional Magnetic Resonance Imaging) approaches to investigate the specificity of brain activity associated with different emotional states.
+\\
+However, most of the available studies on emotion-specific EEG response have focused on EEG characteristics at the single-electrode level, rather than at the level of EEG-based functional connectivity.
+
+\subsection{Electrocardiogram}
+Electrocardiogram (ECG) is a recording of the electrical activity of the hearth using electrodes placed on the skin. These electrodes detect small electrical changes that are a consequence of cardiac muscle depolarization followed by repolarization during each cardiac cycle, the heartbeat.
+\\ \indent
+There are three main components to an ECG: the P wave, which represents the depolarization of the atria; the QRS complex, which represents the depolarization of the ventricles; and the T wave, which represents the repolarization of the ventricles, as in figure \ref{fig:ECG}.
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.6\textwidth]{ECG.png} 
+	\caption{ECG of a heart in normal sinus rhythm}
+    \label{fig:ECG}
+\end{figure}
+
+\subsection{Electromyogram}
+Electromyogram (EMG) is an electrodiagnostic medicine technique for evaluating and recording the electrical activity produced by skeletal muscles.
+\\
+An electromyograph detects the electric potential generated by muscle cells when these cells are electrically or neurologically activated. The signals can be analyzed to detect medical abnormalities, activation level, or recruitment order, or to analyze the biomechanics of human or animal movement.
+\\ \indent
+Therefore, the best readings are obtained when the sensor is placed on the muscle belly and its positive and negative electrodes are parallel to the muscle fibers. Since the number of muscle fibers that are recruited during any given contraction depends on the force required to perform the movement, the intensity (amplitude) of the resulting electrical signal is proportional to the strength of contraction.
+\\ \indent
+In psychophysiology, EMG was often used to find the correlation between cognitive emotion and physiological reactions. In the work by Sloan \cite{sloan2004emotion}, for example, the EMG was positioned on the face (jaw) to distinguish \textit{smile} and \textit{frown} by measuring the activity of zygomatic major and corrugator supercilli. In experiment of \cite{kim2008emotion}, bipolar electrodes were placed at the upper trapezius muscle (near the neck) in order to measure the mental stress of the subjects.
+
+\subsection{Hearth Rate Variability}
+Hearth Rate Variability (HRV) measure the beat-to-beat temporal changes of the hearth rate, sometimes it is calculated from ECG, but the usability of measuring the ECG is limited. HRV can be evaluatd also through the Blood Volume Pulse (BVP) or Photoplethysmography (PPG).
+\\ \indent
+A reduced HRV is linked to psychiatric illness as depression, anxiety. The heart rate is the most natural choice for arousal detection using comparison of sympathetic and parasympathetic frequency bands of the time series. However, it is highly dependent on the position of the body during monitoring.
+
+\subsection{Electrodermal Activity}
+As already been studied in chapter \ref{chap:TheoreticalBackgroundEDA}, EDA measures the resistance of the skin and the skin conductivity applying electrodes to the skin. The skin conductivity decreases during relaxed states, and increase when exposed to effort.
+
+\subsection{Respiration}
+Respiration (RSP) is the process of moving air into an out of the lungs to facilitate gas exchange with the internal environment, mostly bringing in oxygen and flushing out carbon dioxide.
+\\
+The respiration can be measured with a latex rubber band, the amount of stretch in the elastic is measured as a voltage change and recorded. The most common measures of RSP are the depth of breathing and the rate of RSP.
+\\ \indent
+RSP rate generally decreases with relaxation, tense situations may result in momentary RSP cessation. Irregularity in the RSP pattern could be the cause of negative emotions.
+\\
+Due to the fact that RSP is closely linked to the cardiac function, RSP can be affect other measures like EMG and SC measurements.
+\\
+Positions to the left, and typical waveform of the signals to the right are presented in the figure \ref{fig:waveform_biosensors}.
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.8\textwidth]{waveform_biosensors.png} 
+	\caption{Positions (left) and waveform of the signals (right), (a) ECG, (b) RSP, (c) SC, (d) EMG}
+    \label{fig:waveform_biosensors}
+\end{figure}
+
+\section{General methodology}
+For physiological signal-based emotion recognition, there is a common methodology which can be divided into two categories:
+\begin{itemize}
+	\item Traditional Machine Learning methods: model specific methods, which require carefully designed hand-crafted features and feature optimization methods.
+	\item Deep learning methods, model-free methods, which can learn the inherent principle of the data and extract features automatically.
+\end{itemize}
+The whole emotion recognition framework is shown in figure \ref{fig:emotion_recognition_process}.
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=\textwidth]{emotion_recognition_process.png} 
+	\caption{Emotion recognition process using physiological signals under targer emotion stimulation}
+    \label{fig:emotion_recognition_process}
+\end{figure}
+
+\subsection{Preprocessing}
+After the part of data acquisition, which is different for each physiological signal, there is the data preprocessing step. It is necessary to eliminate the noise effect, artifacts and other signal parts that may lead to wrong results. Due to the complex and subjective nature of raw physiological signals and the sensitivity to noises, electromagnetic interferences, movement artifacts, ... this step is mandatory.
+\\ \indent
+Some of the common steps can be summarized in:
+\begin{itemize}
+	\item Filtering: is commonly used a low-pass filter to remove noises, or also adaptive bandpass filters to remove artifacts.
+	\item Discrete Wavelet Transform (DWT): used to reduce the noise of physiological signals
+	\item Independent Component Analysis (ICA): used to extract and remove respiration sinus arrhythmia from ECG.
+	\item Empirical Mode Decomposition (EMD): used to remove the eye-blink from EEG.
+\end{itemize}
+
+\subsection{Traditional Machine Learning}
+Main steps for traditional ML methods, as already presented in \ref{ML}. There are processes including feature extraction, feature selection and classification.
+
+\paragraph{Feature extraction}
+\mbox{} \\ \\ \indent
+Feature extraction plays a fundamental role in the emotion recognition model. Several major features are extracted for each physiological signal, because is important to extract the most prominent features for emotion recognition. For example EEG is a complex and non-stationary signal, so some statistical features like Power Spectral Density (PSD) and Spectral Entropy (SE) are commonly used.
+\\
+Often are extracted statistical features as mean, standard deviation, Kurtosis, Skewness, entropy.
+\\
+However, each bio-signal has to be investigated separately as extracted features might vary in their usefulness for the classification of emotions.
+
+\paragraph{Feature selection}
+\mbox{} \\ \\ \indent
+After the feature extraction process, there might be a quantity of features, some of which may be irrelevant, some that are probably correlated each other, there might be some redundant features.
+\\
+It lead to a long time of analyzing the features and train the model and it is easy to produce overfitting problem and another problem of sparse features, called \textit{curse of dimensionality}, which results in the decrease of the model performance.
+\\
+Some of the main feature selection algorithms are RfeliefF, MRmR, Sequential Backward Selection (SBS) and Sequential Forward Selection (SFS), PCA, ...
+\\ \indent
+In general there are several feature selection alforithms, some reduce the dimensionality by taking out some redundant or irrelevant featuresm other transform the original one into a new set of features. Performances of the feature selection algorithm depends on the classifier and the dataset, due to this, the perfect feature selection algorithm do not exist.
+
+\paragraph{Classification}
+\mbox{} \\ \\ \indent
+In emotion recognition, the major task is to assign the input signal to one of the given class sets. There are several classification models like Linear Discriminant Analysis (LDA), k-Nearest Neighbor (kNN), Support Vector Machine (SVM), Random Forest (RF), ...
+
+\subsection{Deep Learning}
+Deep Learning (DL) methods have the benefits to be model-free methods, so they do not depends on the specific model considered.
+\\
+Examples of DL algorithms are Convolutional Neural Network (CNN), Recurrent Neural Network (RNN), ... Neural network in general are particular types of ML methods which have as fundamental unit the node, loosely based on the biological neuron. 
+\\ \indent
+The relevant aspect of DL is that it can learn the inherent principle of the data and extract features automatically, so there is no need to extract feature and select the most relevant ones, which could lead to a better generalization of the problem.
+
+\subsection{Model assessment and selection}
 
 
 
