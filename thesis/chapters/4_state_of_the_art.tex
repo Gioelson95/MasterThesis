@@ -228,6 +228,33 @@ Examples of DL algorithms are Convolutional Neural Network (CNN), Recurrent Neur
 The relevant aspect of DL is that it can learn the inherent principle of the data and extract features automatically, so there is no need to extract feature and select the most relevant ones, which could lead to a better generalization of the problem.
 
 \subsection{Model assessment and selection}
+The generalization error of the classifier can be evaluated by experiments, where a testing set should be used to test the ability of the classifier to classify the new samples, and the testing error on the testing set could be viewed approximately as the generalization error.
+\\
+The dataset is divided into two mutually exclusive sets, the training and the testing set. It is important to maintain the consistency of the data distribution as much as possible. In general, the experiment need to repeat several times with random division and then calculate the average value as the evaluation result.
+\\ \indent
+There is also k-fold crossing-validation. the initial sampling is divided into $K$ sub-samples. One sub-sample is used as the testing set and the other $K-1$ samples are used for training. Cross-validation is repeated K-times. Each sub-sample is validate once and the average result of K times is used as the final result. The most common is the 10-fold cross-validation.
+\\ \indent
+To evaluate the performance of the experiment there is the accuracy, which is the proportion of samples that are correctly classified to the total samples.
+
+\section{Issues of physiological signals}
+A lot of efforts have been made in revealing the relationships between explicit physiological signals and implicit psychological feelings. However, there are still several challenges in emotion recognition based on physiological signals:
+\begin{itemize}
+	\item Need a very well designed setup in order to obtain high quality physiological data. The standard setup is the standard lab setting with subjects with earphones  sit motionless in front of a screen where the emotion stimuli materials are played. This system is fixed, data are noiseless and stable, but the issue of obtaining genuine emotions which is dependent heavily on the emotion stimulated materials is hard to deal with it.
+	\item The stimulus materials are artificially selected, labels of the materials are manually set, while for the same thing human emotions vary from each other, this may lead to a large deviation in the rating of the material. In \cite{muhl2011modality}, the author showed that different introduction ways led to different physiological responses.
+	\item There is no still clear evidence that what feature combination of what physiological signal combinations are the most significantly relevant to emotion changes.
+	\item For most studies, the number of subjects is small. Due to limited samples, the performance of the classifier with subjects who have not been trained would be poor. The clear efficient method is to include more subjects from different ages and backgrounds.
+	\item Emotion perception and experience lead to strong differences.
+	\item The reliability of facial expressions cannot be guaranteed sometimes.
+\end{itemize}
+
+
+
+
+
+
+
+
+
 
 
 
