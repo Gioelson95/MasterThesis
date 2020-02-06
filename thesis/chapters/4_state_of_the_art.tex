@@ -247,12 +247,39 @@ A lot of efforts have been made in revealing the relationships between explicit 
 	\item The reliability of facial expressions cannot be guaranteed sometimes.
 \end{itemize}
 
+\section{Related works}
+In this section will be presented some works done during the last years on all physiological signals that tries to understand the relationship of physiology and human emotions.
 
+\subsection{ECG and GSR signal emotion recognition}
+In the work \cite{goshvarpour2017accurate} Electrocardiogram and Galvanic Skin Response of 11 healthy students were collecred while subjects were listening to emotional music clips. They extracted Matching Pursuit (MP) coefficients frin ECG and GSR signals.
+\\ \indent
+Than were calculated some statistical indices from the MP coefficients and three dimensionality reduction method were applied, PCA, LDA and Kernel PCA. These features were fed into the Probabilistic Neural Network (PNN) in subject-dependent and subject-independent modes.
+\\ \indent
+The PNN is feed with a feature vector in the input layer, is determined a distance between the input and the weight vector. Is calculated the summation of these contributions for each input class to yield the probability. Finally is selected the maximum of these probabilities by a competitive layer and assigned $1$ for that class and $0$ elsewhere.
+\\ \indent
+They achieved, using PCA, the highest recognition rate of 100\% for $\sigma = 0.01$.
 
+\subsection{ECG sensors for human emotion recognition}
+The research of \cite{dissanayake2019ensemble}, they suggest an ensamble learning approach for developing a machine learning model that can recognize four major human emotions (anger, sadness, joy and pleasure) incorporating ECG signals.
+\\ \indent
+As feature extraction method, the analysis combines four ECG signals techniques. Several ML methods have been applied to the model, the most accurate (with an accuracy of 70\% is achieved by using an Extra Tree Classifier (a variant of the Random Forest that introduce more variation in the ensemble).
 
+\subsection{Automatic ECG emotion recognition}
+In \cite{hsu2017automatic} is presented an automatic ECG-based emotion recognition algorithm. They recorded ECG signal from subjects and extracted some features from the signal from the time and frequency domain. Than performed an algoritm of feature selection, a sequential forward floating selection-kernel-based class separability-based.
+\\
+Valence and arousal and four types of of emotions are recognized using Least Square-Support Vector Machine recognizer. They gained a classification rate for positive/negative valence, high/low arousal, and four types of emotion classification tasks are 82.78\%, 72.91\%, and 61.52\%, respectively.
 
+\subsection{Classification of music emotions with  forehead biosignals and ECG}
+In the work of \cite{naji2014classification} to recognize music-induced emotions is used a fusion of three-channel forehead biosignals (left and right temporal channel and frontalis) and ECG. They employed two parallel SVM as arousal and valence classifiers.
+\\ \indent
+The inputs of the classifiers were obtained by applying a fuzzy-rough model feature evaluation criterion and sequential forward floating selection algorithm.
+\\
+The average classification accuracy was of 88.78\% (valence classification accuracy of 94.91\% and arousal classification accuracy of 93.63\%).
 
-
+\subsection{Emotion classification with forehead biosignals}
+In \cite{naji2015emotion} investigates the feasibility of usign 3-channel forehead bisignals. Classification in vale-arousal space is performed by employing two parallel cascade-forward Neural Networks.
+\\
+The inputs of the classifiers were obtained by applying a fuzzy rough model feature evaluation criterion and sequential forward floating selection algorithm. An averaged classification accuracy of 87.05\% was achieved, corresponding to average valence classification accuracy of 93.66 \% and average arousal classification accuracy of 93.29 \%.
 
 
 
