@@ -281,8 +281,64 @@ In \cite{naji2015emotion} investigates the feasibility of usign 3-channel forehe
 \\
 The inputs of the classifiers were obtained by applying a fuzzy rough model feature evaluation criterion and sequential forward floating selection algorithm. An averaged classification accuracy of 87.05\% was achieved, corresponding to average valence classification accuracy of 93.66 \% and average arousal classification accuracy of 93.29 \%.
 
+\subsection{Physiological changes in music listening}
+The paper \cite{kim2008emotion} investigates the potential of physiological signals as reliable channels for emotion recognition. Were used four-channel biosensors to measure EMG, ECG, SC and RSP changes as can be seen in figure \ref{fig:waveform_biosensors}. They extracted some features in various analysis domain, the time/frequency, entropy, geometric analysis, subband spectra.
+\\ \indent
+Classification of four musical emotion (one for each quadrant of the valence-arousal diagram) is performed by using an extended linear discriminant analysis (pLDA). They also provided a novel scheme of emotion-specific multilevel dichotomous classification, gaining an accuracy of 95\% for subject-dependent and 70\% for subject-independent classification.
+ 
+\subsection{NN based emotion estimation}
+In order to build a human-computer interface that is sensitive to a user's expressed emotion, in \cite{yoo2005neural} propose a neural network based emotion estimation algorithm using HR and GSR. In this study, a video clip method was used to elicit basic emotions from subjects while ECG and GSR signals were measured. These signals reflect the influence of emotion on the autonomic nervous system. The extracted features that are emotion-specific characteristics from those signals are applied to an artificial neural network in order to recognize emotions from new signal collections. Results show that the proposed method is able to accurately distinguish a user's emotion.
+\\ They gain a total accuracy of 80.2\%.
 
+\subsection{Recognize emotions by affective sound through HRV}
+The research in \cite{nardelli2015recognizing} reports on how emotional states elicited by affective sounds can be effectively recognized by means of estimates of ANS dynamics.
+\\ \indent
+The ANS dynamics is estimated through standard and nonlinear analysis of HRV exclusively, which is derived from the ECG. A group of 27 people were administered with ECG recordings, then HRV features showing significant changes between valence and arousal dimensions were used as input of an automatic classification system.
+\\ \indent
+The best accuracy was achieved for a quadratic discriminant classifier, to 84.72\% on the valence dimension and 84.26\% on the arousal one. 
 
+\subsection{Emotion recognition from ECG}
+In \cite{cai2009research} carried out the work of affective ECG signal acquisition from 391 subjects through stimulation of film clips. They recognized emotions divided into Joy and Sadness.
+\\
+Than, is implemented features extraction and feature selection algorithms based on the DWT and a Fisher-KNN to classify the test data.
 
+\subsection{Relationship between music emotion and physiological signals}
+In \cite{hu2018relationships} the study explore the possibility of using physiological signals to detect users emotion response to music, considering individual characteristics (as personality, music preferences, etc.).
+\\ \indent
+A user experiment was conducted with 23 participants, during music listening, a series of physiological signals like HR and SC were recorded using a wearable wristband.
+\\ Here, arousal and mood values rated by participants were grouped into three main categories (i.e. positive, negative, neutral), for mood ratings, they combined the mood categories into positive, negative and neutral moods.
+\\
+After some data preprocessing, were extracted the features in table \ref{table:features_hu2018}:
+\begin{table}[h!]
+	\centering
+	\begin{tabular}{|p{0.3\textwidth}|p{0.5\textwidth}|}
+		\hline
+		Category & Features\\ [0.5ex] 
+		\hline \hline Descriptive statistics of raw signal & Mean, Standard deviation, median, range \\
+		\hline Time series features & Means of the abs of the $1^{st}$/$2^{nd}$ differences of the raw/normalized signals \\
+		\hline Physiological signal specific features & SC response, HR variability \\
+		\hline
+	\end{tabular}
+	\caption{Features extracted from physiological signals in \cite{hu2018relationships}}
+	\label{table:features_hu2018}
+\end{table}
+\\
+A machine learning approach was applied to measure the extent to which physiological signals could be used to recognize users’ emotion responses to music listening, in positive and negative categories of arousal and mood. Specifically, they trained and compared the performance of several classification models, namely decision tree, k-Nearest Neighbor, naïve Bayes and SVM.
 
-
+\subsection{DL model for human emotion recognition with EDA}
+The work in \cite{al2019deep} had the main objective of ensure that elderly and/or disabled people perform/live well in their immediate environments; this can be monitored by among others the recognition of emotions based on non-highly intrusive sensors such as EDA sensors.
+\\
+However, designing a learning system or building a machine-learning model to recognize human emotions while training the system on a specific group of persons and testing the system on a totally a new group of persons is still a serious challenge in the field, as it is possible that the second testing group of persons may have different emotion patterns.
+\\ \indent
+They contributed to the field of human emotion recognition by proposing a CNN architecture which promise robustness for both subject-dependent and subject independent human emotion recognition.
+\\
+Authors converted EDA signals into matrices whereby the goal is to make the application of CNN model possible.
+\\
+They tested the CNN on two datasets, MAHNOB and DEAP, which are four-classes labeled and they increased the accuracy up to 78\% for MAHNOB and 82\% for DEAP in subject-independent classification, while up to 81\% for MAHNOB and 85\% for DEAP in subject-dependent classification.
+\\ \indent
+For the sake of clarity, subject-independent emotion recognition is a challenging field due to:
+\begin{itemize}
+	\item Physiological expressions of emotion depend on age, gender, culture and other social factors.
+	\item Depends on the environment in which a subject lives.
+	\item The lab-setting independent nature of emotion recognition is related to the fact that the classifier can/will be trained locally once using sensors of a given lab-setting and after that tested considering different datasets that are collected based on different lab settings. 
+\end{itemize}
