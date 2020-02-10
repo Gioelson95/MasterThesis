@@ -196,7 +196,7 @@ Some of the common steps can be summarized in:
 \end{itemize}
 
 \subsection{Traditional Machine Learning}
-Main steps for traditional ML methods, as already presented in \ref{ML}. There are processes including feature extraction, feature selection and classification.
+Main steps for traditional ML methods, as already presented in \ref{ML}. There are processes including feature extraction, feature selection and classification as reviewed in \cite{jerritta2011physiological}.
 
 \paragraph{Feature extraction}
 \mbox{} \\ \\ \indent
@@ -342,3 +342,55 @@ For the sake of clarity, subject-independent emotion recognition is a challengin
 	\item Depends on the environment in which a subject lives.
 	\item The lab-setting independent nature of emotion recognition is related to the fact that the classifier can/will be trained locally once using sensors of a given lab-setting and after that tested considering different datasets that are collected based on different lab settings. 
 \end{itemize}
+
+\subsection{VA recognition of affective sounds based on EDA}
+In \cite{greco2016arousal} tried to automatically classify the emotional state of healthy subjects. They proposed the use of convex optimization based on EDA framework and clustering algorithms to automatically discern arousal and valence levels induced by affective stimuli.
+\\ \indent
+EDA recordings were gathered from 25 healthy volunteers, using only one EDA sensor to be placed on fingers.
+\\
+In model-based approaches, models describe and estimate the underlying psychological process that generates the observed data (EDA measurements). The model based analysis of EDA has fundamental advantages, such as a propensity to reduce the effects of measurement noise and the essential ability to improve the temporal resolution of inference in rapid event-related paradigms.
+\\ \indent
+EDA data, in this experiment was analyzed with the \textit{cvxEDA} algorithm, presented in \cite{greco2015cvxeda}, which proposed a representation of the SCRs parts of EDA as the ouptut of a linear time-invariant system to a sparse non-negative driver signal.
+\\
+The model of the \textit{cvxEDA} assumes that the observed SC ($y$) is the sum of the phasic activity ($r$), a slow tonic component ($t$), and an additive independent and identically distributed zero-average Gaussian noise term ($\varepsilon$):
+\begin{equation}
+	y=r+t+\varepsilon
+\end{equation}
+Physiologically-plausible characteristics (temporal scale and smoothness) of the tonic input signal can be achieved by means of a cubic spline with equally-spaced knots every 10 s, an offset and a linear trend term:
+\begin{equation}
+	\label{eq:tonic_model}
+	t=Bl+Cd
+\end{equation}
+where $B$ is a tall matrix whose columns are cubic B-spline basis functions, $l$ is the vector of spline coefficients, $C$ is a $Nx2$ matrix with $C_{i,1} = 1$, and $C_{i,2} = \dfrac{i}{N}$, $d$ is a $2x1$vector with the offset and slope coefficients for the linear trend.
+Phasic component is the result of a convolution between the sudomotor nerve activity (SMNA) $p$ and an impulse response $h(t)$ shaped as a biexponential Bateman function:
+\begin{equation}
+	h(t)=(e^{-t/\tau_1}-e^{-t/\tau_2})u(t)
+\end{equation}
+where $\tau_1$ and $\tau_2$ are the slow and the fast time constants of the phasic curve shape and $u(t)$ is the unitary step function.
+\\
+Referring to \cite{greco2016arousal}, the final model can be written as:
+\begin{equation}
+	\label{eq:EDA_model}
+	y=Mq+Bl+Cd+\varepsilon 
+\end{equation}
+Given the EDA model \ref{eq:EDA_model}, \textit{cvxEDA} formulated the problem as a minimization problem as:
+\begin{equation}
+	minimize \; \dfrac{1}{2} ||Mq+Bl+Cd-y||^2+\alpha \delta ||Aq||_1+\dfrac{\gamma}{2}||l||^2_2
+\end{equation}
+\[subject \; to \; Aq>=0 \]
+This problem can be solved using one of the many sparse-QP solvers in order to find the optimal $[q,l,d]$, than find tonic component $t$ from \ref{eq:tonic_model}.
+\\
+They extracted several features form EDA both from phasic and tonic components output of the \textit{cvxEDA}. For each feature, two levels of valence (positive and negative) and three levels of arousal (low, medium and high) were compared.
+\\
+The supervised classification was implemented using a kNN classifier.
+\\ \indent
+Results, thanks to \textit{cvxEDA} showed a recognition accuracy of 80 \% on the arousal dimension and 84 \% in valence classification.
+
+\section{Conclusions}
+In this chapter was shown a review of the state of the art about human emotion recognition based on physiological data. A schematic block of the general algorithm can be seen in figure \ref{fig:emotion_recognition_process}.
+\\
+Summing up, the majority of the works deal with a small number of subjects (25/30 maximum) and they evaluated their accuracy based on valence-arousal space grouped in four main labels.
+
+
+
+
