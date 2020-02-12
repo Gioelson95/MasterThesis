@@ -3,13 +3,129 @@
 \pagestyle{plain}
 \vspace{0.5cm}
 
-\noindent In this chapter we present...
 
-Then...
-
-Finally ...
+\noindent In this chapter is presented the overall description of the dataset used in the experiment and the related work already done.
 
 
-\section{Some different sections}
+\section{PMEmo dataset}
+This thesis is based on the paper \textit{The PMEmo dataset for Music Emotion Recognition} \cite{zhang2018pmemo}. K. Zhang, H. Zhang and S.Li created a novel dataset called \textit{PMEmo} (popular music with emotional annotations) containing emotions of 794 songs as well as EDA signals.
+\\
+A musical experiment was well-designed for collecting the affective annotated music corpus oh high quality, which recruited 457 subjects.
+The dataset is publically available to the research comunity at \href{https://drive.google.com/drive/folders/1qDk6hZDGVlVXgckjLq9LvXLZ9EgK9gw0}{this link}\footnote{https://drive.google.com/drive/folders/1qDk6hZDGVlVXgckjLq9LvXLZ9EgK9gw0}.
+\\
+It is intended for benchmarking in MIR and MER, it involves precomputed audio features sets and manually selected chorus excerpts (in .mp3) of songs, to facilitate the development of chorus-related research.
 
-\section{Conclusive Remarks}
+\subsection{Dataset structure}
+The dataset contain 794 music clips annotated by 457 subjects, which are subjects from different countries and majors, in order to eliminate the effects of cultural and educational background \cite{hu2017cross}.
+\\
+Chorus parts are manually selected from students majoring in music.
+\\ \indent
+Meanwhile, the EDA of subjects when listening to these music are also recorded, making it possible to analyses emotion states in multiple modes. All annotations are stored in CSV files delimited by comma.
+\\
+The dataset is composed of:
+\begin{itemize}
+	\item annotations: valence and arousal values for each song. There are:
+	\begin{itemize}
+		\item \textit{static\_annotations}: valence and arousal standard deviation values for each song, one value for each song.
+		\item \textit{static\_annotations\_std}: valence and arousal mean values for each song, one value for each song.
+		\item \textit{dynamic\_annotations}: valence and arousal standard deviation values for each song, acquired at a sampling rate of $2Hz$.
+		\item \textit{dynamic\_annotations\_std}: valence and arousal mean values for each song, acquired at a sampling rate of $2Hz$.
+	\end{itemize}
+	\item chorus: all chorus excerpts of 794 songs manually selected.
+	\item comments: songs comments taken from \href{https://music.163.com}{NetEase}\footnote{https://music.163.com} and \href{https://soundcloud.com}{SoundCloud}\footnote{https://soundcloud.com}.
+	\item EDA: EDA data for each song, each one extracted by at least 10 subjects, with a sampling rate of $50Hz$.
+	\item features: all features extracted by the authors of \cite{zhang2018pmemo}:
+	\begin{itemize}
+		\item \textit{EDA\_features}: features extracted from the EDA signals:
+		\begin{itemize}
+			\item \textit{EDA\_features\_static}: EDA static features for each song for each subject.
+			\item \textit{EDA\_features\_dynamic}: EDA dynamic features for each song for each subject with a sampling rate of $50Hz$.
+		\end{itemize}
+		\begin{itemize}
+			\item \textit{static\_features}: audio static features for each song for each subject.
+			\item \textit{dynamic\_features}: audio dynamic features for each song for each subject with a sampling rate of $50Hz$.
+		\end{itemize}
+	\end{itemize}
+	\item \textit{lrc\_dataset}: lyrics text of all music excerpts.
+	\item lyrics:  lyrics text of all music excerpts divided by each timestamp.
+	\item \textit{metadata}: metadata of the songs, containing \textit{music\_ID}, title, artist, album, duration, \textit{chorus\_start\_time} and \textit{chorus\_end\_time}.
+\end{itemize}
+\newpage
+Since the early years of MER, there have been numerous efforts to build datasets with emotional annotations, to facilitate the development and evaluation of music emotion recognition. Table \ref{table:datasets} from \cite{zhang2018pmemo} summarize some works on that.
+\begin{savenotes}
+\begin{table}[h!]
+	\centering
+	\begin{tabular}{|l|l|p{0.3\textwidth}|c|}
+		\hline
+		Name & Stimulus & Data & Audio\\ [0.5ex] 
+		\hline\hline \href{http://www.projects.science.uu.nl/memotion/emotifydata/}{Emotify}\footnote{http://www.projects.science.uu.nl/memotion/emotifydata/}  & 400 excerpts & induced emotion & yes	\\ 
+		\hline \href{http://music.ece.drexel.edu/research/emotion/moodswingsturk}{Moodswing}\footnote{http://music.ece.drexel.edu/research/emotion/moodswingsturk} & 240 excerpts (30s) & valence and arousal & no \\
+		\hline \href{https://amg1608.blogspot.ca/}{Amg1608}\footnote{https://amg1608.blogspot.ca/} & 1608 excerpts (30s) & valence and arousal & no \\
+		\hline \href{http://cvml.unige.ch/databases/emoMusic/}{emoMusic}\footnote{http://cvml.unige.ch/databases/emoMusic/} & 744 excerpts (45s) & valence and arousal & yes \\
+		\hline \href{http://cvml.unige.ch/databases/DEAM/}{DEAM}\footnote{http://cvml.unige.ch/databases/DEAM/} & 1802 excerpts & valence and arousal & yes \\
+		\hline \href{https://www.jyu.fi/hytk/fi/laitokset/mutku/en/research/projects2/pastprojects/coe/materials/emotion/soundtracks/Index}{SoundTracks}\footnote{https://www.jyu.fi/hytk/fi/laitokset/mutku/en/research/projects2/\newline pastprojects/coe/materials/emotion/soundtracks/Index} & 360 + 110 excerpts & valence, energy, tension, mood & yes \\
+		\hline \href{https://hilab.di.ionio.gr/en/music-information-research/}{GMD}\footnote{https://hilab.di.ionio.gr/en/music-information-research/} & 1400 songs & genre, valence and arousal & yes \\
+		\hline \href{http://www.eecs.qmul.ac.uk/mmv/datasets/deap/readme.html}{DEAPDataset}\footnote{http://www.eecs.qmul.ac.uk/mmv/datasets/deap/readme.html} & 120 music excerpts & valence, arousal, dominance and physiological data & no \\
+		\hline PMEmo & 794 music chorus & valence, arousal and physiological data & yes \\
+		\hline
+	\end{tabular}
+	\caption{Some existing music datasets with emotion annotations}
+	\label{table:datasets}
+\end{table}
+\end{savenotes}
+
+\subsection{Song acquisition and subject selection}
+They collected $1000$ songs from the "\textit{Billboard Hot 100}", the "\textit{iTunes top 100 songs}" and the "\textit{UK top 40 single charts}". They late discovered a set of duplicates and filtered reduplicative music obtaining a full song set of $794$ pop songs.
+\\
+Each datasets in MER utilize music segments, here each clip is manually selected as one of the chorus parts of each song, which is implemented by university students in music major. The clips are of various length, exactly the duration of the chorus parts.
+\\ \indent
+A total of $457$ subjects, $236$ females and $221$ males were recruited to participate. Among them, $366$ are Chinese university students who are in non-music majors while $44$ are majoring in music recruited to ensure high quality labeling. To weaken the impact of cultural background, $47$ English speakers are invited to annotate the datasets.
+\\
+Each song received a total of at least $10$ emotion annotations including one by music-majoring and one by English speaker.
+
+\subsection{Experiment design}
+To monitor and obtain EDA continuously they used \href{https://www.biopac.com/product/eda-finger-transducer-bsl/}{MP150 Biopac system}\footnote{https://www.biopac.com/product/eda-finger-transducer-bsl/} at a sampling rate of $50Hz$ and export signals from \textit{AcqKnowledge} software.
+\\
+To annotate songs was developed a desktop application shown in figure \ref{fig:annotation_interface}. The annotation was done with the sliding area collecting dynamics annotations , from $1$ to $9$, at a sampling rate of $2Hz$. Annotators should make a statistic annotation for the whole music excerpts on nine-point scale after the dynamic labeling. Furthermore, annotators were asked to listen to the same music twice to annotate on valence and arousal separately.
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.6\textwidth]{annotation_interface.png} 
+	\caption{Annotation interface for PMEmo}
+    \label{fig:annotation_interface}
+\end{figure}
+\\
+In figure \ref{fig:experimental_procedure} is shown the flow diagram of the experiment, where each subject spent $50$ minutes on average.
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.6\textwidth]{experimental_procedure.png} 
+	\caption{Experimental procedure for PMEmo}
+    \label{fig:experimental_procedure}
+\end{figure}
+\\
+Each subject listened to 20 excerpts and one of those was duplicated to guarantee the high quality data as what was done in \cite{chen2015amg1608}. The annotations from this subjects were accepted only if the bias between duplicate clips were within $0.25$ in the valence-arousal space (they did not inform subjects about the duplicated excerpt).
+\\
+In total $457$ subjects have participated but $401$ were considered valid annotations ($87.7\%$). Each music clip was annotated by at least $10$ subjects including English speakers and semi-experts from music academy.
+
+\subsection{Data reliability}
+As Initial Orientation Time (IOT) concept remarks, annotators need some preliminary time before they can give meaningful and reliable annotations. Schubert in \cite{schubert2013reliability} found that median IOT for valence was $8s$ while for arousal $12s$. Other researchers showed that annotations began to converge after $10s$. The PMEmo authors decided to discard first $15s$ for the dynamic annotations from the data.
+\\ \indent
+To evaluate annotation consistency they used the Chronbach's $\alpha$, it represent the degree to which a set of items measures a single unidimensional latent construct. In \cite{zhang2018pmemo} computed the Chronbach's $\alpha$ on the sequence of annotations for each song.
+\\
+They processed annotations by:
+\begin{equation}
+	a{j,i}=a{j,i}+(\bar{A}_j-\bar{A})
+\end{equation}
+where:
+\begin{itemize}
+	\item $a{j,i}$ is the label annotated by subject $j$ at time $i$
+	\item $\bar{A}$ is the mean of all the labels for this song by all subjects
+	\item $\bar{A}_j$ is the mean of dynamic labels by subject $j$
+\end{itemize}
+
+
+
+
+
+
+
+
