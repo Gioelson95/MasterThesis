@@ -3,9 +3,7 @@
 \pagestyle{plain}
 \vspace{0.5cm}
 
-
 \noindent In this chapter is presented the overall description of the dataset used in the experiment and the related work already done.
-
 
 \section{PMEmo dataset}
 This thesis is based on the paper \textit{The PMEmo dataset for Music Emotion Recognition} \cite{zhang2018pmemo}. K. Zhang, H. Zhang and S.Li created a novel dataset called \textit{PMEmo} (popular music with emotional annotations) containing emotions of 794 songs as well as EDA signals.
@@ -113,17 +111,144 @@ To evaluate annotation consistency they used the Chronbach's $\alpha$, it repres
 \\
 They processed annotations by:
 \begin{equation}
-	a{j,i}=a{j,i}+(\bar{A}_j-\bar{A})
+	a_{j,i}=a_{j,i}+(\bar{A}_j-\bar{A})
 \end{equation}
 where:
 \begin{itemize}
-	\item $a{j,i}$ is the label annotated by subject $j$ at time $i$
+	\item $a_{j,i}$ is the label annotated by subject $j$ at time $i$
 	\item $\bar{A}$ is the mean of all the labels for this song by all subjects
 	\item $\bar{A}_j$ is the mean of dynamic labels by subject $j$
 \end{itemize}
+The mean (averaged across songs) and the standard deviation of the Chronbach's $\alpha$ for the annotation in the PMEmo dataset are shown in table \ref{table:Chronbach}.
+\begin{table}[h!]
+	\centering
+	\begin{tabular}{|c|c|c|}
+		\hline
+		Dimension & Mean value & Std Dev \\ [0.5ex] 
+		\hline\hline Valence & 0.998 & 0.005 \\ 
+		\hline Arousal & 0.998 & 0.008 \\ 
+		\hline
+	\end{tabular}
+	\caption{Mean and standard deviation of the Chronbach's $\alpha$ for PMEmo dataset annotations}
+	\label{table:Chronbach}
+\end{table}
 
+\subsection{Feature set}
+As already mentioned before in \ref{music_features}, for generic MER there has been no attempt made at defining a "standard" feature set. In PMEmo work \cite{zhang2018pmemo} they based on the INTERSPEECH 2013 Computational Paralinguistic Evaluation (ComParE) and extracted a feature set of 6373-dimension scale.
+\\
+They provided all 6373-dimension features in song level for the sake of static emotion task. They extracted only the core of 260-dimension features in segment level (calculated in $1s$ window with $0.5s$ overlap) for dynamic recognition task to properly reduce the computing load.
+\\
+Extraction of the features is done with the open-source toolkit \href{https://www.audeering.com/opensmile/}{openSMILE}\footnote{https://www.audeering.com/opensmile/}.
+\\
+No feature selection procedure was implemented in PMEmo work.
 
-
+\subsection{PMEmo performances}
+In the article, they adopt Multivariate Linear Regression (MLR) and Support Vector Regression (SVR) as the base classifiers to model emotions in valence and arousal.
+\\
+For the static part, they trained and tested the classifiers using all the 6373-dimension features $x_1,x_2,...,x_{6373}$ and separate static labels of valence $y_{valence}$ and arousal $y_{arousal}$ respectively.
+\begin{equation}
+	{X_1,X_2,...,X_m} \quad \rightarrow \quad {e_1,e_2,...,e_m}
+\end{equation}
+where:
+\begin{itemize}
+	\item $m$ os the number of songs
+	\item $X_i={x_1,x_2,...,x_{6373}}$ is the feature set of the $i^{th}$ song
+	\item $e_i$ is the value of valence or arousal for this song
+\end{itemize}
+With respect of continuous mood of a song, is natural to consider a decoupling into two scales and then recognize them separately.
+\\
+For the dynamic emotion, defined as:
+\begin{equation}
+	L_i=\bar{L}_i+D_i^{t_i}
+\end{equation}
+where:
+\begin{itemize}
+	\item $t_i$ is the number of timestamps in the $i^{th}$ song
+	\item $\bar{L}_i$ is the mean of dynamic emotion
+	\item $D_i^{t_i}$ is the fluctuation at each timestamp
+\end{itemize}
+the global model is:
+\begin{equation}
+	{X_1,X_2,...,X_m} \quad \rightarrow \quad {\bar{L}_1,\bar{L}_2,...,\bar{L}_m}
+\end{equation}
+while, the local model is:
+\begin{equation}
+	{Y_1^{t_1},Y_2^{t_2},...,Y_m^{t_m}} \quad \rightarrow \quad {D_1^{t_1},D_2^{t_2},...,D_m^{t_m}}
+\end{equation}
+where:
+\begin{itemize}
+	\item $m$ is the number of songs
+	\item $X_i$ is the global feature set of it
+	\item $Y_i^{t_i}$ is a matrix of 260 columns and $t_i$ rows
+\end{itemize}
+Before the regression models, they resized all the annotations (both for static and dynamic annotations) into $[0,1]$.
+\\ \indent
+Static task is to predict the overall emotion of a whole song, represented by a single valence value and arousal value. To train and test, they divided the dataset in $11$ folds, 10 constituted thr training set and the remaining set used to test the train model. A 10-fold-cross-validation was used for parameter optimization.
+\\
+Root Mean Square Error (RMSE) and Pearson Correlation Coefficient (r) were calculated separately for valence and arousal. In table \ref{table:PMEmo_results_static} is shown results on static emotions.
+\begin{table}[h!]
+	\centering
+	\begin{tabular}{|c|c|c|c|}
+		\hline
+		Dimension & Classifier & RMSE & r \\ [0.5ex] 
+		\hline\hline Valence & MLR & 0.136 & 0.546 \\ 
+		\hline Valence & SVR & 0.124 & 0.638 \\
+		\hline Arousal & MLR & 0.111 & 0.719 \\
+		\hline Arousal & SVR & 0.102 & 0.764 \\
+		\hline
+	\end{tabular}
+	\caption{Evaluation results on static emotions}
+	\label{table:PMEmo_results_static}
+\end{table}
+\indent About the dynamic case, a hierchical regression model aiming to recognize the global trend as well as local variation was built. For Global-scale they extracted, for each song, one global feature and mapped it into one global emotion. For Local-scale operation, for each song, they divided it into $1s$ segment with $50\%$ overlap, then extracting the local features from these fragments and project them onto mood space.
+\\
+In table \ref{table:PMEmo_results_dynamic} is presented the evaluation results on dynamic emotions.
+\begin{table}[h!]
+	\centering
+	\begin{tabular}{|c|c|c|c|c|}
+		\hline
+		Dimension & Classifier & Scale & RMSE & r \\ [0.5ex] 
+		\hline\hline Valence & MLR & global & 0.103 & 0.673 \\
+		\hline Valence & MLR & local & 0.016 & 0.047 \\
+		\hline Valence & SVR & global & 0.106 & 0.675 \\
+		\hline Valence & SVR & local & 0.016 & 0.095 \\
+		\hline Arousal & MLR & global & 0.113 & 0.816 \\
+		\hline Arousal & MLR & local & 0.020 & 0.103 \\
+		\hline Arousal & SVR & global & 0.101 & 0.844 \\
+		\hline Arousal & SVR & local & 0.019 & 0.115 \\
+		\hline
+	\end{tabular}
+	\caption{Evaluation results on static emotions}
+	\label{table:PMEmo_results_dynamic}
+\end{table}
+In PMEmo work, as already mentioned, they also recorded EDA subjects data when they were listening to music.
+\\
+On EDA, they employed a low-pass filter of $0.6Hz$ to diminish the noise due to motion artifacts. Then skin electric conductance was scaled in z-score:
+\begin{equation}
+	z-score=\dfrac{X-\mu}{\sigma}
+\end{equation}
+where $\mu$ is the mean of vector $X$ and $\sigma$ is the standard variation.
+Last passage on EDA signal was to resample them, from $50Hz$ to $2Hz$ due to different acquisition of EDA and continuous emotions.
+\\
+They trained and tested MLR and SVR with pre-processed EDA data in the dynamic case and results are shown in table \ref{table:PMEmo_results_EDA}.
+\begin{table}[h!]
+	\centering
+	\begin{tabular}{|c|c|c|c|c|}
+		\hline
+		Dimension & Classifier & Scale & RMSE & r \\ [0.5ex] 
+		\hline\hline Valence & MLR & global & 0.139 & 0.063 \\
+		\hline Valence & MLR & local & 0.016 & 0.060 \\
+		\hline Valence & SVR & global & 0.141 & 0.017 \\
+		\hline Valence & SVR & local & 0.016 & 0.059 \\
+		\hline Arousal & MLR & global & 0.186 & 0.011 \\
+		\hline Arousal & MLR & local & 0.019 & 0.097 \\
+		\hline Arousal & SVR & global & 0.194 & 0.040 \\
+		\hline Arousal & SVR & local & 0.019 & 0.099 \\
+		\hline
+	\end{tabular}
+	\caption{Evaluation results on static emotions}
+	\label{table:PMEmo_results_EDA}
+\end{table}
 
 
 
