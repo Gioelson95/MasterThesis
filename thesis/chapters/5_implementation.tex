@@ -6,19 +6,19 @@
 \noindent In this chapter is presented the overall description of the dataset used in the experiment and the related work already done.
 
 \section{PMEmo dataset}
-This thesis is based on the paper \textit{The PMEmo dataset for Music Emotion Recognition} \cite{zhang2018pmemo}. K. Zhang, H. Zhang and S.Li created a novel dataset called \textit{PMEmo} (popular music with emotional annotations) containing emotions of 794 songs as well as EDA signals.
+This thesis is based on the paper \textit{The PMEmo dataset for Music Emotion Recognition} \cite{zhang2018pmemo}. K. Zhang, H. Zhang and S.Li created a novel dataset called \gls{pmemo} containing emotions of 794 songs as well as \gls{eda} signals.
 \\
 A musical experiment was well-designed for collecting the affective annotated music corpus oh high quality, which recruited 457 subjects.
 The dataset is publically available to the research comunity at \href{https://drive.google.com/drive/folders/1qDk6hZDGVlVXgckjLq9LvXLZ9EgK9gw0}{this link}\footnote{https://drive.google.com/drive/folders/1qDk6hZDGVlVXgckjLq9LvXLZ9EgK9gw0}.
 \\
-It is intended for benchmarking in MIR and MER, it involves precomputed audio features sets and manually selected chorus excerpts (in .mp3) of songs, to facilitate the development of chorus-related research.
+It is intended for benchmarking in \gls{mir} and \gls{mer}, it involves precomputed audio features sets and manually selected chorus excerpts (in .mp3) of songs, to facilitate the development of chorus-related research.
 
 \subsection{Dataset structure}
 The dataset contain 794 music clips annotated by 457 subjects, which are subjects from different countries and majors, in order to eliminate the effects of cultural and educational background \cite{hu2017cross}.
 \\
 Chorus parts are manually selected from students majoring in music.
 \\ \indent
-Meanwhile, the EDA of subjects when listening to these music are also recorded, making it possible to analyses emotion states in multiple modes. All annotations are stored in CSV files delimited by comma.
+Meanwhile, the \gls{eda} of subjects when listening to these music are also recorded, making it possible to analyses emotion states in multiple modes. All annotations are stored in CSV files delimited by comma.
 \\
 The dataset is composed of:
 \begin{itemize}
@@ -31,13 +31,13 @@ The dataset is composed of:
 	\end{itemize}
 	\item chorus: all chorus excerpts of 794 songs manually selected.
 	\item comments: songs comments taken from \href{https://music.163.com}{NetEase}\footnote{https://music.163.com} and \href{https://soundcloud.com}{SoundCloud}\footnote{https://soundcloud.com}.
-	\item EDA: EDA data for each song, each one extracted by at least 10 subjects, with a sampling rate of $50Hz$.
+	\item EDA: \gls{eda} data for each song, each one extracted by at least 10 subjects, with a sampling rate of $50Hz$.
 	\item features: all features extracted by the authors of \cite{zhang2018pmemo}:
 	\begin{itemize}
 		\item \textit{EDA\_features}: features extracted from the EDA signals:
 		\begin{itemize}
-			\item \textit{EDA\_features\_static}: EDA static features for each song for each subject.
-			\item \textit{EDA\_features\_dynamic}: EDA dynamic features for each song for each subject with a sampling rate of $50Hz$.
+			\item \textit{EDA\_features\_static}: \gls{eda} static features for each song for each subject.
+			\item \textit{EDA\_features\_dynamic}: \gls{eda} dynamic features for each song for each subject with a sampling rate of $50Hz$.
 		\end{itemize}
 		\begin{itemize}
 			\item \textit{static\_features}: audio static features for each song for each subject.
@@ -49,7 +49,7 @@ The dataset is composed of:
 	\item \textit{metadata}: metadata of the songs, containing \textit{music\_ID}, title, artist, album, duration, \textit{chorus\_start\_time} and \textit{chorus\_end\_time}.
 \end{itemize}
 \newpage
-Since the early years of MER, there have been numerous efforts to build datasets with emotional annotations, to facilitate the development and evaluation of music emotion recognition. Table \ref{table:datasets} from \cite{zhang2018pmemo} summarize some works on that.
+Since the early years of \gls{mer}, there have been numerous efforts to build datasets with emotional annotations, to facilitate the development and evaluation of music emotion recognition. Table \ref{table:datasets} from \cite{zhang2018pmemo} summarize some works on that.
 \begin{savenotes}
 \begin{table}[h!]
 	\centering
@@ -75,14 +75,14 @@ Since the early years of MER, there have been numerous efforts to build datasets
 \subsection{Song acquisition and subject selection}
 They collected $1000$ songs from the "\textit{Billboard Hot 100}", the "\textit{iTunes top 100 songs}" and the "\textit{UK top 40 single charts}". They late discovered a set of duplicates and filtered reduplicative music obtaining a full song set of $794$ pop songs.
 \\
-Each datasets in MER utilize music segments, here each clip is manually selected as one of the chorus parts of each song, which is implemented by university students in music major. The clips are of various length, exactly the duration of the chorus parts.
+Each datasets in \gls{mer} utilize music segments, here each clip is manually selected as one of the chorus parts of each song, which is implemented by university students in music major. The clips are of various length, exactly the duration of the chorus parts.
 \\ \indent
 A total of $457$ subjects, $236$ females and $221$ males were recruited to participate. Among them, $366$ are Chinese university students who are in non-music majors while $44$ are majoring in music recruited to ensure high quality labeling. To weaken the impact of cultural background, $47$ English speakers are invited to annotate the datasets.
 \\
 Each song received a total of at least $10$ emotion annotations including one by music-majoring and one by English speaker.
 
 \subsection{Experiment design}
-To monitor and obtain EDA continuously they used \href{https://www.biopac.com/product/eda-finger-transducer-bsl/}{MP150 Biopac system}\footnote{https://www.biopac.com/product/eda-finger-transducer-bsl/} at a sampling rate of $50Hz$ and export signals from \textit{AcqKnowledge} software.
+To monitor and obtain \gls{eda} continuously they used \href{https://www.biopac.com/product/eda-finger-transducer-bsl/}{MP150 Biopac system}\footnote{https://www.biopac.com/product/eda-finger-transducer-bsl/} at a sampling rate of $50Hz$ and export signals from \textit{AcqKnowledge} software.
 \\
 To annotate songs was developed a desktop application shown in figure \ref{fig:annotation_interface}. The annotation was done with the sliding area collecting dynamics annotations , from $1$ to $9$, at a sampling rate of $2Hz$. Annotators should make a statistic annotation for the whole music excerpts on nine-point scale after the dynamic labeling. Furthermore, annotators were asked to listen to the same music twice to annotate on valence and arousal separately.
 \begin{figure}[h]
@@ -105,7 +105,7 @@ Each subject listened to 20 excerpts and one of those was duplicated to guarante
 In total $457$ subjects have participated but $401$ were considered valid annotations ($87.7\%$). Each music clip was annotated by at least $10$ subjects including English speakers and semi-experts from music academy.
 
 \subsection{Data reliability}
-As Initial Orientation Time (IOT) concept remarks, annotators need some preliminary time before they can give meaningful and reliable annotations. Schubert in \cite{schubert2013reliability} found that median IOT for valence was $8s$ while for arousal $12s$. Other researchers showed that annotations began to converge after $10s$. The PMEmo authors decided to discard first $15s$ for the dynamic annotations from the data.
+As \gls{iot} concept remarks, annotators need some preliminary time before they can give meaningful and reliable annotations. Schubert in \cite{schubert2013reliability} found that median IOT for valence was $8s$ while for arousal $12s$. Other researchers showed that annotations began to converge after $10s$. The \gls{pmemo} authors decided to discard first $15s$ for the dynamic annotations from the data.
 \\ \indent
 To evaluate annotation consistency they used the Chronbach's $\alpha$, it represent the degree to which a set of items measures a single unidimensional latent construct. In \cite{zhang2018pmemo} computed the Chronbach's $\alpha$ on the sequence of annotations for each song.
 \\
@@ -119,7 +119,7 @@ where:
 	\item $\bar{A}$ is the mean of all the labels for this song by all subjects
 	\item $\bar{A}_j$ is the mean of dynamic labels by subject $j$
 \end{itemize}
-The mean (averaged across songs) and the standard deviation of the Chronbach's $\alpha$ for the annotation in the PMEmo dataset are shown in table \ref{table:Chronbach}.
+The mean (averaged across songs) and the standard deviation of the Chronbach's $\alpha$ for the annotation in the \gls{pmemo} dataset are shown in table \ref{table:Chronbach}.
 \begin{table}[h!]
 	\centering
 	\begin{tabular}{|c|c|c|}
@@ -134,16 +134,16 @@ The mean (averaged across songs) and the standard deviation of the Chronbach's $
 \end{table}
 
 \subsection{Feature set}
-As already mentioned before in \ref{music_features}, for generic MER there has been no attempt made at defining a "standard" feature set. In PMEmo work \cite{zhang2018pmemo} they based on the INTERSPEECH 2013 Computational Paralinguistic Evaluation (ComParE) and extracted a feature set of 6373-dimension scale.
+As already mentioned before in \ref{music_features}, for generic \gls{mer} there has been no attempt made at defining a "standard" feature set. In PMEmo work \cite{zhang2018pmemo} they based on the INTERSPEECH 2013 Computational Paralinguistic Evaluation (ComParE) and extracted a feature set of 6373-dimension scale.
 \\
 They provided all 6373-dimension features in song level for the sake of static emotion task. They extracted only the core of 260-dimension features in segment level (calculated in $1s$ window with $0.5s$ overlap) for dynamic recognition task to properly reduce the computing load.
 \\
 Extraction of the features is done with the open-source toolkit \href{https://www.audeering.com/opensmile/}{openSMILE}\footnote{https://www.audeering.com/opensmile/}.
 \\
-No feature selection procedure was implemented in PMEmo work.
+No feature selection procedure was implemented in \gls{pmemo} work.
 
 \subsection{PMEmo performances}
-In the article, they adopt Multivariate Linear Regression (MLR) and Support Vector Regression (SVR) as the base classifiers to model emotions in valence and arousal.
+In the article, they adopt \gls{mlr} and \gls{svr} as the base classifiers to model emotions in valence and arousal.
 \\
 For the static part, they trained and tested the classifiers using all the 6373-dimension features $x_1,x_2,...,x_{6373}$ and separate static labels of valence $y_{valence}$ and arousal $y_{arousal}$ respectively.
 \begin{equation}
@@ -185,7 +185,7 @@ Before the regression models, they resized all the annotations (both for static 
 \\ \indent
 Static task is to predict the overall emotion of a whole song, represented by a single valence value and arousal value. To train and test, they divided the dataset in $11$ folds, 10 constituted thr training set and the remaining set used to test the train model. A 10-fold-cross-validation was used for parameter optimization.
 \\
-Root Mean Square Error (RMSE) and Pearson Correlation Coefficient (r) were calculated separately for valence and arousal. In table \ref{table:PMEmo_results_static} is shown results on static emotions.
+\gls{rmse} and Pearson Correlation Coefficient (r) were calculated separately for valence and arousal. In table \ref{table:PMEmo_results_static} is shown results on static emotions.
 \begin{table}[h!]
 	\centering
 	\begin{tabular}{|c|c|c|c|}
@@ -221,16 +221,16 @@ In table \ref{table:PMEmo_results_dynamic} is presented the evaluation results o
 	\caption{Evaluation results on static emotions}
 	\label{table:PMEmo_results_dynamic}
 \end{table}
-In PMEmo work, as already mentioned, they also recorded EDA subjects data when they were listening to music.
+In \gls{pmemo} work, as already mentioned, they also recorded \gls{eda} subjects data when they were listening to music.
 \\
-On EDA, they employed a low-pass filter of $0.6Hz$ to diminish the noise due to motion artifacts. Then skin electric conductance was scaled in z-score:
+On \gls{eda}, they employed a low-pass filter of $0.6Hz$ to diminish the noise due to motion artifacts. Then skin electric conductance was scaled in z-score:
 \begin{equation}
 	z-score=\dfrac{X-\mu}{\sigma}
 \end{equation}
 where $\mu$ is the mean of vector $X$ and $\sigma$ is the standard variation.
-Last passage on EDA signal was to resample them, from $50Hz$ to $2Hz$ due to different acquisition of EDA and continuous emotions.
+Last passage on \gls{eda} signal was to resample them, from $50Hz$ to $2Hz$ due to different acquisition of EDA and continuous emotions.
 \\
-They trained and tested MLR and SVR with pre-processed EDA data in the dynamic case and results are shown in table \ref{table:PMEmo_results_EDA}.
+They trained and tested \gls{mlr} and \gls{svr} with pre-processed \gls{eda} data in the dynamic case and results are shown in table \ref{table:PMEmo_results_EDA}.
 \begin{table}[h!]
 	\centering
 	\begin{tabular}{|c|c|c|c|c|}

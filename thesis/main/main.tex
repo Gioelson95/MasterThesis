@@ -64,6 +64,78 @@
 	citecolor=OliveGreen, % link to bibliography
 }
 
+\usepackage{glossaries}
+\newacronym{mir}{MIR}{Music Information Retrieval}
+\newacronym{mirex}{MIREX}{Music Information Retrieval Evaluation eXchange}
+\newacronym{mer}{MER}{Music Emotion Recognition}
+\newacronym{ml}{ML}{Machine Learning}
+\newacronym{dl}{DL}{Deep Learning}
+\newacronym{svm}{SVM}{Support Vector Machine}
+\newacronym{gmm}{GMM}{Gaussian Mixture Model}
+\newacronym{nn}{NN}{Neural Network}
+\newacronym{knn}{k-NN}{k-Nearest Neighbor}
+\newacronym{svc}{SVC}{Support Vector Classification}
+\newacronym{ll}{LL}{Low Level}
+\newacronym{hl}{HL}{High Level}
+\newacronym{mfcc}{MFCC}{Mel-Frequency Cepstral Coefficient}
+\newacronym{sfs}{SFS}{Sequential Forward Selection}
+\newacronym{sbs}{SBS}{Sequential Backward Selection}
+\newacronym{mrmr}{mRMR}{minimum-Redundancy-Maximum-Relevance}
+\newacronym{pca}{PCA}{Principal Component Analysis}
+\newacronym{ica}{ICA}{Independent Component Analysis}
+\newacronym{lda}{LDA}{Linear Discriminant Analysis}
+\newacronym{svr}{SVR}{Support Vector Regression}
+\newacronym{mlr}{MLR}{Multivariate Linear Regression}
+\newacronym{lr}{LR}{Linear Regression}
+\newacronym{dt}{DT}{Decision Tree}
+\newacronym{mevd}{MEVD}{Music Emotion Variation Detection}
+\newacronym{va}{VA}{Valence Arousal}
+\newacronym{mse}{MSE}{Mean Square Error}
+\newacronym{rmse}{RMSE}{Root Mean Square Error}
+\newacronym{edr}{EDR}{ElectroDermal Response}
+\newacronym{eda}{EDA}{ElectroDermal Activity}
+\newacronym{sc}{SC}{Skin Conductance}
+\newacronym{scl}{SCL}{Skin Conductance Level}
+\newacronym{scr}{SCR}{Skin Conductance Response}
+\newacronym{gsr}{GSR}{Galvanic Skin Response}
+\newacronym{pgr}{PGR}{PsychoGalvanic Reflex}
+\newacronym{ssr}{SSR}{Sympathetic Skin Response}
+\newacronym{dc}{DC}{Direct Current}
+\newacronym{ac}{AC}{Alternate Current}
+\newacronym{dwt}{DWT}{Discrete Wavelet Transform}
+\newacronym{jmi}{JMI}{Joint Mutual Information}
+\newacronym{cmim}{CMIM}{Conditional Mutual Information Maximization}
+\newacronym{disr}{DISR}{Double Input Symmetrical Relevance}
+\newacronym{eeg}{EEG}{Electroencephalogram}
+\newacronym{ecg}{ECG}{Electrocardiogram}
+\newacronym{bp}{BP}{Blood Pressure}
+\newacronym{emg}{EMG}{Electromyogram}
+\newacronym{hrv}{HRV}{Hearth Rate Variability}
+\newacronym{sr}{SR}{Skin Resistance}
+\newacronym{st}{ST}{Skin Temperature}
+\newacronym{rsp}{RSP}{Respiration}
+\newacronym{cns}{CNS}{Central Nervous System}
+\newacronym{pns}{PNS}{Peripheral Nervous System}
+\newacronym{ans}{ANS}{Autonomic Nervous System}
+\newacronym{sns}{SNS}{Somatic Nervous System}
+\newacronym{bvp}{BVP}{Blood Volume Pulse}
+\newacronym{ppg}{PPG}{Photoplethysmography}
+\newacronym{emd}{EMD}{Empirical Mode Decomposition}
+\newacronym{psd}{PSD}{Power Spectral Density}
+\newacronym{se}{SE}{Spectral Entropy}
+\newacronym{rf}{RF}{Random Forest}
+\newacronym{cnn}{CNN}{Convolutional Neural Network}
+\newacronym{rnn}{RNN}{Recurrent Neural Network}
+\newacronym{pnn}{PNN}{Probabilistic Neural Network}
+\newacronym{mp}{MP}{Matching Pursuit}
+\newacronym{pmemo}{PMEmo}{Popular Music with Emotional annotations}
+\newacronym{iot}{IOT}{Initial Orientation Time}
+\newacronym{ai}{AI}{Artificial Intelligence}
+
+%\newacronym{}{}{}
+
+\makenoidxglossaries
+
 \graphicspath{ {../img/} }
 
 %---- Document -----
@@ -105,10 +177,12 @@
 	\addcontentsline{toc}{chapter}{List of Figures} % this command adds the "List of Figures" page to the table of content as if it was a chapter.
 	\listoftables
 	\addcontentsline{toc}{chapter}{List of Tables}
+	\printnoidxglossaries
+	\addcontentsline{toc}{chapter}{Glossary}
 		
 	\mainmatter % for arabian page numbering
 	\input{../chapters/1_introduction.tex} 
-	\input{../chapters/2_background_MIR_MER.tex} 
+	\input{../chapters/2_background_MIR_MER_v2.tex} 
 	\input{../chapters/3_background_EDA.tex}
 	\input{../chapters/4_state_of_the_art.tex} 
 	\input{../chapters/5_implementation.tex} 

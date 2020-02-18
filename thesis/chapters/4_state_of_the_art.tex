@@ -6,7 +6,7 @@
 \noindent This chapter introduces the readers to a complete review of the problem and all the different resolution possibilities.
 
 \section{Physiological signals}
-In this section will be defined a general overview on physiological signals that can be used in order to achieve a solution to the Music Emotion Recognition problem.
+In this section will be defined a general overview on physiological signals that can be used in order to achieve a solution to the \gls{mer} problem.
 \\ \indent
 Emotions, which affect both human physiological and psychological status, play a very important role in human life. Positive emotions help improve human health and work efficiency, while negative emotions may cause health problems. Long term accumulations of negative emotions are predisposing factors for depression, which might lead to suicide in the worst cases.
 \\
@@ -19,26 +19,26 @@ In general, emotion recognition methods could be classified into two major categ
 	\item Using human physical signals such as facial expression \cite{zhang2016facial}, speech \cite{mao2014learning}, gesture, posture, etc. This method has the advantage of easy collecting and is a chapter which has been studied for years. On the other side, the reliability cannot be guaranteed, as it is relatively easy for people to control the physical signals like facial expression or speech to hide real emotions, especially during social communications.
 	\item Using internal signals as:
 	\begin{itemize}
-		\item Electroencephalogram (EEG)
-		\item Electrocardiogram (ECG)
-		\item Electromyogram (EMG)
-		\item Blood Pressure (BP)
-		\item Hearth Rate Variability (HRV)
-		\item Electrodermal Activity (EDA) as:
+		\item  \gls{eeg}
+		\item \gls{ecg}
+		\item \gls{emg}
+		\item \gls{bp}
+		\item \gls{hrv}
+		\item \gls{eda} as:
 		\begin{itemize}
-			\item Skin Resistance (SR)
-			\item Skin Temperature (ST)
-			\item Skin Conductivity (SC)
-			\item Galvanic Skin Response (GSR)
+			\item \gls{sr}
+			\item \gls{st}
+			\item \gls{sc}
+			\item \gls{gsr}
 		\end{itemize}
-		\item Respiration (RSP)
+		\item \gls{rsp}
 	\end{itemize}
 	These signals are produced by the Nervous System which is divided into:
 	\begin{itemize}
-		\item Central Nervous System (CNS)
-		\item Peripheral Nervous System (PNS): consist of the autonomic and somatic nervous systems (ANS and SNS).
+		\item \gls{cns}
+		\item \gls{pns}: consist of the \gls{ans} and \gls{sns}.
 	\end{itemize}
-	EEG, ECG, EMG, GSR, RSP and GSR change in a certain way when people face some specific situations. Physiological signals are in response to the CNS and ANS. Due to the fact that CNS and ANS are involuntarily activated, they cannot be controlled.
+	\gls{eeg}, \gls{ecg}, \gls{emg}, \gls{gsr} and \gls{rsp} change in a certain way when people face some specific situations. Physiological signals are in response to the \gls{cns} and \gls{ans}. Due to the fact that \gls{cns} and \gls{ans} are involuntarily activated, they cannot be controlled.
 \end{itemize}
 In the table \ref{table:biological_signals} is shown a summary of various papers using different biological signals.
 \begin{table}[h!]
@@ -46,12 +46,12 @@ In the table \ref{table:biological_signals} is shown a summary of various papers
 	\begin{tabular}{|l|l|}
 		\hline
 		Biological signal & Paper\\ [0.5ex] 
-		\hline \hline ECG & \cite{dissanayake2019ensemble}, \cite{hsu2017automatic},  \cite{naji2014classification}, \cite{naji2015emotion}, \cite{cai2009research}  \\ 
-		\hline ECG, EMG, RSP & \cite{kim2008emotion} \\
-		\hline ECG, GSR & \cite{goshvarpour2017accurate} \\ 
-		\hline HR, SR & \cite{yoo2005neural} \\
-		\hline EEG & \cite{sourina2012real} \\
-		\hline HR & \cite{nardelli2015recognizing} \\
+		\hline \hline \gls{ecg} & \cite{dissanayake2019ensemble}, \cite{hsu2017automatic},  \cite{naji2014classification}, \cite{naji2015emotion}, \cite{cai2009research}  \\ 
+		\hline \gls{ecg}, \gls{emg}, \gls{rsp} & \cite{kim2008emotion} \\
+		\hline \gls{ecg}, \gls{gsr} & \cite{goshvarpour2017accurate} \\ 
+		\hline \gls{hrv}, \gls{sr} & \cite{yoo2005neural} \\
+		\hline \gls{eeg} & \cite{sourina2012real} \\
+		\hline \gls{hrv} & \cite{nardelli2015recognizing} \\
 		\hline
 	\end{tabular}
 	\caption{Papers with correspondent biological signal used}
@@ -117,50 +117,50 @@ The position of different biosensors is shown in figure \ref{fig:biosensors_posi
 \end{figure}
 
 \subsection{Electroencephalogram}
-Electroencephalogram (EEG) is an electrophysiological monitoring method to record electrical activity of the brain. EEG measures voltage fluctuations resulting from ionic current within the neurons of the brain. Clinically, EEG refers to the recording of the brain's spontaneous electrical activity over a period of time, as recorded from multiple electrodes placed on the scalp.
+\gls{eeg} is an electrophysiological monitoring method to record electrical activity of the brain. \gls{eeg} measures voltage fluctuations resulting from ionic current within the neurons of the brain. Clinically, \gls{eeg} refers to the recording of the brain's spontaneous electrical activity over a period of time, as recorded from multiple electrodes placed on the scalp.
 \\ \indent
-EEG is most often used to diagnose epilepsy, which causes abnormalities in EEG readings.[2] It is also used to diagnose sleep disorders, depth of anesthesia, coma, encephalopathies, and brain death.
+\gls{eeg} is most often used to diagnose epilepsy, which causes abnormalities in \gls{eeg} readings. It is also used to diagnose sleep disorders, depth of anesthesia, coma, encephalopathies, and brain death.
 \\ 
-Many studies have indicated that the physiological correlates of emotions are likely to be found in the central nervous system rather than simply in peripheral physiological responses. Researchers have supported this viewpoint using EEG or other neuroimaging (e.g., functional Magnetic Resonance Imaging) approaches to investigate the specificity of brain activity associated with different emotional states.
+Many studies have indicated that the physiological correlates of emotions are likely to be found in the central nervous system rather than simply in peripheral physiological responses. Researchers have supported this viewpoint using \gls{eeg} or other neuroimaging (e.g., functional Magnetic Resonance Imaging) approaches to investigate the specificity of brain activity associated with different emotional states.
 \\
-However, most of the available studies on emotion-specific EEG response have focused on EEG characteristics at the single-electrode level, rather than at the level of EEG-based functional connectivity.
+However, most of the available studies on emotion-specific \gls{eeg} response have focused on \gls{eeg} characteristics at the single-electrode level, rather than at the level of \gls{eeg}-based functional connectivity.
 
 \subsection{Electrocardiogram}
-Electrocardiogram (ECG) is a recording of the electrical activity of the hearth using electrodes placed on the skin. These electrodes detect small electrical changes that are a consequence of cardiac muscle depolarization followed by repolarization during each cardiac cycle, the heartbeat.
+c is a recording of the electrical activity of the hearth using electrodes placed on the skin. These electrodes detect small electrical changes that are a consequence of cardiac muscle depolarization followed by repolarization during each cardiac cycle, the heartbeat.
 \\ \indent
-There are three main components to an ECG: the P wave, which represents the depolarization of the atria; the QRS complex, which represents the depolarization of the ventricles; and the T wave, which represents the repolarization of the ventricles, as in figure \ref{fig:ECG}.
+There are three main components to an \gls{eeg}: the P wave, which represents the depolarization of the atria; the QRS complex, which represents the depolarization of the ventricles; and the T wave, which represents the repolarization of the ventricles, as in figure \ref{fig:ECG}.
 \begin{figure}[h]
     \centering
     \includegraphics[width=0.6\textwidth]{ECG.png} 
-	\caption{ECG of a heart in normal sinus rhythm}
+	\caption{ECG of a heart in normal sinus rhythm, PQRST wave}
     \label{fig:ECG}
 \end{figure}
 
 \subsection{Electromyogram}
-Electromyogram (EMG) is an electrodiagnostic medicine technique for evaluating and recording the electrical activity produced by skeletal muscles.
+\gls{emg} is an electrodiagnostic medicine technique for evaluating and recording the electrical activity produced by skeletal muscles.
 \\
 An electromyograph detects the electric potential generated by muscle cells when these cells are electrically or neurologically activated. The signals can be analyzed to detect medical abnormalities, activation level, or recruitment order, or to analyze the biomechanics of human or animal movement.
 \\ \indent
 Therefore, the best readings are obtained when the sensor is placed on the muscle belly and its positive and negative electrodes are parallel to the muscle fibers. Since the number of muscle fibers that are recruited during any given contraction depends on the force required to perform the movement, the intensity (amplitude) of the resulting electrical signal is proportional to the strength of contraction.
 \\ \indent
-In psychophysiology, EMG was often used to find the correlation between cognitive emotion and physiological reactions. In the work by Sloan \cite{sloan2004emotion}, for example, the EMG was positioned on the face (jaw) to distinguish \textit{smile} and \textit{frown} by measuring the activity of zygomatic major and corrugator supercilli. In experiment of \cite{kim2008emotion}, bipolar electrodes were placed at the upper trapezius muscle (near the neck) in order to measure the mental stress of the subjects.
+In psychophysiology, \gls{emg} was often used to find the correlation between cognitive emotion and physiological reactions. In the work by Sloan \cite{sloan2004emotion}, for example, the \gls{emg} was positioned on the face (jaw) to distinguish \textit{smile} and \textit{frown} by measuring the activity of zygomatic major and corrugator supercilli. In experiment of \cite{kim2008emotion}, bipolar electrodes were placed at the upper trapezius muscle (near the neck) in order to measure the mental stress of the subjects.
 
 \subsection{Hearth Rate Variability}
-Hearth Rate Variability (HRV) measure the beat-to-beat temporal changes of the hearth rate, sometimes it is calculated from ECG, but the usability of measuring the ECG is limited. HRV can be evaluatd also through the Blood Volume Pulse (BVP) or Photoplethysmography (PPG).
+\gls{hrv} measure the beat-to-beat temporal changes of the hearth rate, sometimes it is calculated from \gls{ecg}, but the usability of measuring the \gls{ecg} is limited. \gls{hrv} can be evaluated also through the \gls{bvp} or \gls{ppg}.
 \\ \indent
-A reduced HRV is linked to psychiatric illness as depression, anxiety. The heart rate is the most natural choice for arousal detection using comparison of sympathetic and parasympathetic frequency bands of the time series. However, it is highly dependent on the position of the body during monitoring.
+A reduced \gls{hrv} is linked to psychiatric illness as depression, anxiety. The heart rate is the most natural choice for arousal detection using comparison of sympathetic and parasympathetic frequency bands of the time series. However, it is highly dependent on the position of the body during monitoring.
 
 \subsection{Electrodermal Activity}
-As already been studied in chapter \ref{chap:TheoreticalBackgroundEDA}, EDA measures the resistance of the skin and the skin conductivity applying electrodes to the skin. The skin conductivity decreases during relaxed states, and increase when exposed to effort.
+As already been studied in chapter \ref{chap:TheoreticalBackgroundEDA}, \gls{eda} measures the resistance of the skin and the skin conductivity applying electrodes to the skin. The skin conductivity decreases during relaxed states, and increase when exposed to effort.
 
 \subsection{Respiration}
-Respiration (RSP) is the process of moving air into an out of the lungs to facilitate gas exchange with the internal environment, mostly bringing in oxygen and flushing out carbon dioxide.
+\gls{rsp} is the process of moving air into an out of the lungs to facilitate gas exchange with the internal environment, mostly bringing in oxygen and flushing out carbon dioxide.
 \\
-The respiration can be measured with a latex rubber band, the amount of stretch in the elastic is measured as a voltage change and recorded. The most common measures of RSP are the depth of breathing and the rate of RSP.
+The respiration can be measured with a latex rubber band, the amount of stretch in the elastic is measured as a voltage change and recorded. The most common measures of \gls{rsp} are the depth of breathing and the rate of \gls{rsp}.
 \\ \indent
-RSP rate generally decreases with relaxation, tense situations may result in momentary RSP cessation. Irregularity in the RSP pattern could be the cause of negative emotions.
+\gls{rsp} rate generally decreases with relaxation, tense situations may result in momentary \gls{rsp} cessation. Irregularity in the \gls{rsp} pattern could be the cause of negative emotions.
 \\
-Due to the fact that RSP is closely linked to the cardiac function, RSP can be affect other measures like EMG and SC measurements.
+Due to the fact that \gls{rsp} is closely linked to the cardiac function, RSP can be affect other measures like \gls{emg} and \gls{sc} measurements.
 \\
 Positions to the left, and typical waveform of the signals to the right are presented in the figure \ref{fig:waveform_biosensors}.
 \begin{figure}[h]
@@ -173,7 +173,7 @@ Positions to the left, and typical waveform of the signals to the right are pres
 \section{General methodology}
 For physiological signal-based emotion recognition, there is a common methodology which can be divided into two categories:
 \begin{itemize}
-	\item Traditional Machine Learning methods: model specific methods, which require carefully designed hand-crafted features and feature optimization methods.
+	\item Traditional \gls{ml} methods: model specific methods, which require carefully designed hand-crafted features and feature optimization methods.
 	\item Deep learning methods, model-free methods, which can learn the inherent principle of the data and extract features automatically.
 \end{itemize}
 The whole emotion recognition framework is shown in figure \ref{fig:emotion_recognition_process}.
@@ -185,22 +185,22 @@ The whole emotion recognition framework is shown in figure \ref{fig:emotion_reco
 \end{figure}
 
 \subsection{Preprocessing}
-After the part of data acquisition, which is different for each physiological signal, there is the data preprocessing step. It is necessary to eliminate the noise effect, artifacts and other signal parts that may lead to wrong results. Due to the complex and subjective nature of raw physiological signals and the sensitivity to noises, electromagnetic interferences, movement artifacts, ... this step is mandatory.
+After the part of data acquisition, which is different for each physiological signal, there is the data preprocessing step. It is necessary to eliminate the noise effect, artifacts and other signal parts that may lead to wrong results. Due to the complex and subjective nature of raw physiological signals and the sensitivity to noises, electromagnetic interference, movement artifacts, ... this step is mandatory.
 \\ \indent
 Some of the common steps can be summarized in:
 \begin{itemize}
-	\item Filtering: is commonly used a low-pass filter to remove noises, or also adaptive bandpass filters to remove artifacts.
-	\item Discrete Wavelet Transform (DWT): used to reduce the noise of physiological signals
-	\item Independent Component Analysis (ICA): used to extract and remove respiration sinus arrhythmia from ECG.
-	\item Empirical Mode Decomposition (EMD): used to remove the eye-blink from EEG.
+	\item Filtering: is commonly used a low-pass filter to remove noises, or also adaptive band pass filters to remove artifacts.
+	\item \gls{dwt}: used to reduce the noise of physiological signals
+	\item \gls{ica}: used to extract and remove respiration sinus arrhythmia from \gls{ecg}.
+	\item \gls{emd}: used to remove the eye-blink from \gls{eeg}.
 \end{itemize}
 
 \subsection{Traditional Machine Learning}
-Main steps for traditional ML methods, as already presented in \ref{ML}. There are processes including feature extraction, feature selection and classification as reviewed in \cite{jerritta2011physiological}.
+Main steps for traditional \gls{ml} methods, as already presented in \ref{ML}. There are processes including feature extraction, feature selection and classification as reviewed in \cite{jerritta2011physiological}.
 
 \paragraph{Feature extraction}
 \mbox{} \\ \\ \indent
-Feature extraction plays a fundamental role in the emotion recognition model. Several major features are extracted for each physiological signal, because is important to extract the most prominent features for emotion recognition. For example EEG is a complex and non-stationary signal, so some statistical features like Power Spectral Density (PSD) and Spectral Entropy (SE) are commonly used.
+Feature extraction plays a fundamental role in the emotion recognition model. Several major features are extracted for each physiological signal, because is important to extract the most prominent features for emotion recognition. For example \gls{eeg} is a complex and non-stationary signal, so some statistical features like \gls{psd} and \gls{se} are commonly used.
 \\
 Often are extracted statistical features as mean, standard deviation, Kurtosis, Skewness, entropy.
 \\
@@ -212,20 +212,20 @@ After the feature extraction process, there might be a quantity of features, som
 \\
 It lead to a long time of analyzing the features and train the model and it is easy to produce overfitting problem and another problem of sparse features, called \textit{curse of dimensionality}, which results in the decrease of the model performance.
 \\
-Some of the main feature selection algorithms are RfeliefF, MRmR, Sequential Backward Selection (SBS) and Sequential Forward Selection (SFS), PCA, ...
+Some of the main feature selection algorithms are RfeliefF, \gls{mrmr}, \gls{sbs} and \gls{sfs}, \gls{pca}, ...
 \\ \indent
 In general there are several feature selection alforithms, some reduce the dimensionality by taking out some redundant or irrelevant featuresm other transform the original one into a new set of features. Performances of the feature selection algorithm depends on the classifier and the dataset, due to this, the perfect feature selection algorithm do not exist.
 
 \paragraph{Classification}
 \mbox{} \\ \\ \indent
-In emotion recognition, the major task is to assign the input signal to one of the given class sets. There are several classification models like Linear Discriminant Analysis (LDA), k-Nearest Neighbor (kNN), Support Vector Machine (SVM), Random Forest (RF), ...
+In emotion recognition, the major task is to assign the input signal to one of the given class sets. There are several classification models like \gls{lda}, \gls{knn}, \gls{svm}, \gls{rf}, ...
 
 \subsection{Deep Learning}
-Deep Learning (DL) methods have the benefits to be model-free methods, so they do not depends on the specific model considered.
+\gls{dl} methods have the benefits to be model-free methods, so they do not depends on the specific model considered.
 \\
-Examples of DL algorithms are Convolutional Neural Network (CNN), Recurrent Neural Network (RNN), ... Neural network in general are particular types of ML methods which have as fundamental unit the node, loosely based on the biological neuron. 
+Examples of \gls{dl} algorithms are \gls{cnn}, \gls{rnn}, ... Neural network in general are particular types of \gls{ml} methods which have as fundamental unit the node, loosely based on the biological neuron. 
 \\ \indent
-The relevant aspect of DL is that it can learn the inherent principle of the data and extract features automatically, so there is no need to extract feature and select the most relevant ones, which could lead to a better generalization of the problem.
+The relevant aspect of \gls{dl} is that it can learn the inherent principle of the data and extract features automatically, so there is no need to extract feature and select the most relevant ones, which could lead to a better generalization of the problem.
 
 \subsection{Model assessment and selection}
 The generalization error of the classifier can be evaluated by experiments, where a testing set should be used to test the ability of the classifier to classify the new samples, and the testing error on the testing set could be viewed approximately as the generalization error.
@@ -251,56 +251,56 @@ A lot of efforts have been made in revealing the relationships between explicit 
 In this section will be presented some works done during the last years on all physiological signals that tries to understand the relationship of physiology and human emotions.
 
 \subsection{ECG and GSR signal emotion recognition}
-In the work \cite{goshvarpour2017accurate} Electrocardiogram and Galvanic Skin Response of 11 healthy students were collecred while subjects were listening to emotional music clips. They extracted Matching Pursuit (MP) coefficients frin ECG and GSR signals.
+In the work \cite{goshvarpour2017accurate} \gls{ecg} and \gls{gsr} of 11 healthy students were collecred while subjects were listening to emotional music clips. They extracted \gls{mp} coefficients from \gls{ecg} and \gls{gsr} signals.
 \\ \indent
-Than were calculated some statistical indices from the MP coefficients and three dimensionality reduction method were applied, PCA, LDA and Kernel PCA. These features were fed into the Probabilistic Neural Network (PNN) in subject-dependent and subject-independent modes.
+Than were calculated some statistical indices from the \gls{mp} coefficients and three dimensionality reduction method were applied, \gls{pca}, kernel \gls{pca} and \gls{lda}. These features were fed into the \gls{pnn} in subject-dependent and subject-independent modes.
 \\ \indent
-The PNN is feed with a feature vector in the input layer, is determined a distance between the input and the weight vector. Is calculated the summation of these contributions for each input class to yield the probability. Finally is selected the maximum of these probabilities by a competitive layer and assigned $1$ for that class and $0$ elsewhere.
+The \gls{pnn} is feed with a feature vector in the input layer, is determined a distance between the input and the weight vector. Is calculated the summation of these contributions for each input class to yield the probability. Finally is selected the maximum of these probabilities by a competitive layer and assigned $1$ for that class and $0$ elsewhere.
 \\ \indent
-They achieved, using PCA, the highest recognition rate of 100\% for $\sigma = 0.01$.
+They achieved, using \gls{pnn}, the highest recognition rate of 100\% for $\sigma = 0.01$.
 
 \subsection{ECG sensors for human emotion recognition}
-The research of \cite{dissanayake2019ensemble}, they suggest an ensamble learning approach for developing a machine learning model that can recognize four major human emotions (anger, sadness, joy and pleasure) incorporating ECG signals.
+The research of \cite{dissanayake2019ensemble}, they suggest an ensamble learning approach for developing a machine learning model that can recognize four major human emotions (anger, sadness, joy and pleasure) incorporating \gls{ecg} signals.
 \\ \indent
-As feature extraction method, the analysis combines four ECG signals techniques. Several ML methods have been applied to the model, the most accurate (with an accuracy of 70\% is achieved by using an Extra Tree Classifier (a variant of the Random Forest that introduce more variation in the ensemble).
+As feature extraction method, the analysis combines four \gls{ecg} signals techniques. Several ML methods have been applied to the model, the most accurate (with an accuracy of 70\% is achieved by using an Extra Tree Classifier (a variant of the \gls{rf} that introduce more variation in the ensemble).
 
 \subsection{Automatic ECG emotion recognition}
-In \cite{hsu2017automatic} is presented an automatic ECG-based emotion recognition algorithm. They recorded ECG signal from subjects and extracted some features from the signal from the time and frequency domain. Than performed an algoritm of feature selection, a sequential forward floating selection-kernel-based class separability-based.
+In \cite{hsu2017automatic} is presented an automatic \gls{ecg}-based emotion recognition algorithm. They recorded \gls{ecg} signal from subjects and extracted some features from the signal from the time and frequency domain. Than performed an algorithm of feature selection, a sequential forward floating selection-kernel-based class separability-based.
 \\
-Valence and arousal and four types of of emotions are recognized using Least Square-Support Vector Machine recognizer. They gained a classification rate for positive/negative valence, high/low arousal, and four types of emotion classification tasks are 82.78\%, 72.91\%, and 61.52\%, respectively.
+Valence and arousal and four types of of emotions are recognized using Least Square-\gls{svm} recognizer. They gained a classification rate for positive/negative valence, high/low arousal, and four types of emotion classification tasks are 82.78\%, 72.91\%, and 61.52\%, respectively.
 
 \subsection{Classification of music emotions with  forehead biosignals and ECG}
-In the work of \cite{naji2014classification} to recognize music-induced emotions is used a fusion of three-channel forehead biosignals (left and right temporal channel and frontalis) and ECG. They employed two parallel SVM as arousal and valence classifiers.
+In the work of \cite{naji2014classification} to recognize music-induced emotions is used a fusion of three-channel forehead biosignals (left and right temporal channel and frontalis) and \gls{ecg}. They employed two parallel \gls{svm} as arousal and valence classifiers.
 \\ \indent
 The inputs of the classifiers were obtained by applying a fuzzy-rough model feature evaluation criterion and sequential forward floating selection algorithm.
 \\
 The average classification accuracy was of 88.78\% (valence classification accuracy of 94.91\% and arousal classification accuracy of 93.63\%).
 
 \subsection{Emotion classification with forehead biosignals}
-In \cite{naji2015emotion} investigates the feasibility of usign 3-channel forehead bisignals. Classification in vale-arousal space is performed by employing two parallel cascade-forward Neural Networks.
+In \cite{naji2015emotion} investigates the feasibility of usign 3-channel forehead bisignals. Classification in valence arousal space is performed by employing two parallel cascade-forward \gls{nn}.
 \\
 The inputs of the classifiers were obtained by applying a fuzzy rough model feature evaluation criterion and sequential forward floating selection algorithm. An averaged classification accuracy of 87.05\% was achieved, corresponding to average valence classification accuracy of 93.66 \% and average arousal classification accuracy of 93.29 \%.
 
 \subsection{Physiological changes in music listening}
-The paper \cite{kim2008emotion} investigates the potential of physiological signals as reliable channels for emotion recognition. Were used four-channel biosensors to measure EMG, ECG, SC and RSP changes as can be seen in figure \ref{fig:waveform_biosensors}. They extracted some features in various analysis domain, the time/frequency, entropy, geometric analysis, subband spectra.
+The paper \cite{kim2008emotion} investigates the potential of physiological signals as reliable channels for emotion recognition. Were used four-channel biosensors to measure \gls{emg}, \gls{ecg}, \gls{sc} and \gls{rsp} changes as can be seen in figure \ref{fig:waveform_biosensors}. They extracted some features in various analysis domain, the time/frequency, entropy, geometric analysis, subband spectra.
 \\ \indent
-Classification of four musical emotion (one for each quadrant of the valence-arousal diagram) is performed by using an extended linear discriminant analysis (pLDA). They also provided a novel scheme of emotion-specific multilevel dichotomous classification, gaining an accuracy of 95\% for subject-dependent and 70\% for subject-independent classification.
+Classification of four musical emotion (one for each quadrant of the valence-arousal diagram) is performed by using an extended \gls{lda} (p\gls{lda}). They also provided a novel scheme of emotion-specific multilevel dichotomous classification, gaining an accuracy of 95\% for subject-dependent and 70\% for subject-independent classification.
  
 \subsection{NN based emotion estimation}
-In order to build a human-computer interface that is sensitive to a user's expressed emotion, in \cite{yoo2005neural} propose a neural network based emotion estimation algorithm using HR and GSR. In this study, a video clip method was used to elicit basic emotions from subjects while ECG and GSR signals were measured. These signals reflect the influence of emotion on the autonomic nervous system. The extracted features that are emotion-specific characteristics from those signals are applied to an artificial neural network in order to recognize emotions from new signal collections. Results show that the proposed method is able to accurately distinguish a user's emotion.
+In order to build a human-computer interface that is sensitive to a user's expressed emotion, in \cite{yoo2005neural} propose a neural network based emotion estimation algorithm using \gls{hrv} and \gls{gsr}. In this study, a video clip method was used to elicit basic emotions from subjects while \gls{ecg} and \gls{gsr} signals were measured. These signals reflect the influence of emotion on the autonomic nervous system. The extracted features that are emotion-specific characteristics from those signals are applied to an artificial neural network in order to recognize emotions from new signal collections. Results show that the proposed method is able to accurately distinguish a user's emotion.
 \\ They gain a total accuracy of 80.2\%.
 
 \subsection{Recognize emotions by affective sound through HRV}
 The research in \cite{nardelli2015recognizing} reports on how emotional states elicited by affective sounds can be effectively recognized by means of estimates of ANS dynamics.
 \\ \indent
-The ANS dynamics is estimated through standard and nonlinear analysis of HRV exclusively, which is derived from the ECG. A group of 27 people were administered with ECG recordings, then HRV features showing significant changes between valence and arousal dimensions were used as input of an automatic classification system.
+The ANS dynamics is estimated through standard and nonlinear analysis of \gls{hrv} exclusively, which is derived from the ECG. A group of 27 people were administered with ECG recordings, then \gls{hrv} features showing significant changes between valence and arousal dimensions were used as input of an automatic classification system.
 \\ \indent
 The best accuracy was achieved for a quadratic discriminant classifier, to 84.72\% on the valence dimension and 84.26\% on the arousal one. 
 
 \subsection{Emotion recognition from ECG}
-In \cite{cai2009research} carried out the work of affective ECG signal acquisition from 391 subjects through stimulation of film clips. They recognized emotions divided into Joy and Sadness.
+In \cite{cai2009research} carried out the work of affective \gls{ecg} signal acquisition from 391 subjects through stimulation of film clips. They recognized emotions divided into Joy and Sadness.
 \\
-Than, is implemented features extraction and feature selection algorithms based on the DWT and a Fisher-KNN to classify the test data.
+Than, is implemented features extraction and feature selection algorithms based on the \gls{dwt} and a Fisher-\gls{knn} to classify the test data.
 
 \subsection{Relationship between music emotion and physiological signals}
 In \cite{hu2018relationships} the study explore the possibility of using physiological signals to detect users emotion response to music, considering individual characteristics (as personality, music preferences, etc.).
@@ -316,25 +316,25 @@ After some data preprocessing, were extracted the features in table \ref{table:f
 		Category & Features\\ [0.5ex] 
 		\hline \hline Descriptive statistics of raw signal & Mean, Standard deviation, median, range \\
 		\hline Time series features & Means of the abs of the $1^{st}$/$2^{nd}$ differences of the raw/normalized signals \\
-		\hline Physiological signal specific features & SC response, HR variability \\
+		\hline Physiological signal specific features & \gls{scr}, \gls{hrv} \\
 		\hline
 	\end{tabular}
 	\caption{Features extracted from physiological signals in \cite{hu2018relationships}}
 	\label{table:features_hu2018}
 \end{table}
 \\
-A machine learning approach was applied to measure the extent to which physiological signals could be used to recognize users’ emotion responses to music listening, in positive and negative categories of arousal and mood. Specifically, they trained and compared the performance of several classification models, namely decision tree, k-Nearest Neighbor, naïve Bayes and SVM.
+A \gls{ml} approach was applied to measure the extent to which physiological signals could be used to recognize users’ emotion responses to music listening, in positive and negative categories of arousal and mood. Specifically, they trained and compared the performance of several classification models, namely decision tree, \gls{knn}, naïve Bayes and \gls{svm}.
 
 \subsection{DL model for human emotion recognition with EDA}
-The work in \cite{al2019deep} had the main objective of ensure that elderly and/or disabled people perform/live well in their immediate environments; this can be monitored by among others the recognition of emotions based on non-highly intrusive sensors such as EDA sensors.
+The work in \cite{al2019deep} had the main objective of ensure that elderly and/or disabled people perform/live well in their immediate environments; this can be monitored by among others the recognition of emotions based on non-highly intrusive sensors such as \gls{eda} sensors.
 \\
 However, designing a learning system or building a machine-learning model to recognize human emotions while training the system on a specific group of persons and testing the system on a totally a new group of persons is still a serious challenge in the field, as it is possible that the second testing group of persons may have different emotion patterns.
 \\ \indent
-They contributed to the field of human emotion recognition by proposing a CNN architecture which promise robustness for both subject-dependent and subject independent human emotion recognition.
+They contributed to the field of human emotion recognition by proposing a \gls{cnn} architecture which promise robustness for both subject-dependent and subject independent human emotion recognition.
 \\
-Authors converted EDA signals into matrices whereby the goal is to make the application of CNN model possible.
+Authors converted \gls{eda} signals into matrices whereby the goal is to make the application of CNN model possible.
 \\
-They tested the CNN on two datasets, MAHNOB and DEAP, which are four-classes labeled and they increased the accuracy up to 78\% for MAHNOB and 82\% for DEAP in subject-independent classification, while up to 81\% for MAHNOB and 85\% for DEAP in subject-dependent classification.
+They tested the \gls{cnn} on two datasets, MAHNOB and DEAP, which are four-classes labeled and they increased the accuracy up to 78\% for MAHNOB and 82\% for DEAP in subject-independent classification, while up to 81\% for MAHNOB and 85\% for DEAP in subject-dependent classification.
 \\ \indent
 For the sake of clarity, subject-independent emotion recognition is a challenging field due to:
 \begin{itemize}
@@ -344,15 +344,15 @@ For the sake of clarity, subject-independent emotion recognition is a challengin
 \end{itemize}
 
 \subsection{VA recognition of affective sounds based on EDA}
-In \cite{greco2016arousal} tried to automatically classify the emotional state of healthy subjects. They proposed the use of convex optimization based on EDA framework and clustering algorithms to automatically discern arousal and valence levels induced by affective stimuli.
+In \cite{greco2016arousal} tried to automatically classify the emotional state of healthy subjects. They proposed the use of convex optimization based on \gls{eda} framework and clustering algorithms to automatically discern arousal and valence levels induced by affective stimuli.
 \\ \indent
-EDA recordings were gathered from 25 healthy volunteers, using only one EDA sensor to be placed on fingers.
+\gls{eda} recordings were gathered from 25 healthy volunteers, using only one \gls{eda} sensor to be placed on fingers.
 \\
-In model-based approaches, models describe and estimate the underlying psychological process that generates the observed data (EDA measurements). The model based analysis of EDA has fundamental advantages, such as a propensity to reduce the effects of measurement noise and the essential ability to improve the temporal resolution of inference in rapid event-related paradigms.
+In model-based approaches, models describe and estimate the underlying psychological process that generates the observed data (\gls{eda} measurements). The model based analysis of \gls{eda} has fundamental advantages, such as a propensity to reduce the effects of measurement noise and the essential ability to improve the temporal resolution of inference in rapid event-related paradigms.
 \\ \indent
-EDA data, in this experiment was analyzed with the \textit{cvxEDA} algorithm, presented in \cite{greco2015cvxeda}, which proposed a representation of the SCRs parts of EDA as the ouptut of a linear time-invariant system to a sparse non-negative driver signal.
+\gls{eda} data, in this experiment was analyzed with the \textit{cvxEDA} algorithm, presented in \cite{greco2015cvxeda}, which proposed a representation of the \gls{scr} parts of \gls{eda} as the ouptut of a linear time-invariant system to a sparse non-negative driver signal.
 \\
-The model of the \textit{cvxEDA} assumes that the observed SC ($y$) is the sum of the phasic activity ($r$), a slow tonic component ($t$), and an additive independent and identically distributed zero-average Gaussian noise term ($\varepsilon$):
+The model of the \textit{cvxEDA} assumes that the observed \gls{scr} ($y$) is the sum of the phasic activity ($r$), a slow tonic component ($t$), and an additive independent and identically distributed zero-average Gaussian noise term ($\varepsilon$):
 \begin{equation}
 	y=r+t+\varepsilon
 \end{equation}
@@ -382,7 +382,7 @@ This problem can be solved using one of the many sparse-QP solvers in order to f
 \\
 They extracted several features form EDA both from phasic and tonic components output of the \textit{cvxEDA}. For each feature, two levels of valence (positive and negative) and three levels of arousal (low, medium and high) were compared.
 \\
-The supervised classification was implemented using a kNN classifier.
+The supervised classification was implemented using a \gls{knn} classifier.
 \\ \indent
 Results, thanks to \textit{cvxEDA} showed a recognition accuracy of 80 \% on the arousal dimension and 84 \% in valence classification.
 
@@ -390,7 +390,3 @@ Results, thanks to \textit{cvxEDA} showed a recognition accuracy of 80 \% on the
 In this chapter was shown a review of the state of the art about human emotion recognition based on physiological data. A schematic block of the general algorithm can be seen in figure \ref{fig:emotion_recognition_process}.
 \\
 Summing up, the majority of the works deal with a small number of subjects (25/30 maximum) and they evaluated their accuracy based on valence-arousal space grouped in four main labels.
-
-
-
-
