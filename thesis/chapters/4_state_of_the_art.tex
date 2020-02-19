@@ -131,7 +131,7 @@ c is a recording of the electrical activity of the hearth using electrodes place
 There are three main components to an \gls{eeg}: the P wave, which represents the depolarization of the atria; the QRS complex, which represents the depolarization of the ventricles; and the T wave, which represents the repolarization of the ventricles, as in figure \ref{fig:ECG}.
 \begin{figure}[h]
     \centering
-    \includegraphics[width=0.6\textwidth]{ECG.png} 
+    \includegraphics[width=0.4\textwidth]{ECG.png} 
 	\caption{ECG of a heart in normal sinus rhythm, PQRST wave}
     \label{fig:ECG}
 \end{figure}
@@ -348,21 +348,29 @@ In \cite{greco2016arousal} tried to automatically classify the emotional state o
 \\ \indent
 \gls{eda} recordings were gathered from 25 healthy volunteers, using only one \gls{eda} sensor to be placed on fingers.
 \\
-In model-based approaches, models describe and estimate the underlying psychological process that generates the observed data (\gls{eda} measurements). The model based analysis of \gls{eda} has fundamental advantages, such as a propensity to reduce the effects of measurement noise and the essential ability to improve the temporal resolution of inference in rapid event-related paradigms.
+In model-based approaches, models describe and estimate the underlying psychological process that generates the observed data (\gls{eda} measurements).
+\\
+The model based analysis of \gls{eda} has fundamental advantages, such as a propensity to reduce the effects of measurement noise and the essential ability to improve the temporal resolution of inference in rapid event-related paradigms.
 \\ \indent
-\gls{eda} data, in this experiment was analyzed with the \textit{cvxEDA} algorithm, presented in \cite{greco2015cvxeda}, which proposed a representation of the \gls{scr} parts of \gls{eda} as the ouptut of a linear time-invariant system to a sparse non-negative driver signal.
+\gls{eda} data, in this experiment was analyzed with the \href{https://github.com/Iciti/cvxEDA}{\textit{cvxEDA}}\footnote{https://github.com/Iciti/cvxEDA} algorithm, presented in \cite{greco2015cvxeda}, which proposed a representation of the \gls{scr} parts of \gls{eda} as the ouptut of a linear time-invariant system to a sparse non-negative driver signal.
 \\
 The model of the \textit{cvxEDA} assumes that the observed \gls{scr} ($y$) is the sum of the phasic activity ($r$), a slow tonic component ($t$), and an additive independent and identically distributed zero-average Gaussian noise term ($\varepsilon$):
 \begin{equation}
 	y=r+t+\varepsilon
 \end{equation}
-Physiologically-plausible characteristics (temporal scale and smoothness) of the tonic input signal can be achieved by means of a cubic spline with equally-spaced knots every 10 s, an offset and a linear trend term:
+Physiologically-plausible characteristics (temporal scale and smoothness) of the tonic input signal can be achieved by means of a cubic spline with equally-spaced knots every $10s$, an offset and a linear trend term:
 \begin{equation}
 	\label{eq:tonic_model}
 	t=Bl+Cd
 \end{equation}
-where $B$ is a tall matrix whose columns are cubic B-spline basis functions, $l$ is the vector of spline coefficients, $C$ is a $Nx2$ matrix with $C_{i,1} = 1$, and $C_{i,2} = \dfrac{i}{N}$, $d$ is a $2x1$vector with the offset and slope coefficients for the linear trend.
-Phasic component is the result of a convolution between the sudomotor nerve activity (SMNA) $p$ and an impulse response $h(t)$ shaped as a biexponential Bateman function:
+where:
+\begin{itemize}
+	\item $B$ is a tall matrix whose columns are cubic B-spline basis functions
+	\item $l$ is the vector of spline coefficients
+	\item $C$ is a $Nx2$ matrix with $C_{i,1} = 1$, and $C_{i,2} = \dfrac{i}{N}$
+	\item $d$ is a $2x1$vector with the offset and slope coefficients for the linear trend
+\end{itemize}
+Phasic component is the result of a convolution between the \gls{smna} $p$ and an impulse response $h(t)$ shaped as a biexponential Bateman function:
 \begin{equation}
 	h(t)=(e^{-t/\tau_1}-e^{-t/\tau_2})u(t)
 \end{equation}
@@ -389,4 +397,10 @@ Results, thanks to \textit{cvxEDA} showed a recognition accuracy of 80 \% on the
 \section{Conclusions}
 In this chapter was shown a review of the state of the art about human emotion recognition based on physiological data. A schematic block of the general algorithm can be seen in figure \ref{fig:emotion_recognition_process}.
 \\
-Summing up, the majority of the works deal with a small number of subjects (25/30 maximum) and they evaluated their accuracy based on valence-arousal space grouped in four main labels.
+Summing up, the majority of the works deal with a small number of subjects (25/30 maximum) and they evaluated their accuracy based on valence-arousal space grouped in four main labels as schematized in figure \ref{fig:va_groups}.
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.6\textwidth]{va_groups.png} 
+	\caption{Valence and Arousal space divided in four main groups}
+    \label{fig:va_groups}
+\end{figure}

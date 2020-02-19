@@ -1,10 +1,15 @@
 *.aux
+*.acn
 *.bbl
 *.blg
+*.glo
+*.glsdefs
+*.ist
 *.lof
 *.log
 *.lot
 *.out
 *.synctex.gz
 *.toc
-*xmpi
+*.xmpi
+*.png
