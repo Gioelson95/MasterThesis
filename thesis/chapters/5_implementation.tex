@@ -255,7 +255,71 @@ They trained and tested \gls{mlr} and \gls{svr} with pre-processed \gls{eda} dat
 	\label{table:PMEmo_results_EDA}
 \end{table}
 
+\section{Implementation}
+We decided to start from the results of \gls{pmemo} and try to improve them. We will first look at a general framework description and then will follow explanation of the single parts.
 
+\subsection{General framework}
+As already presented in chapter \ref{general_methodology} in figure \ref{fig:emotion_recognition_process} through some steps we can derive a model from the emotion elicitation. Since we will try to deal with both audio and \gls{eda} data, we decided to develop a model based on a traditional machine learning framework.
+\\
+General framework implemented is in figure \ref{fig:general_framework}. Differently from figure \ref{fig:emotion_recognition_process}, here, the starting point is dataset files given from the \gls{pmemo} dataset.
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=\textwidth]{general_framework.png} 
+	\caption{General framework}
+    \label{fig:general_framework}
+\end{figure}
+\\
+From the dataset containing audio and \gls{eda} files, we extracted a certain number of features, creating a matrix for all the features extracted.
+\\
+From the feature matrix, several feature selection algorithms were applied in order to reduce the number of features, to improve the model.
+\\
+At last, some \gls{ml} process is applied to create the model for the emotion classification task and then it is tested.
+\\
+In this dataset were present two different types of data, audio and \gls{eda} and our main goal was to combine:
+\begin{itemize}
+	\item audio data,which gave the possibility to recognize perceived emotions
+	\item \gls{eda} data, which are related to felt emotions
+\end{itemize}
+The general framework, with these two process divided is shown in figure \ref{fig:general_framework_1} which is based on the one presented before at \ref{fig:general_framework}.
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=\textwidth]{general_framework_1.png} 
+	\caption{General framework with audio and EDA division}
+    \label{fig:general_framework_1}
+\end{figure}
 
+\subsection{Audio features}
+As can be seen from the scheme, we did two different feature extraction processes, one for audio and the other for \gls{eda}, due to the evident differences in the data.
+\\
+For the next features explanation, will be used the song contained in the \gls{pmemo} dataset under the name \textit{4.mp3}, X Bitch from 21 Savage from the album "\textit{Savage mode}". Its waveform and audio specs can be seen in figure \ref{fig:audio_specs}.
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=\textwidth]{audio_specs.png} 
+	\caption{Waveform and audio specs of the song number 4}
+    \label{fig:audio_specs}
+\end{figure}
+\\
+%Now will follow a list of features extracted during the process.
+\paragraph{Tempo}
+\mbox{} \\ \\
+In musical terminology, tempo  is the speed or pace of a given piece. In classical music, tempo is typically indicated with an instruction at the start of a piece and is usually measured in beats per minute (or bpm).
+\\
+Tempo for the given song is about $152 bpm$.
 
-
+\paragraph{Beats}
+\mbox{} \\ \\
+To extract beats is used a beat extractor, which output is an estimation of the tempo and an array of frame numbers corresponding to detected beat events.
+\\
+Beats are detected in three stages:
+\begin{enumerate}	
+	\item Measure onset strength
+	\item Estimate tempo from onset correlation
+	\item Pick peaks in onset strength approximately consistent with estimated tempo
+\end{enumerate}
+In figure \ref{fig:beat} can be seen beats detected and the array of frame numbers.
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=\textwidth]{beat.png} 
+	\caption{beat and array of frames of the song number 4}
+    \label{fig:beat}
+\end{figure}
