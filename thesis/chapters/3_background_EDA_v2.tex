@@ -95,14 +95,63 @@ Figure \ref{fig:electrode_sites} illustrate the preferred palmar recording areas
 \end{figure}
 
 \subsection{Wearable technologies}
+During the last years, some wearable devices were made, in order to extract \gls{eda} data from a human through sensors.
+\\ \indent
+For example, one wearable device is from \href{https://www.empatica.com/en-eu/}{Empatica}\footnote{https://www.empatica.com/en-eu/}. Product examples can be seen in figure \ref{fig:empatica_devices}.
+\begin{figure}[h]
+    \centering
+    \begin{subfigure}{{0.45\textwidth}}
+    		\includegraphics[width=0.8\textwidth]{e4_band.png}
+    		\caption{e4}
+    \end{subfigure}
+    \begin{subfigure}{0.45\textwidth}
+    		\includegraphics[width=0.8\textwidth]{embrace_2.png} 
+    		\caption{embrace 2}
+    \end{subfigure}
+    \caption{Empatica wearable devices}
+    \label{fig:empatica_devices}
+\end{figure}
+\\
+Empatica has designed a system support real-world applications for seizure detection and characterization. Empatica is running a clinical trial, open to Embrace users, to collect and validate biometric signals from epilepsy patients using the Empatica Embrace watch and Alert app and compare them to e-diary seizure report information.
+\\ \indent
+Another device is from \href{https://www.bitbrain.com}{Bitbrain}\footnote{https://www.bitbrain.com} as in figure \ref{fig:bitbrain}.
+\begin{figure}[h]
+    \centering
+    \begin{subfigure}{{0.45\textwidth}}
+    		\includegraphics[width=0.8\textwidth]{ring_bitbrain.png}
+    		\caption{Biosignal device from Bitbrain}
+    \end{subfigure}
+    \begin{subfigure}{0.45\textwidth}
+    		\includegraphics[width=0.8\textwidth]{ring_layout.png} 
+    		\caption{Positioning the sensors}
+    \end{subfigure}
+    \caption{Bitbrain wearable devices}
+    \label{fig:bitbrain}
+\end{figure}
+\\
+The sensors are located on the fingers' first and second phalanges (optimal measurement points) as shown in \ref{fig:bitbrain}.
+\\ \indent
+Another one device is from \href{https://imotions.com}{iMotions}\footnote{https://imotions.com}. The name of the device is \textit{Shimmer3 GSR+} which monitors skin conductivity between two electrodes attached to two fingers of one hand as can be seen in figure \ref{fig:shimmer3}.
+\begin{figure}[h]
+    \centering
+    \begin{subfigure}{{0.45\textwidth}}
+    		\includegraphics[width=0.8\textwidth]{Shimmer_3GSR.png}
+    \end{subfigure}
+    \begin{subfigure}{0.45\textwidth}
+    		\includegraphics[width=0.8\textwidth]{Shimmer_3GSR_hand.png} 
+    \end{subfigure}
+    \caption{Bitbrain wearable devices}
+    \label{fig:shimmer3}
+\end{figure}
+\\
+Caused by a stimulus the sweat glands become more active, increasing moisture on the skin and allowing the current to flow more readily by changing the balance of positive and negative ions in the secreted fluid (increasing skin conductance).
 
-
-\section{Artifacts identification in EDA data}
+\section{EDA preprocessing}
 \gls{eda} data is often captured by wearable devices, which makes the signal collected vulnerable to several types of noise. Artifacts can be generated from electronic noise or variation in the contact between the skin and the recording electrode caused by pressure, excessive movement or adjustment of the device \cite{taylor2015automatic}.
 \\
 They may be mistaken for a skin conductance response, and this must be avoided.
 \\ \indent
-Typically, as Boucsein \cite{boucsein2012electrodermal} report, the shape of an \gls{scr} typically lasts between $1s$ to $5s$, has a steep onset and an exponentially decay and reaches an amplitude of at least $0.01\mu S$. An example of a typical \gls{scr} in figure \ref{fig:SCR_example}.
+Typically, as Boucsein \cite{boucsein2012electrodermal} report, the shape of an \gls{scr} lasts between $1s$ to $5s$, has a steep onset and an exponential decay and reaches an amplitude of at least $0.01\mu S$. An example of a typical \gls{scr} in figure \ref{fig:SCR_example}.
 \begin{figure}[h]
     \centering
     \includegraphics[scale=0.4]{SCR_example.png} 
@@ -112,7 +161,7 @@ Typically, as Boucsein \cite{boucsein2012electrodermal} report, the shape of an 
 \\
 Currently, many researchers deal with signal artifacts and noise by applying exponential smoothing or low-pass filtering.
 \\
-Additionally, filter cutoff frequencies are based only loosely on prior knowledge of typical characteristics of SCR shape, and vary widely study to study ($1Hz$ and $5Hz$). The cutoff frequency ultimately chosen for a study is specific to that particular study, making generalization difficult.
+Additionally, filter cutoff frequencies are based only loosely on prior knowledge of typical characteristics of SCR shape, and vary widely study to study (from $1Hz$ to $5Hz$). The cutoff frequency ultimately chosen for a study is specific to that particular study, making generalization difficult.
 \\ \indent
 There are much relevant techniques that are also able to recognize and compensate for large-magnitude artifacts that can result from pressure or movement of the device during recordings.
 \\
@@ -131,7 +180,7 @@ In another case, a study which collected \gls{eda} from two sensors (on both the
 In \cite{taylor2015automatic} developed a \gls{ml} algorithm for automatically detecting \gls{eda} artifacts, providing empirical evaluation of classification performances.
 
 \section{EDA features}
-As for \gls{mer} analysis, also in \gls{eda} data analysis, is important to find which features need to be extracted and than which feature selection method must be carried.
+As for \gls{mer} analysis, also in \gls{eda} data analysis, is important to find which features need to be extracted and then which feature selection method must be carried.
 \\ \indent
 Emotion recognition from \gls{eda} has been commonly used for the assessment of user's experience in a variety of contexts such as recreational and games \cite{drachen2010correlation} and driving \cite{healey2005detecting}. Previous research has explored the predictive power of a diverse set of \gls{eda} features of different types, including time domain, frequency domain, and time-frequency domain features.
 \\ \indent
