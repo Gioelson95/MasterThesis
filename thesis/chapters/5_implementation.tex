@@ -287,11 +287,11 @@ The general framework, with these two process divided is shown in figure \ref{fi
 	\caption{General framework with audio and EDA division}
     \label{fig:general_framework_1}
 \end{figure}
+\\[5px]
+Now will be presented the first part of the general framework, feature extraction block, separated for audio and for \gls{eda}, due to evident differences in data types. For the audio, there are several set of features that can be extracted, thanks to the hard work done in the past years. While \gls{eda} features are less present in the literature and they are mostly statistical features.
 
 \subsection{Audio features}
-As can be seen from the scheme, we did two different feature extraction processes, one for audio and the other for \gls{eda}, due to the evident differences in the data.
-\\
-For the next features explanation, will be used the song contained in the \gls{pmemo} dataset under the name \textit{4.mp3}, X Bitch from 21 Savage from the album "\textit{Savage mode}". Its waveform and audio specs can be seen in figure \ref{fig:audio_specs}.
+For the next features explanation, will be used the song contained in the \gls{pmemo} dataset under the name \textit{4.mp3}, \textit{X Bitch} from \textit{21 Savage} in the album "\textit{Savage mode}". Its waveform and audio specs can be seen in figure \ref{fig:audio_specs}.
 \begin{figure}[h]
     \centering
     \includegraphics[width=\textwidth]{audio_specs.png} 
@@ -320,6 +320,61 @@ In figure \ref{fig:beat} can be seen beats detected and the array of frame numbe
 \begin{figure}[h]
     \centering
     \includegraphics[width=\textwidth]{beat.png} 
-	\caption{beat and array of frames of the song number 4}
+	\caption{Beat and array of frames of the song number 4}
     \label{fig:beat}
 \end{figure}
+\\
+After the beats extraction, summation and average of the beat events are calculated.
+
+\paragraph{Chroma}
+\mbox{} \\ \\
+The chroma feature, also called chromagram, relates to the twelve different pitch classes. Croma features capture harmonic and melodic characteristic of music, while being robust to changes in timbre and instrumentation.
+\\
+Humans perceive two musical pitches as similar if they differ by an octave. A pitch can be separated into two components, referred as \textit{height} (the octave where the pitch is) and \textit{chroma}. The twelve chroma values are represented by the set:
+\[{C, C\#, D, D\#, E , F, F\#, G, G\#, A, A\#, B}\]
+that consists of the twelve pitch spelling attributes as used in Western music notation.
+\\
+In the figure \ref{fig:chromagram} from \cite{inproceedings} can be seen a chromagram (b) obtained from the score (a) and a chromagram (d) obtained from an audio recording of the C-major scale played on a piano (c).
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.7\textwidth]{chromagram.png} 
+	\caption{(a) Musical score of a C-major scale, (b) Chromagram obtained from the score, (c) audio recording of the C-major scale played on a piano, (d) chromagram obtained from the audio recording from \cite{inproceedings}}
+    \label{fig:chromagram}
+\end{figure}
+\\
+There are different ways to convert an audio recording into a chromagram, as performing \gls{stft} in combination with binning strategies or using multirate filter banks.
+\\ \indent
+Chroma features can be significantly changed by introducing pre-processing and post-processing steps that modify spectral, temporal and dynamical aspects. This leads to a large number of chroma variants.
+\\
+For the chromagram, we extracted three different types of chroma:
+\begin{itemize}
+	\item Chroma \gls{stft} extract the chromagram through the \gls{stft}.
+	\item Chroma cqt extract the constant-Q chromagram, where the constant-Q transforms the data series to the frequency domain. Q stands for the quality factor, defined as:
+	\begin{equation}
+		Q=\dfrac{f_k}{\delta f_k}
+	\end{equation}
+	where $f_k$ is the $k^{th}$ filter of a series, while $\delta f_k$ is the bandwidth of the $k^{th}$ filter.
+	\item Chroma cens which add a further degree of abstraction by considering short-time statistics over energ distribution within the chroma bands. In \gls{cens} features, a quantization is applied based on logarithmic thresholds, which allows to introduce a temporal smoothing.
+\end{itemize}
+%In the figure \ref{fig:chroma} are shown the three different chromagram extracted for the song number 4.
+\begin{figure}[h]
+    \centering
+    \begin{subfigure}{{\textwidth}}
+    		\includegraphics[width=\textwidth]{chroma_stft.png}
+    		\caption{Chroma stft}
+    \end{subfigure}
+    \begin{subfigure}{\textwidth}
+    		\includegraphics[width=\textwidth]{chroma_cqt.png} 
+    		\caption{Chroma cqt}
+    \end{subfigure}
+    \begin{subfigure}{\textwidth}
+    		\includegraphics[width=\textwidth]{chroma_cens.png} 
+    		\caption{Chroma cens}
+    \end{subfigure}
+    \caption{Different chromagram extracted from song number 4}
+    \label{fig:chroma}
+\end{figure}
+
+
+
+
