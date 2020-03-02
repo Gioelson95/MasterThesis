@@ -299,7 +299,11 @@ For the next features explanation, will be used the song contained in the \gls{p
     \label{fig:audio_specs}
 \end{figure}
 \\
-%Now will follow a list of features extracted during the process.
+Now will follow a list of features extracted during the process.
+\\
+Features was extracted both in a static way, taking into account the whole excerpt and in a dynamic way, by dividing the musical excerpt in windows of $1s$ with $50\%$ overlap.
+\\
+After the process of feature extraction, every feature was normalized in the range $[0,1]$.
 \paragraph{Tempo}
 \mbox{} \\ \\
 In musical terminology, tempo  is the speed or pace of a given piece. In classical music, tempo is typically indicated with an instruction at the start of a piece and is usually measured in beats per minute (or bpm).
@@ -532,9 +536,25 @@ The Tonnetz of the song number 4 is shown in figure \ref{fig:tonnetz}.
     \label{fig:tonnetz}
 \end{figure}
 
-\paragraph{Mel Frequency Cepstrum Coefficients}
+\paragraph{Mel Frequency Cepstral Coefficients}
 \mbox{} \\ \\
+The \gls{mfcc} are coefficients based on the extraction of the signal energy within critical frequency bands by means of a series of triangular filters (in figure \ref{fig:mfcc_filters}) whose center frequencies are equally spaced according to the mel scale.
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.6\textwidth]{mfcc_filters.png} 
+	\caption{Triangular filters for the MFCC extraction}
+    \label{fig:mfcc_filters}
+\end{figure}
+\\
+The log-energy of the spectrum is measured within the pass-band of each filter, resulting in a reduced representation of the spectrum. The cepstral coefficients are finally obtained through a \gls{dct} of the reduced log-energy spectrum.
+\\
+In figure \ref{fig:mfcc} is shown the \gls{mfcc} graph for 12 mfccs for song number 4.
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=\textwidth]{mfcc.png} 
+	\caption{MFCC for song 4}
+    \label{fig:mfcc}
+\end{figure}
+For each of the 12 mfccs are extracted the mean, standard deviation, median, kurtosis and skewness.
 
-
-
-
+\subsection{EDA features}
