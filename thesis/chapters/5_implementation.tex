@@ -326,9 +326,28 @@ In figure \ref{fig:beat} can be seen beats detected and the array of frame numbe
 \\
 After the beats extraction, summation and average of the beat events are calculated.
 
+\paragraph{Zero crossing rate}
+\mbox{} \\ \\
+The \gls{zcr}  is the rate of sign-changes along a signal. It is the rate at which the signal changes from positive to zero to negative or to negative or from negative to zero to positive. It is useful to recognize percussive sounds.
+The \gls{zcr} is evaluated as:
+\begin{equation}
+	ZCR=\dfrac{1}{T} \sum_{t=1}^{T-1}{\dfrac{|sign(s_t)|-|sign(s_{t-1})|}{2}}
+\end{equation}
+where $T$ is the length of the time window, $s_t$ is the magnitude of the $t^{th}$ time domain sample.
+\\
+The \gls{zcr} of song 4 is shown in figure \ref{fig:zcr}.
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=\textwidth]{zcr.png} 
+	\caption{ZCR extracted from song 4}
+    \label{fig:zcr}
+\end{figure}
+\\
+For the \gls{zcr}, is calculated the mean, the standard deviation, and the variance.
+
 \paragraph{Chroma}
 \mbox{} \\ \\
-The chroma feature, also called chromagram, relates to the twelve different pitch classes. Croma features capture harmonic and melodic characteristic of music, while being robust to changes in timbre and instrumentation.
+The chroma feature, also called chromagram, relates to the twelve different pitch classes. Chroma features capture harmonic and melodic characteristic of music, while being robust to changes in timbre and instrumentation.
 \\
 Humans perceive two musical pitches as similar if they differ by an octave. A pitch can be separated into two components, referred as \textit{height} (the octave where the pitch is) and \textit{chroma}. The twelve chroma values are represented by the set:
 \[{C, C\#, D, D\#, E , F, F\#, G, G\#, A, A\#, B}\]
@@ -337,7 +356,7 @@ that consists of the twelve pitch spelling attributes as used in Western music n
 In the figure \ref{fig:chromagram} from \cite{inproceedings} can be seen a chromagram (b) obtained from the score (a) and a chromagram (d) obtained from an audio recording of the C-major scale played on a piano (c).
 \begin{figure}[h]
     \centering
-    \includegraphics[width=0.7\textwidth]{chromagram.png} 
+    \includegraphics[width=0.8\textwidth]{chromagram.png} 
 	\caption{(a) Musical score of a C-major scale, (b) Chromagram obtained from the score, (c) audio recording of the C-major scale played on a piano, (d) chromagram obtained from the audio recording from \cite{inproceedings}}
     \label{fig:chromagram}
 \end{figure}
@@ -387,6 +406,11 @@ The Mel-scale is a different scale, based on non-linear transformation of the fr
 \\
 In practice it partitions the $Hz$ scale into bins, and transforms each bin into a corresponding bin in the Mel Scale, using a overlapping triangular filters.
 \\
+To convert a frequency in $Hz$ into its equivalent in $mel$, the following formula is used:
+\begin{equation}
+	pitch[mel]=1127.0148\:\log \left[ {1+\dfrac{f}{100}} \right]
+\end{equation}
+\\
 Finally, a melspectrogram is a spectrogram with the mel-scale on the frequency axis.
 \\
 The melspectrogram of song 4 is shown in figure \ref{fig:melspectrogram}.
@@ -398,6 +422,22 @@ The melspectrogram of song 4 is shown in figure \ref{fig:melspectrogram}.
 \end{figure}
 \\
 For the melspectrogram, is calculated the mean, the standard deviation, and the variance.
+
+\paragraph{Spectral contrast}
+\mbox{} \\ \\
+Spectral contrast consider spectral peaks and valleys in each sub-band separately. More in general spectral peaks correspond to harmonic components and spectral valleys correspond to non-harmonic components or noise in a music piece as evaluated in \cite{jiang2002music}.
+\\
+Therefore, the difference between spectral peaks and spectral valleys will reflect the spectral contrast distribution.
+\\
+The spectral contrast of song 4 is shown in figure \ref{fig:spectral_contrast}.
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=\textwidth]{spectral_contrast.png} 
+	\caption{Spectral contrast extracted from song 4}
+    \label{fig:spectral_contrast}
+\end{figure}
+\\
+For the spectral contrast, is calculated the mean, the standard deviation, and the variance.
 
 \paragraph{Spectral centroid}
 \mbox{} \\ \\
@@ -423,7 +463,7 @@ For the spectral centroid, is calculated the mean, the standard deviation, and t
 \mbox{} \\ \\
 The spectral bandwidth is the order-p spectral bandwidth as:
 \begin{equation}
-	{\sum_{k}{S(k){(f(k)-f_c)}^p}}^p
+	{\left(\sum_{k}{S(k){(f(k)-f_c)}^p}\right)}^{1/p}
 \end{equation}
 where $S(k)$ is the spectral magnitude at frequency bin $k$, $f(k)$ is the frequency at bin $k$ and $f_c$ is the spectral centroid.
 \\
@@ -432,9 +472,69 @@ The spectral bandwidth of song 4 is shown in figure \ref{fig:spectral_bandwidth}
     \centering
     \includegraphics[width=\textwidth]{spectral_bandwidth.png} 
 	\caption{Spectral bandwidth extracted from song 4}
-    \label{fig:spectral_centroid}
+    \label{fig:spectral_bandwidth}
 \end{figure}
 \\
 For the spectral bandwidth, is calculated the mean, the standard deviation, and the variance.
+
+\paragraph{Spectral rolloff}
+\mbox{} \\ \\
+Spectral rolloff is defined as the $N^{th}$ percentile of the power spectral distribution, where $N$ is usually $85 \%$ or $95 \%$. The rolloff point is the frequency below which the N of the magnitude distribution is concentrated.
+\\
+This can be used to, e.g., approximate the maximum (or minimum) frequency by setting roll\_percent to a value close to $1$ (or $0$).
+\\
+The spectral rolloff of song 4 is shown in figure \ref{fig:spectral_rolloff}.
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=\textwidth]{spectral_rolloff.png} 
+	\caption{Spectral rolloff extracted from song 4}
+    \label{fig:spectral_rolloff}
+\end{figure}
+\\
+For the spectral rolloff, is calculated the mean, the standard deviation, and the variance.
+
+\paragraph{Spectral poly}
+\mbox{} \\ \\
+Get coefficients of fitting an $n^{th}$ order polynomial to the columns of a spectrogram.
+\\
+In the figure \ref{fig:poly} can be seen different poly extracted from song number 4, with different degrees, 0-order fit a degree-0 polynomial (constant) to each frame, 1-order fit a linear polynomial to each frame and 2-order fit a quadratic to each frame.
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=\textwidth]{poly.png} 
+	\caption{Spectral poly extracted from song 4}
+    \label{fig:poly}
+\end{figure}
+\\
+For the spectral poly, is calculated the mean, the standard deviation, and the variance.
+
+\paragraph{Tonal centroid}
+\mbox{} \\ \\
+Computes the tonal centroid features (tonnetz), following the method of \cite{harte2006detecting}.
+\\
+In musical tuning and harmony, the Tonnetz, is a conceptual lattice diagram representing tonal space first described by Euler in 1739. Various visual representations of the Tonnetz can be used to show traditional harmonic relationships in European classical music.
+\\
+Close harmonic relations are modeled as short distances on an infinite Euclidian plane. Chords become geometric structure on the plane and chords become geometric structures on the plane, keys are defined by regions in the harmonic network
+\\
+An example is shown in figure \ref{fig:tonnetz_scheme}.
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=\textwidth]{tonnetz_scheme.png} 
+	\caption{Representation in the Euclidian plane of the tonnetz}
+    \label{fig:tonnetz_scheme}
+\end{figure}
+\\
+The Tonnetz of the song number 4 is shown in figure \ref{fig:tonnetz}.
+\\
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=\textwidth]{tonnetz.png} 
+	\caption{Tonnetz extracted in from song 4}
+    \label{fig:tonnetz}
+\end{figure}
+
+\paragraph{Mel Frequency Cepstrum Coefficients}
+\mbox{} \\ \\
+
+
 
 
