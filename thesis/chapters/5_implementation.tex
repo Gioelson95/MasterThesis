@@ -555,6 +555,61 @@ In figure \ref{fig:mfcc} is shown the \gls{mfcc} graph for 12 mfccs for song num
 	\caption{MFCC for song 4}
     \label{fig:mfcc}
 \end{figure}
+\\
 For each of the 12 mfccs are extracted the mean, standard deviation, median, kurtosis and skewness.
 
 \subsection{EDA features}
+For the continuity, also in the explanation of \gls{eda} features extracted, will be used the song number 4. Its \gls{eda} signal and its specs, can be seen in figure \ref{fig:eda}.
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=\textwidth]{eda.png} 
+	\caption{EDA for song 4}
+    \label{fig:eda}
+\end{figure}
+\\
+\gls{eda} signal was preprocessed following the pipeline highlighted in the pyphysio library \cite{bizzego2019pyphysio} and resumed in figure \ref{fig:pyphysio_pipeline}.
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=\textwidth]{pyphysio_pipeline.png} 
+	\caption{Pyphysio pipeline}
+    \label{fig:pyphysio_pipeline}
+\end{figure}
+\\
+They divide the pipelines into three separate steps:
+\begin{enumerate}
+	\item Filtering and Preprocessing: this step includes all the procedures aiming at increasing the signal/noise ratio, typycally band-pass filtering, smoothing, removal of artifacts. The output of this step is a new version of the imput signal with improved signal quality (less noise)
+	\item Information Extraction: this step aims at extracting the information of interest from the physiological signal. The output is a new signal containing only the information of interest and thus it has a signal\_nature different from the input signal
+	\item Physiological Indicators: this steps produces a list of scalar values able to describe the characteristics of the input signal. This step is usually performed on small segments of the input signals which are extracted using a sliding window on the whole length of the signal.
+\end{enumerate}
+Taking into account the initial signal shown in figure \ref{fig:eda} the filtering and preprocessing stage was done by an \gls{iir} filter to remove high frequency noise, a low-pass filter of $0.6Hz$ to diminuish the noise from motion and artifacts as can be seen in figure \ref{fig:eda_filtered}.
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=\textwidth]{eda_filtered.png} 
+	\caption{EDA signal in blue and filtered EDA in orange}
+    \label{fig:eda_filtered}
+\end{figure}
+\\
+Following the procedure introduced by \cite{bizzego2019pyphysio}, the library is able to extract tonic and phasic component of an \gls{eda} data by evaluating a driver function. The graph can be seen in figure \ref{fig:eda_phasic_driver}.
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=\textwidth]{eda_phasic_driver.png} 
+	\caption{EDA signal in blue, driver in orange and tonic part in green}
+    \label{fig:eda_phasic_driver}
+\end{figure}
+\\
+Now will follow a list of features extracted during the process.
+\\
+Features was extracted both in a static way, taking into account the whole excerpt and in a dynamic way, by dividing the musical excerpt in windows of $1s$ with $50\%$ overlap.
+\\
+After the process of feature extraction, every feature was normalized in the range $[0,1]$.
+
+\paragraph{Tempo}
+\mbox{} \\ \\
+
+
+
+
+
+
+
+
