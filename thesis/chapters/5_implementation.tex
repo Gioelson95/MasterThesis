@@ -603,13 +603,39 @@ Features was extracted both in a static way, taking into account the whole excer
 \\
 After the process of feature extraction, every feature was normalized in the range $[0,1]$.
 
-\paragraph{Tempo}
+\paragraph{Statistic}
 \mbox{} \\ \\
+As already mentioned before in \ref{EDA_features}, most extracted \gls{eda} features are statistical. We extracted the mean of the signal, the standard deviation, kurtosis and the skewness. They were extracted both in the time domain and in the frequency domain.
+\\ \indent
+Median value was also extracted, where the median is the value separating the higher half from the lower half of the data. It is like the \textit{middle} value, but differently from the mean, the median gives a better idea of a typical value.
+\\
+While other statistics were already described in \ref{EDA_features}, the median can be described in a caseless formula as:
+\begin{equation}
+	median(a)=\dfrac{a_{\left \lceil{\dfrac{l+1}{2}}\right \rceil}+a_{\left \lfloor{\dfrac{l+1}{2}}\right \rfloor}}{2}
+\end{equation}
+where $a$ is an ordered list of $l$ numbers, $\left \lceil {\cdot} \right \rceil$ is the ceil function (gives the least integer greater than or equal to the input) and $\left \lfloor {\cdot} \right \rfloor$ is the floor function (gives the greatest integer less than or equal to the input).
+\\ \indent
+We extracted also the maximum value, the minimum and the difference between these two, the range.
+
+\paragraph{Other features}
+\mbox{} \\ \\
+Some other features were extracted thanks to pyphisio library \cite{bizzego2019pyphysio}, they are:
+\begin{itemize}
+	\item \gls{auc}
+	\item \gls{rmssd} compute the \gls{rmse} of the squared $1^{st}$ order discrete differences
+	\item \gls{sdsd} calculate the standard deviation of the $1^{st}$ order discrete differences
+\end{itemize}
+
+\paragraph{Power inband}
+\mbox{} \\ \\
+The power spectrum $S_{xx}(f)$ of a time series $x(t)$ describes the distribution of power into frequency components compsing the signal. Any discrete signal, according to Fourier analysis, can be decomposed into a number of discrete frequencies, or a spectrum of frequencies over a continuous range.
+\\
+The statistical average of a certain signal as analyzed in terms of its frequency content, is called its spectrum.
+\\ \indent
+The \gls{psd}, also called power spectrum, applies to signal over all time, that theoretically could be an infinite time interval. The \gls{psd} than, refers to the spectral energy distribution that would be found per unit time, since the total energy of such a signal over all time would generally be infinite.
 
 
 
 
-
-
-
-
+\paragraph{Peak inband}
+\mbox{} \\ \\
