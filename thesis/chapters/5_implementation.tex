@@ -650,3 +650,78 @@ As for the audio features, we extracted \gls{mfcc} features. We kept $12$ \gls{m
 For each of the $12$ \gls{mfcc}s are extracted the mean, standard deviation, median, kurtosis and skewness.
 
 \subsection{Feature selection}
+Feature selection become an important step while performing a \gls{ml} task. Given a dataset, every column of the dataset is a feature, and not necessarily every feature is going to have an impact on the output variable.
+\\
+Adding these irrelevant features in the model, it will make the model worst.
+\\
+These feature selection methods are valid for a regression problem, where both the input and the output variables are continuous in nature.
+\\ \indent
+Feature selection can be done in multiple ways but there are broadly 3 categories of it:
+\begin{enumerate}
+	\item Filter Method by filtering and taking only the subset of the relevant features, the filtering is done using correlation matrices. 
+	\item Wrapper Method which needs a \gls{ml} algorithm and uses its performance as evaluation criteria.
+	\item Embedded Method in an iterative way, it takes care of each iteration of the model training process and extract those features which contribute the most to the training for a particular iteration.
+\end{enumerate}
+\\
+In the following paragraphs are taken into account all the audio features extracted for the whole song, in the static case.
+
+\paragraph{Pearson correlation}
+\mbox{} \\ \\
+Pearson correlation is a filter method for feature selection. In this method a filter process is done which select only the subset of the relevant features. The model is built after selecting the features.
+\\
+The filtering is done using Pearson correlation.
+\\ \indent
+In statistics, the Pearson correlation coefficient is a measure of the linear correlation between two variables $X$ and $Y$.
+\\
+The correlation coefficient has values between -1 to 1:
+\begin{itemize}
+	\item A value closer to $0$ implies weaker correlation (exact $0$ implying no correlation)
+	\item A value closer to $1$ implies stronger positive correlation
+	\item A value closer to $-1$ implies stronger negative correlation
+\end{itemize}
+Pearson's correlation coefficient is the covariance of the two variables divided by the product of their standard deviations. The form of the definition involves a \textit{product moment}, that is, the mean (the first moment about the origin) of the product of the mean-adjusted random variables:
+\begin{equation}
+	\rho_{X,Y}=\dfrac{cov(X,Y)}{\sigma_X \sigma_Y}
+\end{equation}
+where:
+\begin{itemize}
+	\item $cov(X,Y)$ is the covariance (the measure of the joint variability of the two random variables $X$ and $Y$)
+	\item $\sigma_X$ is the standard deviation of $X$
+	\item $\sigma_Y$ is the standard deviation of $Y$
+\end{itemize}
+In figure \ref{fig:Pearson_heatmap} is shown the Pearson correlation heatmap and see the correlation of independent variables with the output variable.
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=\textwidth]{Pearson_heatmap.png} 
+	\caption{Pearson heatmap}
+    \label{fig:Pearson_heatmap}
+\end{figure}
+\\
+Then are selected just the features that have a Pearson coefficient greater than a certain value, for example features that have a Pearson coefficient greater than $0.5$ based on the output variable of \textit{Valence (mean)} are shown in figure \ref{fig:Pearson_features}.
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.8\textwidth]{Pearson_features.png} 
+	\caption{Pearson most relevant features}
+    \label{fig:Pearson_features}
+\end{figure}
+
+\paragraph{Backward elimination}
+\mbox{} \\ \\
+Backward elimination is a wrapper feature selection method. The model is fed at first with all the features, than is check the performance of the model and iteratively is removed the worst performing features one by one till the overall performance of the model comes in acceptable range.
+\\
+The performance metric used here to evaluate feature performance is pvalue. If the pvalue is above $0.05$ then we remove the feature, else it is kept.
+\\
+Features that have a pvalue smaller than $0.05$ are:
+\\
+\textit{['chroma\_cq\_mean', 'chroma\_cq\_std', 'chroma\_cq\_var', 'chroma\_cens\_mean', 'melspectrogram\_mean', 'cent\_mean', 'contrast\_mean', 'contrast\_std', 'tonnetz\_std', 'tonnetz\_var', 'harm\_var', 'perc\_std', 'frame\_std', 'frame\_var', 'meanMFCC[0]', 'stdMFCC[0]', 'skewMFCC[0]', 'medianMFCC[1]', 'skewMFCC[1]', 'meanMFCC[2]', 'medianMFCC[2]', 'stdMFCC[3]', 'medianMFCC[3]', 'skewMFCC[3]', 'kurtMFCC[4]', 'skewMFCC[4]', 'stdMFCC[5]', 'medianMFCC[5]', 'skewMFCC[5]', 'meanMFCC[7]', 'stdMFCC[8]', 'medianMFCC[8]', 'meanMFCC[9]', 'meanMFCC[11]', 'mfcc\_delta\_std', 'mfcc\_delta\_var']}
+
+\paragraph{Recursive feature elimination}
+\mbox{} \\ \\
+The \gls{rfe} method is another wrapper method and works by recursively removing attributes and building a model on those attributes that remain.
+\\
+It uses accuracy metric to rank the feature according to their importance. The \gls{rfe} method takes the model to be used and the number of required features as input. As output it gives the ranking of all the variables, where $1$ is the most important.
+Most relevant features extracted are:
+\\
+\textit{['chroma\_stft\_mean', 'chroma\_stft\_std', 'chroma\_stft\_var', 'chroma\_cq\_mean', 'chroma\_cq\_std', 'chroma\_cq\_var', 'chroma\_cens\_mean', 'chroma\_cens\_std', 'chroma\_cens\_var', 'melspectrogram\_mean', 'contrast\_mean', 'contrast\_std', 'contrast\_var', 'poly\_mean', 'poly\_std', 'poly\_var', 'tonnetz\_mean', 'tonnetz\_std', 'tonnetz\_var', 'zcr\_mean', 'zcr\_std', 'zcr\_var', 'harm\_mean', 'harm\_std', 'harm\_var', 'perc\_mean', 'perc\_std', 'perc\_var', 'frame\_mean', 'frame\_std',  'frame\_var', 'meanMFCC[0]', 'stdMFCC[0]', 'kurtMFCC[0]', 'skewMFCC[0]', 'meanMFCC[1]', 'medianMFCC[1]', 'kurtMFCC[1]', 'skewMFCC[1]', 'meanMFCC[2]', 'stdMFCC[2]', 'medianMFCC[2]', 'kurtMFCC[2]', 'skewMFCC[2]', 'meanMFCC[3]', 'stdMFCC[3]', 'medianMFCC[3]', 'kurtMFCC[3]', 'skewMFCC[3]', 'meanMFCC[4]', 'stdMFCC[4]', 'medianMFCC[4]', 'kurtMFCC[4]', 'skewMFCC[4]', 'meanMFCC[5]', 'stdMFCC[5]', 'medianMFCC[5]', 'kurtMFCC[5]', 'skewMFCC[5]', 'meanMFCC[6]', 'medianMFCC[6]', 'kurtMFCC[6]', 'skewMFCC[6]', 'meanMFCC[7]', 'stdMFCC[7]', 'medianMFCC[7]', 'kurtMFCC[7]', 'skewMFCC[7]', 'meanMFCC[8]', 'stdMFCC[8]', 'medianMFCC[8]',  'kurtMFCC[8]', 'skewMFCC[8]', 'meanMFCC[9]', 'stdMFCC[9]', 'medianMFCC[9]', 'kurtMFCC[9]', 'skewMFCC[9]', 'meanMFCC[10]', 'stdMFCC[10]', 'medianMFCC[10]', 'kurtMFCC[10]', 'skewMFCC[10]', 'meanMFCC[11]', 'stdMFCC[11]', 'medianMFCC[11]', 'kurtMFCC[11]', 'skewMFCC[11]', 'mfcc\_delta\_mean', 'mfcc\_delta\_std', 'mfcc\_delta\_var']}
+
+
