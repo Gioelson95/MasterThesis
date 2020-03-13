@@ -1,4 +1,4 @@
-\chapter{Implementation and Results}
+\chapter{Implementation}
 \label{chap:Implementation}
 \pagestyle{plain}
 \vspace{0.5cm}
@@ -290,7 +290,7 @@ The general framework, with these two process divided is shown in figure \ref{fi
 \\[5px]
 Now will be presented the first part of the general framework, feature extraction block, separated for audio and for \gls{eda}, due to evident differences in data types. For the audio, there are several set of features that can be extracted, thanks to the hard work done in the past years. While \gls{eda} features are less present in the literature and they are mostly statistical features.
 
-\subsection{Audio features}
+\subsection{Audio feature extraction}
 For the next features explanation, will be used the song contained in the \gls{pmemo} dataset under the name \textit{4.mp3}, \textit{X Bitch} from \textit{21 Savage} in the album "\textit{Savage mode}". Its waveform and audio specs can be seen in figure \ref{fig:audio_specs}.
 \begin{figure}[h]
     \centering
@@ -558,7 +558,7 @@ In figure \ref{fig:mfcc} is shown the \gls{mfcc} graph for 12 mfccs for song num
 \\
 For each of the $12$ \gls{mfcc}s are extracted the mean, standard deviation, median, kurtosis and skewness.
 
-\subsection{EDA features}
+\subsection{EDA feature extraction}
 For the continuity, also in the explanation of \gls{eda} features extracted, will be used the song number 4. Its \gls{eda} signal and its specs, can be seen in figure \ref{fig:eda}.
 \begin{figure}[h]
     \centering
@@ -662,7 +662,6 @@ Feature selection can be done in multiple ways but there are broadly 3 categorie
 	\item Wrapper Method which needs a \gls{ml} algorithm and uses its performance as evaluation criteria.
 	\item Embedded Method in an iterative way, it takes care of each iteration of the model training process and extract those features which contribute the most to the training for a particular iteration.
 \end{enumerate}
-\\
 In the following paragraphs are taken into account all the audio features extracted for the whole song, in the static case.
 
 \paragraph{Pearson correlation}
@@ -689,7 +688,7 @@ where:
 	\item $\sigma_X$ is the standard deviation of $X$
 	\item $\sigma_Y$ is the standard deviation of $Y$
 \end{itemize}
-In figure \ref{fig:Pearson_heatmap} is shown the Pearson correlation heatmap and see the correlation of independent variables with the output variable.
+In figure \ref{fig:Pearson_heatmap} is shown the Pearson correlation heatmap, which represents the correlation of independent variables with the output variable.
 \begin{figure}[h]
     \centering
     \includegraphics[width=\textwidth]{Pearson_heatmap.png} 
@@ -712,7 +711,7 @@ Backward elimination is a wrapper feature selection method. The model is fed at 
 The performance metric used here to evaluate feature performance is pvalue. If the pvalue is above $0.05$ then we remove the feature, else it is kept.
 \\
 Features that have a pvalue smaller than $0.05$ are:
-\\
+\\ \linebreak 
 \textit{['chroma\_cq\_mean', 'chroma\_cq\_std', 'chroma\_cq\_var', 'chroma\_cens\_mean', 'melspectrogram\_mean', 'cent\_mean', 'contrast\_mean', 'contrast\_std', 'tonnetz\_std', 'tonnetz\_var', 'harm\_var', 'perc\_std', 'frame\_std', 'frame\_var', 'meanMFCC[0]', 'stdMFCC[0]', 'skewMFCC[0]', 'medianMFCC[1]', 'skewMFCC[1]', 'meanMFCC[2]', 'medianMFCC[2]', 'stdMFCC[3]', 'medianMFCC[3]', 'skewMFCC[3]', 'kurtMFCC[4]', 'skewMFCC[4]', 'stdMFCC[5]', 'medianMFCC[5]', 'skewMFCC[5]', 'meanMFCC[7]', 'stdMFCC[8]', 'medianMFCC[8]', 'meanMFCC[9]', 'meanMFCC[11]', 'mfcc\_delta\_std', 'mfcc\_delta\_var']}
 
 \paragraph{Recursive feature elimination}
@@ -720,8 +719,163 @@ Features that have a pvalue smaller than $0.05$ are:
 The \gls{rfe} method is another wrapper method and works by recursively removing attributes and building a model on those attributes that remain.
 \\
 It uses accuracy metric to rank the feature according to their importance. The \gls{rfe} method takes the model to be used and the number of required features as input. As output it gives the ranking of all the variables, where $1$ is the most important.
-Most relevant features extracted are:
 \\
+Most relevant features extracted are:
+\\ \linebreak 
 \textit{['chroma\_stft\_mean', 'chroma\_stft\_std', 'chroma\_stft\_var', 'chroma\_cq\_mean', 'chroma\_cq\_std', 'chroma\_cq\_var', 'chroma\_cens\_mean', 'chroma\_cens\_std', 'chroma\_cens\_var', 'melspectrogram\_mean', 'contrast\_mean', 'contrast\_std', 'contrast\_var', 'poly\_mean', 'poly\_std', 'poly\_var', 'tonnetz\_mean', 'tonnetz\_std', 'tonnetz\_var', 'zcr\_mean', 'zcr\_std', 'zcr\_var', 'harm\_mean', 'harm\_std', 'harm\_var', 'perc\_mean', 'perc\_std', 'perc\_var', 'frame\_mean', 'frame\_std',  'frame\_var', 'meanMFCC[0]', 'stdMFCC[0]', 'kurtMFCC[0]', 'skewMFCC[0]', 'meanMFCC[1]', 'medianMFCC[1]', 'kurtMFCC[1]', 'skewMFCC[1]', 'meanMFCC[2]', 'stdMFCC[2]', 'medianMFCC[2]', 'kurtMFCC[2]', 'skewMFCC[2]', 'meanMFCC[3]', 'stdMFCC[3]', 'medianMFCC[3]', 'kurtMFCC[3]', 'skewMFCC[3]', 'meanMFCC[4]', 'stdMFCC[4]', 'medianMFCC[4]', 'kurtMFCC[4]', 'skewMFCC[4]', 'meanMFCC[5]', 'stdMFCC[5]', 'medianMFCC[5]', 'kurtMFCC[5]', 'skewMFCC[5]', 'meanMFCC[6]', 'medianMFCC[6]', 'kurtMFCC[6]', 'skewMFCC[6]', 'meanMFCC[7]', 'stdMFCC[7]', 'medianMFCC[7]', 'kurtMFCC[7]', 'skewMFCC[7]', 'meanMFCC[8]', 'stdMFCC[8]', 'medianMFCC[8]',  'kurtMFCC[8]', 'skewMFCC[8]', 'meanMFCC[9]', 'stdMFCC[9]', 'medianMFCC[9]', 'kurtMFCC[9]', 'skewMFCC[9]', 'meanMFCC[10]', 'stdMFCC[10]', 'medianMFCC[10]', 'kurtMFCC[10]', 'skewMFCC[10]', 'meanMFCC[11]', 'stdMFCC[11]', 'medianMFCC[11]', 'kurtMFCC[11]', 'skewMFCC[11]', 'mfcc\_delta\_mean', 'mfcc\_delta\_std', 'mfcc\_delta\_var']}
 
+\paragraph{Embedded method}
+\mbox{} \\ \\
+Embedded methods are iterative in a sense that takes care of each iteration of the model training process and carefully extract those features which contribute the most to the training for a particular iteration. Regularization methods are the most commonly used embedded methods which penalize a feature given a coefficient threshold.
+Here we will do feature selection using Lasso regularization. If the feature is irrelevant, lasso penalizes its coefficient and make it $0$. Hence the features with coefficient equal to $0$ are removed and the rest are taken.
+\\
+Most relevant features extracted are:
+\\ \linebreak 
+\textit{['rolloff\_var', 'cent\_var', 'total\_beats', 'melspectrogram\_var', 'spec\_bw\_var'}
 
+\paragraph{RReliefF}
+\mbox{} \\ \\
+As already explained in \ref{feature_selection}, the RReliefF algorithm is based on the quality estimation of each features, between instances that are close each other.
+\\
+The main benefit of Relief-based algorithms is that they identify feature interactions without having to exhaustively check every pairwise interaction, thus taking significantly less time than exhaustive pairwise search.
+\\
+In this case, features were automatically ordered given a score, based on the RReliefF algorithm and a random forest classifier with $100$ estimators. In this implementation, as input of the function we need to specify the number of features we want to keep.
+\\
+Features selected with this method are:
+\\ \linebreak 
+\textit{['stdMFCC[0]',	 'rolloff\_var', 'chroma\_cens\_mean', 'chroma\_cens\_std', 'meanMFCC[1]', 'frame\_var', 'chroma\_cq\_var', 'poly\_mean', 'poly\_std', 'melspectrogram\_var']}
+
+\subsection{Machine Learning methods}
+The task of \gls{mer} is a problem that can be classified in the field of supervised \gls{ml}, because we have an input variable $x$, the song, and an output variable $Y$, the emotion, and we want to find an algorithm that lean the mapping function from the input to the output, $Y=f(x)$.
+\\ \indent
+General goal is to approximate the mapping function so well that when there is a new input, the algorithm can predict the output data.
+\\
+Supervised \gls{ml} is divided in two categories, regression and classification. The main difference between the two tasks is the fact that the dependent attribute is numerical for regression and categorical for classification.
+\\ \indent
+A regression problem is when the output variable is a real or continuous value. Many different models can be used. They are explained in detail in the following paragraphs.
+
+\paragraph{Linear Regression}
+\mbox{} \\ \\
+\gls{lr} is a type of regression analysis where the number of independent variables is one and there is a linear relationship between the independent $x$ and the dependent one $y$.
+\\
+The figure \ref{fig:linear_regression} show a red line referred to the best fit straight line. Dots are the data points and the task of \gls{lr} is to try to plot a line that models the points the best.
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.8\textwidth]{linear_regression.png} 
+	\caption{Linear regression}
+    \label{fig:linear_regression}
+\end{figure} 
+\\
+The line can be modeled based on the linear equation:
+\begin{equation}
+	y=a_0+a_1\cdot x
+\end{equation}
+Aim of \gls{lr} is to find the best value for $a_0$ and $a_1$. This is a search problem, which can be converted into a minimization problem where we would like to minimize the error between the predicted value and the actual one.
+\\
+The minimization problem is the cost function $J$:
+\begin{equation}
+	minimize \: \dfrac{1}{n} \sum_{i=1}^n{{(pred_i-y_i)}^2}
+\end{equation}
+\begin{equation}
+	J=\dfrac{1}{n} \sum_{i=1}^n{{(pred_i-y_i)}^2}=\dfrac{1}{n} \sum_{i=1}^n{{(a_0+a_1\cdot x_i-y_i)}^2}
+\end{equation}
+To update $a_0$ and $a_1$ values in order to reduce the cost function $J$ is used the gradient descent, which idea is to start with random values of $a_0$ and $a_1$ and then iteratively update the values reaching minimum cost.
+
+\paragraph{Lasso}
+\mbox{} \\ \\
+\gls{lasso} is a regression analysis method that performs both variable selection and regularization in order to enhance the prediction accuracy and interpretability of the statistical model it produces.
+Taking into account a linear model based on $n$ features represented as:
+\begin{equation}
+	\hat{y}=w[0]x[0]+w[1]x[1]+...+w[n]x[n]+b
+\end{equation}\label{linear_model}
+Assuming the dataset has $M$ instances and $p$ values, the cost function of the regression problem can be written as:
+\begin{equation}
+	J=\sum_{i=1}^{M}{{(y_i-\hat{y}_i)}^2}=\sum_{i=1}^{M}{{ \left( y_i-\sum_{j=0}^{p}{w_jx_{ij}} \right) }^2}
+\end{equation}\label{regression_eq}
+The \gls{lasso} cost function can be written as:
+\begin{equation}
+	J=\sum_{i=1}^{M}{{(y_i-\hat{y}_i)}^2}=\sum_{i=1}^{M}{{ \left( y_i-\sum_{j=0}^{p}{w_jx_{ij}} \right) }^2}+\lambda \sum_{j=0}^{p}{|w_j|}
+\end{equation}\label{lasso_eq}
+It is evident that for $\lambda=0$, the equation \ref{eq:lasso_eq} reduces to equation \ref{eqregression_eq}. Here are taken in account the magnitude of the coefficients $w_j$.
+\\
+\gls{lasso} can have zero coefficient, which lead to neglecting some features for the evaluation of the output. This help as a feature selection step. Feature selection using \gls{lasso} regression can be depicted well by changing the regularization parameter $\lambda$. This is called $L_2$ regularization.
+
+\paragraph{Ridge}
+\mbox{} \\ \\
+Ridge is another regression analysis method, similar to \gls{lasso}. Assuming the linear model described before in \ref{eq:linear_model}, the cost function for Ridge is:
+\begin{equation}
+	J=\sum_{i=1}^{M}{{(y_i-\hat{y}_i)}^2}=\sum_{i=1}^{M}{{ \left( y_i-\sum_{j=0}^{p}{w_jx_{ij}} \right) }^2}+\lambda \sum_{j=0}^{p}{{(w_j)}^2}
+\end{equation}\label{ridge_eq}
+Where is added a penalty equivalent to square of the magnitude of the coefficients $w_j$. This is called $L_1$ regularization.
+\\
+The penalty term $\lambda$ regularizes the coefficients such that if the coefficients take large value the optimization function is penalized. So, it shrinks the coefficients and helps to reduce model complexity.
+
+\paragraph{Elastic Net}
+\mbox{} \\ \\
+Elastic Net is a regularized regression that linearly combines the $L_1$ and $L_2$ penalties of the Ridge and \gls{lasso} methods. Absolute value penalization and squared penalization are combined with a coefficient, $L_{r}$
+\begin{equation}
+	J=\sum_{i=1}^{M}{{ \left( y_i-\sum_{j=0}^{p}{w_jx_{ij}} \right) }^2}+(1-r) \lambda \sum_{j=0}^{p}{{(w_j)}^2}+r \lambda \sum_{j=0}^{p}{{(w_j)}^2}
+\end{equation}\label{elasticnet_eq}
+
+\paragraph{k-nearest neighbors}
+\mbox{} \\ \\
+The \gls{knn} algorithm, is a non-parametric algorithm used for regression, where input consists of the $k$ closest training examples in the feature space and the output is the property value for the object. This value is the average of the values of $k$ nearest neighbors.
+\\
+\gls{knn} is sensitive to the local structure of the data.
+
+\paragraph{Support Vector}
+\mbox{} \\ \\
+Goal of a regression problem is to minimize the error rate. In \gls{svr} tries to fit the error within a certain threshold.
+\\
+The error term is handled in constraints by setting the absolute error less than or equal to a specified margin, called maximum error $\varepsilon$. The problem is a minimization proble $minimize \: \dfrac{1}{2}||w||^2$ with the constraint $|y_i-w_ix_i| \leq \varepsilon$ showed in figure \ref{fig:support_vector_regression}.
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.8\textwidth]{support_vector_regression.png} 
+	\caption{Support Vector regression}
+    \label{fig:support_vector_regression}
+\end{figure} 
+
+\paragraph{Decision Tree}
+\mbox{} \\ \\
+\gls{dt} is a supervised \gls{ml} problem used to predict a target by learning decision rules from features. Its model is based on a data division by making a decision based on asking a series of questions.
+\\ \indent
+\gls{dt} is constructed by recursive partitioning, starting from the root node, and then each node can be split into left and right child nodes. These nodes can then be further split and they themselves become parent nodes of their resulting children nodes.
+
+\paragraph{Random Forest}
+\mbox{} \\ \\
+Random forest is a Supervised Learning algorithm which uses ensemble learning method for classification and regression.
+\\
+An ensemble method combines the predictions from multiple \gls{ml} algorithms together to make more accurate predictions.
+\\
+Figure \ref{fig:random_forest} show an ideal representation of \gls{rf}.
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=\textwidth]{random_forest.png} 
+	\caption{Random Forest regression}
+    \label{fig:random_forest}
+\end{figure} 
+\\
+\gls{rf} operates by constructing a multitude of decision trees at training time and outputting the class that is the mean prediction of the individual trees.
+\\
+\gls{rf} allows to aggregate many \gls{dt} and this gives the possibility to split the features but limited to some percentage of the total (the hyperparameter). This allows to have a balanced weight on all the features.
+
+\subsection{Evaluation parameters}
+To evaluate how much the \gls{ml} model is precise and correct we used two different parameters, the \gls{rmse} and the coefficient of determination $R^2$.
+\\ \indent
+For both cases, to evaluate the score we applied a cross-validation with $10$ fold to train the data and one remaining to test the data.
+\\
+A division example is shown in figure \ref{fig:cross_validation}.
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.7\textwidth]{cross_validation.png} 
+	\caption{k-fold cross validation}
+    \label{fig:cross_validation}
+\end{figure} 
+\\
+A well-fitting regression model results in predicted values close to the observed data values.
+\\
+The \gls{rmse} is the square root of the variance of the residuals. It indicates the absolute fit of the model to the data, how much close the observed data points are to the model's predicted values. \gls{rmse} is an absolute measure of fit. It is a good measure of how accurately the model predicts the response, and it is the most important criterion for fit if the main purpose of the model is prediction.
+\\ \indent
+$R^2$ is a statistical measure that represents the proportion of the variance for a dependent variable that is explained by variables in a regression model.
+\\
+It scales from $0$ to $1$ where $0$ indicates that the proposed model does not improve prediction over the mean model and $1$ indicates the perfect prediction.
