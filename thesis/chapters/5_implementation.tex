@@ -145,116 +145,6 @@ Extraction of the features is done with the open-source toolkit \href{https://ww
 \\
 No feature selection procedure was implemented in \gls{pmemo} work.
 
-\subsection{PMEmo performances}
-In the article, they adopt \gls{mlr} and \gls{svr} as the base classifiers to model emotions in valence and arousal.
-\\
-For the static part, they trained and tested the classifiers using all the $6373$-dimension features $x_1,x_2,...,x_{6373}$ and separate static labels of valence $y_{valence}$ and arousal $y_{arousal}$ respectively.
-\begin{equation}
-	{X_1,X_2,...,X_m} \quad \rightarrow \quad {e_1,e_2,...,e_m}
-\end{equation}
-where:
-\begin{itemize}
-	\item $m$ is the number of songs
-	\item $X_i={x_1,x_2,...,x_{6373}}$ is the feature set of the $i^{th}$ song
-	\item $e_i$ is the value of valence or arousal for this song
-\end{itemize}
-With respect of continuous mood of a song, is natural to consider a decoupling into two scales and then recognize them separately.
-\\
-For the dynamic emotion, defined as:
-\begin{equation}
-	L_i=\bar{L}_i+D_i^{t_i}
-\end{equation}
-where:
-\begin{itemize}
-	\item $t_i$ is the number of timestamps in the $i^{th}$ song
-	\item $\bar{L}_i$ is the mean of dynamic emotion
-	\item $D_i^{t_i}$ is the fluctuation at each timestamp
-\end{itemize}
-the global model is:
-\begin{equation}
-	{X_1,X_2,...,X_m} \quad \rightarrow \quad {\bar{L}_1,\bar{L}_2,...,\bar{L}_m}
-\end{equation}
-while, the local model is:
-\begin{equation}
-	{Y_1^{t_1},Y_2^{t_2},...,Y_m^{t_m}} \quad \rightarrow \quad {D_1^{t_1},D_2^{t_2},...,D_m^{t_m}}
-\end{equation}
-where:
-\begin{itemize}
-	\item $m$ is the number of songs
-	\item $X_i$ is the global feature set of it
-	\item $Y_i^{t_i}$ is a matrix of 260 columns and $t_i$ rows
-\end{itemize}
-Before the regression models, they resized all the annotations (both for static and dynamic annotations) into $[0,1]$.
-\\ \indent
-Static task is to predict the overall emotion of a whole song, represented by a single valence value and arousal value. To train and test, they divided the dataset in $11$ folds, 10 constituted the training set and the remaining set used to test the train model. A 10-fold-cross-validation was used for parameter optimization.
-\\
-\gls{rmse} and Pearson Correlation Coefficient (r) were calculated separately for valence and arousal. In table \ref{table:PMEmo_results_static} is shown results on static emotions.
-\begin{table}[h!]
-	\centering
-	\begin{tabular}{|c|c|c|c|}
-		\hline
-		Dimension & Classifier & RMSE & r \\ [0.5ex] 
-		\hline\hline Valence & MLR & 0.136 & 0.546 \\ 
-		\hline Valence & SVR & 0.124 & 0.638 \\
-		\hline Arousal & MLR & 0.111 & 0.719 \\
-		\hline Arousal & SVR & 0.102 & 0.764 \\
-		\hline
-	\end{tabular}
-	\caption{Evaluation results on static emotions}
-	\label{table:PMEmo_results_static}
-\end{table}
-\\
-About the dynamic case, a hierarchical regression model aiming to recognize the global trend as well as local variation was built. For Global-scale they extracted, for each song, one global feature and mapped it into one global emotion. For Local-scale operation, for each song, they divided it into $1s$ segment with $50\%$ overlap, then extracting the local features from these fragments and project them onto mood space.
-\\
-In table \ref{table:PMEmo_results_dynamic} is presented the evaluation results on dynamic emotions.
-\begin{table}[h!]
-	\centering
-	\begin{tabular}{|c|c|c|c|c|}
-		\hline
-		Dimension & Classifier & Scale & RMSE & r \\ [0.5ex] 
-		\hline\hline Valence & MLR & global & 0.103 & 0.673 \\
-		\hline Valence & MLR & local & 0.016 & 0.047 \\
-		\hline Valence & SVR & global & 0.106 & 0.675 \\
-		\hline Valence & SVR & local & 0.016 & 0.095 \\
-		\hline Arousal & MLR & global & 0.113 & 0.816 \\
-		\hline Arousal & MLR & local & 0.020 & 0.103 \\
-		\hline Arousal & SVR & global & 0.101 & 0.844 \\
-		\hline Arousal & SVR & local & 0.019 & 0.115 \\
-		\hline
-	\end{tabular}
-	\caption{Evaluation results on dynamic emotions}
-	\label{table:PMEmo_results_dynamic}
-\end{table}
-\\
-In \gls{pmemo} work, as already mentioned, they also recorded \gls{eda} subjects data when they were listening to music.
-\\
-On \gls{eda}, they employed a low-pass filter of $0.6Hz$ to diminish the noise due to motion artifacts. Then skin electric conductance was scaled in z-score:
-\begin{equation}
-	z-score=\dfrac{X-\mu}{\sigma}
-\end{equation}
-where $\mu$ is the mean of vector $X$ and $\sigma$ is the standard variation.
-Last passage on \gls{eda} signal was to resample them, from $50Hz$ to $2Hz$ due to different acquisition of EDA and continuous emotions.
-\\
-They trained and tested \gls{mlr} and \gls{svr} with pre-processed \gls{eda} data in the dynamic case and results are shown in table \ref{table:PMEmo_results_EDA}.
-\begin{table}[h!]
-	\centering
-	\begin{tabular}{|c|c|c|c|c|}
-		\hline
-		Dimension & Classifier & Scale & RMSE & r \\ [0.5ex] 
-		\hline\hline Valence & MLR & global & 0.139 & 0.063 \\
-		\hline Valence & MLR & local & 0.016 & 0.060 \\
-		\hline Valence & SVR & global & 0.141 & 0.017 \\
-		\hline Valence & SVR & local & 0.016 & 0.059 \\
-		\hline Arousal & MLR & global & 0.186 & 0.011 \\
-		\hline Arousal & MLR & local & 0.019 & 0.097 \\
-		\hline Arousal & SVR & global & 0.194 & 0.040 \\
-		\hline Arousal & SVR & local & 0.019 & 0.099 \\
-		\hline
-	\end{tabular}
-	\caption{Evaluation results on dynamic EDA}
-	\label{table:PMEmo_results_EDA}
-\end{table}
-
 \section{Implementation}
 We decided to start from the results of \gls{pmemo} and try to improve them. We will first look at a general framework description and then will follow explanation of the single parts.
 
@@ -541,7 +431,7 @@ The Tonnetz of the song number 4 is shown in figure \ref{fig:tonnetz}.
 The \gls{mfcc} are coefficients based on the extraction of the signal energy within critical frequency bands by means of a series of triangular filters (in figure \ref{fig:mfcc_filters}) whose center frequencies are equally spaced according to the mel scale.
 \begin{figure}[h]
     \centering
-    \includegraphics[width=0.6\textwidth]{mfcc_filters.png} 
+    \includegraphics[width=\textwidth]{mfcc_filters.png} 
 	\caption{Triangular filters for the MFCC extraction}
     \label{fig:mfcc_filters}
 \end{figure}
@@ -649,7 +539,7 @@ As for the audio features, we extracted \gls{mfcc} features. We kept $12$ \gls{m
 \\
 For each of the $12$ \gls{mfcc}s are extracted the mean, standard deviation, median, kurtosis and skewness.
 
-\subsection{Feature selection}
+\subsection{Feature selection}\label{feature_selection_5}
 Feature selection become an important step while performing a \gls{ml} task. Given a dataset, every column of the dataset is a feature, and not necessarily every feature is going to have an impact on the output variable.
 \\
 Adding these irrelevant features in the model, it will make the model worst.
@@ -867,7 +757,7 @@ For both cases, to evaluate the score we applied a cross-validation with $10$ fo
 A division example is shown in figure \ref{fig:cross_validation}.
 \begin{figure}[h]
     \centering
-    \includegraphics[width=0.7\textwidth]{cross_validation.png} 
+    \includegraphics[width=0.6\textwidth]{cross_validation.png} 
 	\caption{k-fold cross validation}
     \label{fig:cross_validation}
 \end{figure} 
@@ -878,4 +768,4 @@ The \gls{rmse} is the square root of the variance of the residuals. It indicates
 \\ \indent
 $R^2$ is a statistical measure that represents the proportion of the variance for a dependent variable that is explained by variables in a regression model.
 \\
-It scales from $0$ to $1$ where $0$ indicates that the proposed model does not improve prediction over the mean model and $1$ indicates the perfect prediction.
+It scales from $0$ to $1$ where $0$ indicates that the proposed model does not improve prediction over the mean model and $1$ indicates the perfect prediction. It can be also negative, in the case where the model can be arbitrarily worse.
