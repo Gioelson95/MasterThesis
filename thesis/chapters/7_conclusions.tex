@@ -5,39 +5,38 @@
 
 \noindent
 
-This work of thesis proposes a methodology for...
+In this chapter we will review the work presented in this thesis and we will introduce some possible evolution of our system.
 
-The devised methodology is based on...
-
-The main advantages are...
-
-As far as the experiments are concerned...
-
-The proposed approach has shown promising results both in simulation and in the experiments.
-
+\section{Conclusions}
+This thesis presented a complete work on a complex task of \gls{mer}, find a relationship between music and emotions perceived by human during the listening.
+\\
+We tried to solve this task by combining both audio and \gls{eda}data, extracting several features which theoretically are relevant for the two data types.
+\\ \indent
+As one could have already understand, the first problem was understanding which features are relevant for audio and \gls{eda}. Even if audio, in \gls{mir} is a well studied task, there is no evidence on which features are relevant respect to other, so moves are made by empirical attempts.
+\\
+Much more complicated is the feature extraction procedure for \gls{eda} data, since there are several problem on figuring out how to threat the data, how to preprocess them and which features are relevant.
+\\ \indent
+Once features were find out, the following problem was to find a good algorithm of feature selection, because how teach the \gls{ml} theory, not all features have the same value and not all are relevant in the same way.
+\\
+Most of the feature extraction methods are based on statistical processes, and they are useful to discard redundant features, which may lead to an overfitting model. So, also the feature extraction part is done in a certain empirical sense, by trying different possibilities.
+\\ \indent
+As last, also the \gls{ml} is a complex process, it has many different implementation and is not clear which is best for the task of \gls{mer}.
+\\ \indent
+To summarize, the whole work is not a standard one, there are not standard rules to be followed and many decision are taken by trying different possibilities and choosing the best solution.
+\\ \indent
+These problems sum to the fact that it is really hard to transform human being emotions into a numerical vision. What is certain is that music convey emotion and modulate a listener's mood. Also while listening the same musical piece, one can feel different emotions, due to the fact that emotions are very complex.
+\\
+After all these problems we started from the baseline of the work done by \cite{zhang2018pmemo} and tried to improve their results. As one can see in the chapter \ref{chap:Improvements} we have increase the model, by resulting in a smaller \gls{rmse} and bigger $R^2$ scores.
 
 \section{Future Works}
-
-\paragraph{Generalization}
-We would like to generalize...
-
-\paragraph{Challenging scenarios}
-Another possible improvement is related to the extension of the proposed approach to...
-
-\paragraph{Different approaches}
-Finally we are moving towards a deeper analysis of...
-a
-a
-a
-a
-a
-a
-a
-a
-a
-a
-a
-a
-a
-a
-a
+As the algorithm of recognizing emotion thorugh audio and \gls{eda} data is a novel task, the algorithm proposed in this thesis opens further improvements.
+\\ \indent
+As first, can be extracted better features for audio and can be studied in a deeper way \gls{eda} data, which is not very clear how to process them. It can be applied different feature selection algorithms and different \gls{ml} methods though the regression problem.
+\\ \indent
+As further improvement, we can think to apply also \gls{ml} implementations that are not traditional, as deep \gls{ml} implementations.
+\\
+A nice test might be to threat the data as images, and apply some \gls{ml} methods directly to the images, as the well known \gls{cnn}.
+\\
+There are several studies on the use of \gls{cnn} on the spectrogram of a music piece and they are very interesting. In this case, the problem remain on how to convert \gls{eda} data in images, as the spectrogram for the audio. An interesting try is done in the work of \textit{Chaspari} in \cite{chaspari2016eda} which create a similar spectrogram, called \textit{EDA-Gram}, but for \gls{eda}.
+\\
+Maybe than, a nice work could be to combine the spectrogram for audio and \textit{EDA-Gram} for \gls{eda} and use them as input of a deep neural \gls{ml} process in order to avoid all the problems due to feature extraction and selection.
