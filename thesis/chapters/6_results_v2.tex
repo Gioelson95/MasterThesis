@@ -1,0 +1,309 @@
+\chapter{Results}
+\label{chap:Improvements}
+\pagestyle{plain}
+\vspace{0.5cm}
+
+\noindent In this chapter we present as first \gls{pmemo} results and performances, then we will show how our system perform based on different feature selection methods and different \gls{ml} regression methods.
+\\ \indent
+To evaluate how much the \gls{ml} model is precise and correct we used two different parameters, the \gls{rmse} and the coefficient of determination $R^2$.
+\\ \indent
+For both cases, to evaluate the score we applied a cross-validation with $10$ fold to train the data and one remaining to test the data.
+\\
+A division example is shown in figure \ref{fig:cross_validation}.
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.9\textwidth]{cross_validation.png} 
+	\caption{k-fold cross validation}
+    \label{fig:cross_validation}
+\end{figure} 
+\\
+A well-fitting regression model results in predicted values close to the observed data values.
+\\
+The \gls{rmse} is the square root of the variance of the residuals:
+\begin{equation}
+	RMSE=\sqrt{\dfrac{\sum_{t=1}^T{({\hat{y}_t-y_t)}^2}}{T}}
+\end{equation}\label{rmse}
+It indicates the absolute fit of the model to the data, how much close the observed data points are to the model's predicted values. \gls{rmse} is an absolute measure of fit. It is a good measure of how accurately the model predicts the response, and it is the most important criterion for fit if the main purpose of the model is prediction.
+\\ \indent
+$R^2$ is a statistical measure that represents the proportion of the variance for a dependent variable that is explained by variables in a regression model.
+\\
+$R^2$ is evaluated as:
+\begin{equation}
+	R^2=\dfrac{ESS}{TSS}
+\end{equation}\label{r2}
+Where $ESS$ is the sum of squares terms and $TSS$ is the total sum of squares, defined as:
+\begin{equation}
+	ESS=\sum_{i=1}^n{{(\hat{y}_i-\bar{y})}^2}
+\end{equation}\label{ess}
+\begin{equation}
+	TSS=\sum_{i=1}^n{{(y_i-\bar{y})}^2}
+\end{equation}\label{tss}
+In this case $\bar{y}$ is the mean of the data observed.
+\\
+It scales from $0$ to $1$ where $0$ indicates that the proposed model does not improve prediction over the mean model and $1$ indicates the perfect prediction. It can be also negative, in the case where the model can be arbitrarily worse.
+\newpage
+
+\section{PMEmo performances}
+In the article, they adopt \gls{mlr} and \gls{svr} as the base classifiers to model emotions in valence and arousal.
+\\
+For the static part, they trained and tested the classifiers using all the $6373$-dimension features $x_1,x_2,...,x_{6373}$ and separate static labels of valence $y_{valence}$ and arousal $y_{arousal}$ respectively.
+\begin{equation}
+	{X_1,X_2,...,X_m} \quad \rightarrow \quad {e_1,e_2,...,e_m}
+\end{equation}
+where:
+\begin{itemize}
+	\item $m$ is the number of songs
+	\item $X_i={x_1,x_2,...,x_{6373}}$ is the feature set of the $i^{th}$ song
+	\item $e_i$ is the value of valence or arousal for this song
+\end{itemize}
+With respect of continuous mood of a song, is natural to consider a decoupling into two scales and then recognize them separately.
+\\
+For the dynamic emotion, defined as:
+\begin{equation}
+	L_i=\bar{L}_i+D_i^{t_i}
+\end{equation}
+where:
+\begin{itemize}
+	\item $t_i$ is the number of timestamps in the $i^{th}$ song
+	\item $\bar{L}_i$ is the mean of dynamic emotion
+	\item $D_i^{t_i}$ is the fluctuation at each timestamp
+\end{itemize}
+the global model is:
+\begin{equation}
+	{X_1,X_2,...,X_m} \quad \rightarrow \quad {\bar{L}_1,\bar{L}_2,...,\bar{L}_m}
+\end{equation}
+while, the local model is:
+\begin{equation}
+	{Y_1^{t_1},Y_2^{t_2},...,Y_m^{t_m}} \quad \rightarrow \quad {D_1^{t_1},D_2^{t_2},...,D_m^{t_m}}
+\end{equation}
+where:
+\begin{itemize}
+	\item $m$ is the number of songs
+	\item $X_i$ is the global feature set of it
+	\item $Y_i^{t_i}$ is a matrix of 260 columns and $t_i$ rows
+\end{itemize}
+Before the regression models, they resized all the annotations (both for static and dynamic annotations) into $[0,1]$.
+\\ \indent
+Static task is to predict the overall emotion of a whole song, represented by a single valence value and arousal value. To train and test, they divided the dataset in $11$ folds, 10 constituted the training set and the remaining set used to test the train model. A 10-fold-cross-validation was used for parameter optimization.
+\\
+\gls{rmse} and Pearson Correlation Coefficient (r) were calculated separately for valence and arousal. In Table \ref{table:PMEmo_results_static} is shown the results on static emotions.
+\begin{table}[h]
+	\centering
+	\begin{tabular}{|c|c|c|c|}
+		\hline
+		Dimension & Classifier & RMSE & r \\ [0.5ex] 
+		\hline\hline Valence & MLR & 0.136 & 0.546 \\ 
+		\hline Valence & SVR & 0.124 & 0.638 \\
+		\hline Arousal & MLR & 0.111 & 0.719 \\
+		\hline Arousal & SVR & 0.102 & 0.764 \\
+		\hline
+	\end{tabular}
+	\caption{Evaluation results on static emotions}
+	\label{table:PMEmo_results_static}
+\end{table}
+\\
+About the dynamic case, a hierarchical regression model aiming to recognize the global trend as well as local variation was built. For Global-scale they extracted, for each song, one global feature and mapped it into one global emotion. For Local-scale operation, for each song, they divided it into $1s$ segment with $50\%$ overlap, then extracting the local features from these fragments and project them onto mood space.
+\\ \indent
+In Table \ref{table:PMEmo_results_dynamic} is presented the evaluation results on dynamic emotions.
+\begin{table}[h!]
+	\centering
+	\begin{tabular}{|c|c|c|c|c|}
+		\hline
+		Dimension & Classifier & Scale & RMSE & r \\ [0.5ex] 
+		\hline\hline Valence & MLR & global & 0.103 & 0.673 \\
+		\hline Valence & MLR & local & 0.016 & 0.047 \\
+		\hline Valence & SVR & global & 0.106 & 0.675 \\
+		\hline Valence & SVR & local & 0.016 & 0.095 \\
+		\hline Arousal & MLR & global & 0.113 & 0.816 \\
+		\hline Arousal & MLR & local & 0.020 & 0.103 \\
+		\hline Arousal & SVR & global & 0.101 & 0.844 \\
+		\hline Arousal & SVR & local & 0.019 & 0.115 \\
+		\hline
+	\end{tabular}
+	\caption{Evaluation results on dynamic emotions}
+	\label{table:PMEmo_results_dynamic}
+\end{table}
+\\
+In \gls{pmemo} work, as already mentioned, they also recorded \gls{eda} subjects data when they were listening to music.
+\\
+On \gls{eda}, they employed a low-pass filter of $0.6Hz$ to diminish the noise due to motion artifacts.
+\newpage
+Then skin electric conductance was scaled in z-score:
+\begin{equation}
+	z-score=\dfrac{X-\mu}{\sigma}
+\end{equation}
+where $\mu$ is the mean of vector $X$ and $\sigma$ is the standard variation.
+Last passage on \gls{eda} signal was to resample them, from $50Hz$ to $2Hz$ due to different acquisition of EDA and continuous emotions.
+\\
+They trained and tested \gls{mlr} and \gls{svr} with pre-processed \gls{eda} data in the dynamic case and results are shown in Table \ref{table:PMEmo_results_EDA}.
+\begin{table}[h!]
+	\centering
+	\begin{tabular}{|c|c|c|c|c|}
+		\hline
+		Dimension & Classifier & Scale & RMSE & r \\ [0.5ex] 
+		\hline\hline Valence & MLR & global & 0.139 & 0.063 \\
+		\hline Valence & MLR & local & 0.016 & 0.060 \\
+		\hline Valence & SVR & global & 0.141 & 0.017 \\
+		\hline Valence & SVR & local & 0.016 & 0.059 \\
+		\hline Arousal & MLR & global & 0.186 & 0.011 \\
+		\hline Arousal & MLR & local & 0.019 & 0.097 \\
+		\hline Arousal & SVR & global & 0.194 & 0.040 \\
+		\hline Arousal & SVR & local & 0.019 & 0.099 \\
+		\hline
+	\end{tabular}
+	\caption{Evaluation results on dynamic EDA}
+	\label{table:PMEmo_results_EDA}
+\end{table}
+
+\newpage
+\section{Our model performances}
+In this section we present all the results acquired with different parameters, with and without feature selection, different data types and different regressors.
+
+\subsection{No feature selection}
+Here, in Table \ref{table:audio_no_fs} are shown the results for audio data, where no feature selection algorithm has been applied. In the Tables, are highlighted the best results for every dimension, one for the \gls{rmse} and one for r2.
+\\
+\begin{table}[h!]
+\begin{adjustwidth}{-3cm}{-1cm}
+	\centering
+	\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|}
+		\hline \multicolumn{11}{|c|}{Arousal (mean) dimension} \\
+		\hline & LR & Lasso & ElasticNet & Ridge & kNN & SVRrbf & SVRpoly & SVRlinear & DT & RF \\
+		\hline RMSE & 0.102 & 0.184 & 0.184 & \cellcolor{yellow}0.100 & 0.119 & 0.113 & 0.209 & 0.106 & 0.129 & 0.136 \\
+		\hline R2 & \cellcolor{yellow}0.669 & -0.039 & -0.039 & 0.680 & 0.558 & 0.606 & -1.115 & 0.644 & 0.477 & 0.459 \\
+		\hline \hline  \multicolumn{11}{|c|}{Valence (mean) dimension} \\
+		\hline & LR & Lasso & ElasticNet & Ridge & kNN & SVRrbf & SVRpoly & SVRlinear & DT & RF \\
+		\hline RMSE & 0.122 & 0.162 & 0.162 & 0.120 & 0.126 & \cellcolor{yellow}0.119 & 0.211 & 0.127 & 0.143 & 0.127 \\
+		\hline R2 & 0.373 & -0.056 & -0.056 & 0.400 & 0.357 & \cellcolor{yellow}0.418 & -2.233 & 0.333 & 0.148 & 0.356 \\
+		\hline \hline  \multicolumn{11}{|c|}{Arousal (std) dimension} \\
+		\hline & LR & Lasso & ElasticNet & Ridge & kNN & SVRrbf & SVRpoly & SVRlinear & DT & RF \\
+		\hline RMSE & 0.047 & 0.047 & 0.047 & \cellcolor{yellow}0.046 & 0.047 & 0.050 & 0.050 & 0.049 & 0.051 & 0.045 \\
+		\hline R2 & 0.007 & -0.013 & -0.013 & 0.051 & -0.009 & -0.143 & -0.123 & -0.097 & -0.184 & \cellcolor{yellow}0.136 \\
+		\hline \hline  \multicolumn{11}{|c|}{Valence (std) dimension} \\
+		\hline & LR & Lasso & ElasticNet & Ridge & kNN & SVRrbf & SVRpoly & SVRlinear & DT & RF \\
+		\hline RMSE & 0.051 & \cellcolor{yellow}0.046 & \cellcolor{yellow}0.046 & 0.051 & 0.049 & 0.047 & 0.048 & 0.048 & 0.052 & 0.045 \\
+		\hline R2 & -0.349 & -0.026 & -0.026 & -0.334 & -0.187 & -0.071 & -0.136 & -0.104 & -0.397 & \cellcolor{yellow}-0.011 \\		
+		\hline
+	\end{tabular}
+	\end{adjustwidth}
+	\caption{No feature selection for audio data, with RMSE and r2 score}
+	\label{table:audio_no_fs}
+\end{table}
+\newpage
+In Table \ref{table:eda_no_fs} are shown the results for \gls{eda} data, where no feature selection algorithm has been applied.
+\\
+\begin{table}[h!]
+\begin{adjustwidth}{-3cm}{-1cm}
+	\centering
+	\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|}
+		\hline \multicolumn{11}{|c|}{Arousal (mean) dimension} \\
+		\hline & LR & Lasso & ElasticNet & Ridge & kNN & SVRrbf & SVRpoly & SVRlinear & DT & RF \\
+		\hline RMSE & 0.188 & 0.184 & 0.184 & 0.182 & 0.136 & 0.074 & 0.096 & 0.055 & \cellcolor{yellow}0.018 & 0.182 \\
+		\hline R2 & 0.560 & -0.039 & -0.039 & 0.515 & 0.435 & \cellcolor{yellow}0.831 & 0.685 & 0.807 & 0.800 & 0.019 \\
+		\hline \hline  \multicolumn{11}{|c|}{Valence (mean) dimension} \\
+		\hline & LR & Lasso & ElasticNet & Ridge & kNN & SVRrbf & SVRpoly & SVRlinear & DT & RF \\
+		\hline RMSE & 0.163 & 0.162 & 0.162 & 0.170 & 0.121 & 0.073 & 0.100 & 0.053 & \cellcolor{yellow}0.018 & 0.158 \\
+		\hline R2 & 0.500 & -0.056 & -0.056 & 0.416 & 0.410 & 0.780 & 0.480 & \cellcolor{yellow}0.886 & 0.855 & -0.006 \\
+		\hline \hline  \multicolumn{11}{|c|}{Arousal (std) dimension} \\
+		\hline & LR & Lasso & ElasticNet & Ridge & kNN & SVRrbf & SVRpoly & SVRlinear & DT & RF \\
+		\hline RMSE & 0.047 & 0.047 & 0.047 & 0.047 & 0.035 & 0.048 & 0.048 & 0.045 & \cellcolor{yellow}0.044 & 0.046 \\
+		\hline R2 & -0.013 & -0.013 & -0.013 & 0.011 & \cellcolor{yellow}0.439 & -0.072 & -0.042 & 0.067 & 0.070 & 0.035 \\
+		\hline \hline  \multicolumn{11}{|c|}{Valence (std) dimension} \\
+		\hline & LR & Lasso & ElasticNet & Ridge & kNN & SVRrbf & SVRpoly & SVRlinear & DT & RF \\
+		\hline RMSE & 0.046 & 0.046 & 0.046 & 0.046 & 0.035 & 0.045 & 0.045 & 0.43 & \cellcolor{yellow}0.030 & 0.044 \\
+		\hline R2 & -0.025 & -0.026 & -0.026 & 0.205 & \cellcolor{yellow}0.406 & 0.015 & 0.012 & 0.101 & 0.101 & 0.026 \\
+		\hline
+	\end{tabular}
+	\end{adjustwidth}
+	\caption{No feature selection for EDA data, with RMSE and r2 score}
+	\label{table:eda_no_fs}
+\end{table}
+\\
+In Table \ref{table:fusion_no_fs} are shown the results for fusion data, given by the union of audio and \gls{eda} features, where no feature selection algorithm has been applied.
+\begin{table}[h!]
+\begin{adjustwidth}{-3cm}{-1cm}
+	\centering
+	\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|}
+		\hline \multicolumn{11}{|c|}{Arousal (mean) dimension} \\
+		\hline & LR & Lasso & ElasticNet & Ridge & kNN & SVRrbf & SVRpoly & SVRlinear & DT & RF \\
+		\hline RMSE & 0.109 & 0.184 & 0.184 & \cellcolor{yellow}0.103 & 0.126 & 0.110 & 0.139 & 0.112 & 0.131 & 0.147 \\
+		\hline R2 & 0.622 & -0.039 & -0.039 & 0.621 & 0.510 & \cellcolor{yellow}0.769 & 0.346 & 0.599 & 0.465 & 0.332 \\
+		\hline \hline  \multicolumn{11}{|c|}{Valence (mean) dimension} \\
+		\hline & LR & Lasso & ElasticNet & Ridge & kNN & SVRrbf & SVRpoly & SVRlinear & DT & RF \\
+		\hline RMSE & 0.134 & 0.162 & 0.162 & 0.127 & 0.329 & \cellcolor{yellow}0.645 & 0.448 & 0.138 & 0.142 & 0.137 \\
+		\hline R2 & 0.243 & -0.056 & -0.056 & 0.322 & 0.333 & \cellcolor{yellow}0.389 & -0.014 & 0.204 & 0.162 & 0.244 \\
+		\hline \hline  \multicolumn{11}{|c|}{Arousal (std) dimension} \\
+		\hline & LR & Lasso & ElasticNet & Ridge & kNN & SVRrbf & SVRpoly & SVRlinear & DT & RF \\
+		\hline RMSE & 0.052 & 0.047 & 0.047 & 0.049 & \cellcolor{yellow}0.046 & 0.050 & 0.050 & 0.049 & 0.051 & 0.045 \\
+		\hline R2 & -0.222 & -0.013 & -0.013 & -0.101 & 0.027 & -0.160 & -0.159 & -0.090 & -0.223 & 0.081 \\
+		\hline \hline  \multicolumn{11}{|c|}{Valence (std) dimension} \\
+		\hline & LR & Lasso & ElasticNet & Ridge & kNN & SVRrbf & SVRpoly & SVRlinear & DT & RF \\
+		\hline RMSE & 0.056 & \cellcolor{yellow}0.046 & \cellcolor{yellow}0.046 & 0.053 & 0.048 & 0.047 & 0.048 & 0.052 & 0.052 & 0.046 \\
+		\hline R2 & -0.547 & -0.026 & -0.026 & -0.410 & -0.140 & -0.087 & -0.115 & -0.116 & -0.356 & \cellcolor{yellow}-0.009 \\
+		\hline
+	\end{tabular}
+	\end{adjustwidth}
+	\caption{No feature selection for fusion data, with RMSE and r2 score}
+	\label{table:fusion_no_fs}
+\end{table}
+\newpage
+In the previous Table, \ref{table:audio_no_fs}, \ref{table:eda_no_fs} and \ref{table:fusion_no_fs} are shown results, where any feature selection method was applied. We expect that using all the set of features for audio and \gls{eda} that are extracted, it will improve the \gls{pmemo} baseline results. This assumption is based on the idea that \gls{pmemo} extracted features from a software that deal more with speech features, which may not be so much useful.
+\\ \indent
+We extracted all these results also for every different feature selection methods and again, we expect to improve the model, thanks to the idea of feature selection, which should reduce the overfitting in the model and reduce the computation complexity.
+
+\subsection{Feature selection}
+After getting results from the three set of data, audio, \gls{eda} and fusion with all the features, we implemented all the feature selection algorithms already explained in Chapter \ref{feature_selection_5} and get results for every regression method.
+\\ \indent
+We compared all the different possibilities following the scheme in Figure \ref{fig:all_cases_scheme}.
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=\textwidth]{all_cases_scheme.png} 
+	\caption{Evaluation possibilities}
+    \label{fig:all_cases_scheme}
+\end{figure}
+\\
+To clarify, all regression methods are applied for every feature selection method. The same is valid for the last part, where every regression method is analyzed for every \gls{va} space.
+
+\subsection{Best performances}
+We observed that the best couple feature selection method and regression approach, for both the \gls{va} in mean and standard deviation is using the \textbf{backward elimination} method and the \textbf{Ridge} regressor.
+\\ \indent
+An important analysis is that we gain better results not for just audio data type or \gls{eda} type, but for the fusion data type, so it become relevant to use both audio and \gls{eda} combined.
+\\ \indent
+For the different evaluation spaces, either Valence or Arousal (mean and standard deviation) the Backward elimination algorithm extracted from $30$ to $50$ features.
+\\
+Understood that the Ridge regression on fusion data with Backward elimination algorithm gives the best results, we decided to calibrate the Ridge regression method.
+\\
+A parameter of the Ridge regressor is $\alpha$, called \textit{complexity parameter} which controls the amount of shrinkage, the larger value of $\alpha$, the greater the amount of shrinkage and thus the coefficients become more robust to collinearity.
+\\
+The Ridge coefficients minimize a penalized residual sum of squares:
+\begin{equation}
+	||x-tw||^2_2+\alpha ||w||^2_2
+\end{equation}
+where $y$ is the training data and $t$ the target value (in these cases \gls{va} data) and $w$ the weights.
+\\
+In the sklearn documentation is reported a graph that related the complexity parameter to the weights, shown in Figure \ref{fig:ridge_alpha}.
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.8\textwidth]{ridge_alpha.png} 
+	\caption{Relationship between complexity parameter $\alpha$ and weights of ridge regressor}
+    \label{fig:ridge_alpha}
+\end{figure}
+\\
+We have found better results for small $\alpha$ values, around $\alpha=0.001$.
+In the following Table, \ref{table:comparisons} are compared results from \gls{pmemo}, results with our model with no feature selection and results in the best case, mentioned before.
+\\
+Since \gls{pmemo} evaluated their data only on \gls{va} space in mean values, to have a fair comparison here are shown results for mean values of \gls{va}.
+\begin{table}[h!]
+	\centering
+	\begin{tabular}{|c|c|c||c||c|}
+		\hline
+		Dimension & Scorer & PMEmo & No F.S. & F.S. best \\ [0.5ex] 
+		\hline\hline Arousal & RMSE & 0.107 & 0.103 & 0.0417 \\ 
+		\hline Valence & RMSE & 0.121 & 0.115 & 0.0435 \\
+		\hline Arousal & R2 & 0.764 & 0.769 & 0.780 \\
+		\hline Valence & R2 & 0.638 & 0.645 & 0.834 \\
+		\hline
+	\end{tabular}
+	\caption{Comparisons between PMEmo results, our algorithm with no feature extraction and with feature extraction and best setup of the regressor}
+	\label{table:comparisons}
+\end{table}
+

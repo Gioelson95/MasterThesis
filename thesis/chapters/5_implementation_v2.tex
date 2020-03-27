@@ -7,10 +7,9 @@
 
 \section{PMEmo dataset}
 This thesis is based on the paper \textit{The PMEmo dataset for Music Emotion Recognition} \cite{zhang2018pmemo}. K. Zhang, H. Zhang and S.Li created a novel dataset called \gls{pmemo} containing emotions of 794 songs as well as \gls{eda} signals.
-\\
-
+\\ \indent
 Most researchers working on \gls{mer} adopt methods in supervised \gls{ml} to implement music emotion prediction \cite{yang2012machine}, which usually need a large number of songs with emotion labels provided by listeners to train the models.
-
+\\ \indent
 A musical experiment was well-designed for collecting the affective annotated music corpus oh high quality, which recruited 457 subjects.
 The dataset (about $1.3Gb$) is publicly available to the research community at \href{https://drive.google.com/drive/folders/1qDk6hZDGVlVXgckjLq9LvXLZ9EgK9gw0}{this link}\footnote{https://drive.google.com/drive/folders/1qDk6hZDGVlVXgckjLq9LvXLZ9EgK9gw0}.
 \\
@@ -74,7 +73,8 @@ Since the early years of \gls{mer}, there have been numerous efforts to build da
 	\label{table:datasets}
 \end{table}
 \end{savenotes}
-\gls{pmemo} is a valid alternative to the datasets listed in table \ref{table:datasets} due to the fact that it is wide enough compared with the others and it gives the possibility to apply \gls{ml} methods.
+\\
+\gls{pmemo} is a valid alternative to the datasets listed in Table \ref{table:datasets} due to the fact that it is wide enough compared with the others and it gives the possibility to apply \gls{ml} methods.
 \\
 \gls{pmemo} is also great because it gives original audio files, chorus parts manually selected.
 
@@ -90,18 +90,20 @@ Each song received a total of at least $10$ emotion annotations including one by
 \subsection{Experiment design}
 To monitor and obtain \gls{eda} continuously they used \href{https://www.biopac.com/product/eda-finger-transducer-bsl/}{MP150 Biopac system}\footnote{https://www.biopac.com/product/eda-finger-transducer-bsl/} with a sampling rate of $50Hz$ and export signals from \textit{AcqKnowledge} software.
 \\
-To annotate songs was developed a desktop application shown in figure \ref{fig:annotation_interface}. The annotation was done with the sliding area collecting dynamics annotations , from $1$ to $9$, at a sampling rate of $2Hz$. Annotators should make a statistic annotation for the whole music excerpts on nine-point scale after the dynamic labeling. Furthermore, annotators were asked to listen to the same music twice to annotate on valence and arousal separately.
+To annotate songs was developed a desktop application shown in Figure \ref{fig:annotation_interface}. 
 \begin{figure}[h]
     \centering
-    \includegraphics[width=0.65\textwidth]{annotation_interface.png} 
+    \includegraphics[width=\textwidth]{annotation_interface.png} 
 	\caption{Annotation interface for PMEmo}
     \label{fig:annotation_interface}
 \end{figure}
 \\
-In figure \ref{fig:experimental_procedure} is shown the flow diagram of the experiment, where each subject spent $50$ minutes on average.
+The annotation was done with the sliding area collecting dynamics annotations , from $1$ to $9$, at a sampling rate of $2Hz$. Annotators should make a statistic annotation for the whole music excerpts on nine-point scale after the dynamic labeling. Furthermore, annotators were asked to listen to the same music twice to annotate on valence and arousal separately.
+\newpage
+In Figure \ref{fig:experimental_procedure} is shown the flow diagram of the experiment, where each subject spent $50$ minutes on average.
 \begin{figure}[h]
     \centering
-    \includegraphics[width=0.7\textwidth]{experimental_procedure.png} 
+    \includegraphics[width=0.8\textwidth]{experimental_procedure.png} 
 	\caption{Experimental procedure for PMEmo}
     \label{fig:experimental_procedure}
 \end{figure}
@@ -125,7 +127,7 @@ where:
 	\item $\bar{A}$ is the mean of all the labels for this song by all subjects
 	\item $\bar{A}_j$ is the mean of dynamic labels by subject $j$
 \end{itemize}
-The mean (averaged across songs) and the standard deviation of the Chronbach's $\alpha$ for the annotation in the \gls{pmemo} dataset are shown in table \ref{table:Chronbach}.
+The mean (averaged across songs) and the standard deviation of the Chronbach's $\alpha$ for the annotation in the \gls{pmemo} dataset are shown in Table \ref{table:Chronbach}.
 \begin{table}[h!]
 	\centering
 	\begin{tabular}{|c|c|c|}
@@ -140,7 +142,7 @@ The mean (averaged across songs) and the standard deviation of the Chronbach's $
 \end{table}
 
 \subsection{Feature set}
-As already mentioned before in \ref{music_features}, for generic \gls{mer} there has been no attempt made at defining a "standard" feature set. In PMEmo work \cite{zhang2018pmemo} they based on the INTERSPEECH 2013 \gls{compare} \cite{schuller2013interspeech} and extracted a feature set of 6373-dimension scale.
+As already mentioned before in Chapter \ref{music_features}, for generic \gls{mer} there has been no attempt made at defining a "standard" feature set. In PMEmo work \cite{zhang2018pmemo} they based on the INTERSPEECH 2013 \gls{compare} \cite{schuller2013interspeech} and extracted a feature set of 6373-dimension scale.
 \\
 They provided all $6373$-dimension features in song level for the sake of static emotion task. They extracted only the core of $260$-dimension features in segment level (calculated in $1s$ window with $0.5s$ overlap) for dynamic recognition task to properly reduce the computing load.
 \\
@@ -148,6 +150,7 @@ Extraction of the features is done with the open-source toolkit \href{https://ww
 \\
 No feature selection procedure was implemented in \gls{pmemo} work.
 
+\newpage
 \section{General framework}
 We decided to start from the results of \gls{pmemo} and try to improve them. We will first look at a general framework description and then will follow explanation of the single parts.
 \\
@@ -160,7 +163,7 @@ Our goal is to improve \gls{pmemo} work, focusing on the lacks of \gls{pmemo} wo
 	\item No feature selection method was applied to the feature space, they brought all the features as an input to the \gls{ml} model.
 \end{itemize}
 In the following section we introduce the reader to the framework we decided to implement, based on the idea of resolving \gls{pmemo} lacks listed before. For example, we extracted audio features that are more audio-related, starting from audio low level descriptors as tempo and beats and moving to higher level features as harmony.
-\\
+\\ \indent
 Another improvement we implemented was to add a feature selection step before passing to the \gls{ml} model. We deployed different algorithms of feature selection, in order to use the one that best fits with our model and gives best results.
 \\ \indent
 As already presented in Chapter \ref{general_methodology} in Figure \ref{fig:emotion_recognition_process}, it is possible to infer a model analyzing the emotion elicitation. Since we will try to deal with both audio and \gls{eda} data, we decided to develop a model based on a traditional \gls{ml} framework.
@@ -218,6 +221,7 @@ Than, $\textbf{F}_\textbf{A}^*$ and $\textbf{F}_\textbf{E}^*$ are fused together
 \\ \indent
 In the next sections we are going to present all the blocks of this general framework, starting with feature extraction. In particular, several features can be extracted from audio, thanks to the hard work done in the past years. On the other side, \gls{eda} features are less common in the literature and they are mostly statistical features.
 
+\newpage
 \section{Audio feature extraction}
 In this section, for explaining audio feature extraction, we will use as an example song, $a_4$ under the name \textit{4.mp3}. Its waveform and audio specs can be seen in Figure \ref{fig:audio_specs}.
 \begin{figure}[h]
@@ -269,7 +273,7 @@ The \gls{zcr} is evaluated as:
 \end{equation}
 where $T$ is the length of the time window, $s_t$ is the magnitude of the $t^{th}$ time domain sample.
 \\
-The \gls{zcr} of song 4 is shown in figure \ref{fig:zcr}.
+The \gls{zcr} of song 4 is shown in Figure \ref{fig:zcr}.
 \begin{figure}[h]
     \centering
     \includegraphics[width=\textwidth]{zcr.png} 
@@ -332,7 +336,7 @@ More in general spectral peaks correspond to harmonic components and spectral va
 \\
 Therefore, the difference between spectral peaks and spectral valleys will reflect the spectral contrast distribution.
 \\
-The spectral contrast of song 4 is shown in figure \ref{fig:spectral_contrast}.
+The spectral contrast of $a_4$ is shown in Figure \ref{fig:spectral_contrast}.
 \begin{figure}[h]
     \centering
     \includegraphics[width=\textwidth]{spectral_contrast.png} 
@@ -351,7 +355,7 @@ Spectral centroid is calculated as a weighted mean of the frequencies present in
 \end{equation}
 where $x(n)$ is the weighted frequency value (or magnitude) of bin number $n$ and $f(n)$ represents the center frequency of that bin.
 \\
-The spectral centroid of $a_4$ is shown in figure \ref{fig:spectral_centroid}.
+The spectral centroid of $a_4$ is shown in Figure \ref{fig:spectral_centroid}.
 \begin{figure}[h]
     \centering
     \includegraphics[width=\textwidth]{spectral_centroid.png} 
@@ -368,7 +372,7 @@ The spectral bandwidth is the order-p spectral bandwidth as:
 \end{equation}
 where $S(k)$ is the spectral magnitude at frequency bin $k$, $f(k)$ is the frequency at bin $k$ and $f_c$ is the spectral centroid.
 \\
-The spectral bandwidth of $a_4$ is shown in figure \ref{fig:spectral_bandwidth}.
+The spectral bandwidth of $a_4$ is shown in Figure \ref{fig:spectral_bandwidth}.
 \begin{figure}[h]
     \centering
     \includegraphics[width=\textwidth]{spectral_bandwidth.png} 
@@ -383,7 +387,7 @@ Spectral rolloff is defined as the $N^{th}$ percentile of the power spectral dis
 \\
 This can be used to, e.g., approximate the maximum (or minimum) frequency by setting roll\_percent to a value close to $1$ (or $0$).
 \\
-The spectral rolloff of $a_4$ is shown in figure \ref{fig:spectral_rolloff}.
+The spectral rolloff of $a_4$ is shown in Figure \ref{fig:spectral_rolloff}.
 \begin{figure}[h]
     \centering
     \includegraphics[width=\textwidth]{spectral_rolloff.png} 
@@ -421,7 +425,7 @@ An example is shown in Figure \ref{fig:tonnetz_scheme}.
     \label{fig:tonnetz_scheme}
 \end{figure}
 \\
-The Tonnetz of the $a_4$ is shown in figure \ref{fig:tonnetz}.
+The Tonnetz of the $a_4$ is shown in Figure \ref{fig:tonnetz}.
 \\
 \begin{figure}[h]
     \centering
@@ -430,6 +434,7 @@ The Tonnetz of the $a_4$ is shown in figure \ref{fig:tonnetz}.
     \label{fig:tonnetz}
 \end{figure}
 
+\newpage
 \subsection{Melspectrogram}
 The melspectrogram is a mel-scaled spectrogram. A spectrogram is a visual representation of the spectrum of frequencies of a signal as it varies with time. It can be generated by a bank of band-pass filter, by Fourier transform or \gls{dwt}.
 \\ \indent
@@ -457,7 +462,7 @@ The melspectrogram of $a_4$ is shown in Figure \ref{fig:melspectrogram}.
 We compute melspectrogram on windows of the signal and then we extracted mean, standard deviation, skewness and kurtosis.
 
 \subsection{Mel Frequency Cepstral Coefficients}
-The \gls{mfcc} are coefficients based on the extraction of the signal energy within critical frequency bands by means of a series of triangular filters (in figure \ref{fig:mfcc_filters}) whose center frequencies are equally spaced according to the mel scale.
+The \gls{mfcc} are coefficients based on the extraction of the signal energy within critical frequency bands by means of a series of triangular filters (in Figure \ref{fig:mfcc_filters}) whose center frequencies are equally spaced according to the mel scale.
 \begin{figure}[h]
     \centering
     \includegraphics[width=\textwidth]{mfcc_filters.png} 
@@ -467,7 +472,7 @@ The \gls{mfcc} are coefficients based on the extraction of the signal energy wit
 \\
 The log-energy of the spectrum is measured within the pass-band of each filter, resulting in a reduced representation of the spectrum. The cepstral coefficients are finally obtained through a \gls{dct} of the reduced log-energy spectrum.
 \\
-In figure \ref{fig:mfcc} is shown the \gls{mfcc} graph for $12$ mfccs for $a_4$.
+In Figure \ref{fig:mfcc} is shown the \gls{mfcc} graph for $12$ mfccs for $a_4$.
 \begin{figure}[h]
     \centering
     \includegraphics[width=\textwidth]{mfcc.png} 
@@ -477,6 +482,7 @@ In figure \ref{fig:mfcc} is shown the \gls{mfcc} graph for $12$ mfccs for $a_4$.
 \\
 For each of the $12$ \gls{mfcc}s are extracted the mean, standard deviation, median, kurtosis and skewness.
 
+\newpage
 \section{EDA feature extraction}
 For the continuity, also in the explanation of \gls{eda} features extracted, will be used the $e_4$ Its \gls{eda} signal and its specs, can be seen in Figure \ref{fig:eda}.
 \begin{figure}[h]
@@ -493,14 +499,14 @@ For the continuity, also in the explanation of \gls{eda} features extracted, wil
 	\caption{Pyphysio pipeline}
     \label{fig:pyphysio_pipeline}
 \end{figure}
-\\
+\newpage
 They divide the pipelines into three separate steps:
 \begin{enumerate}
-	\item Filtering and Preprocessing: this step includes all the procedures aiming at increasing the signal/noise ratio, typically band-pass filtering, smoothing, removal of artifacts. The output of this step is a new version of the imput signal with improved signal quality (less noise).
+	\item Filtering and Preprocessing: this step includes all the procedures aiming at increasing the signal/noise ratio, typically band-pass filtering, smoothing, removal of artifacts. The output of this step is a new version of the input signal with improved signal quality (less noise).
 	\item Information Extraction: this step aims at extracting the information of interest from the physiological signal. The output is a new signal containing only the information of interest.
 	\item Physiological Indicators: this steps produces a list of scalar values able to describe the characteristics of the input signal. This step is usually performed on small segments of the input signals which are extracted using a sliding window on the whole length of the signal.
 \end{enumerate}
-Taking into account the initial signal shown in figure \ref{fig:eda} the filtering and preprocessing stage was done by an \gls{iir} filter to remove high frequency noise, a low-pass filter of $0.6Hz$ to diminuish the noise from motion and artifacts as can be seen in figure \ref{fig:eda_filtered}.
+Taking into account the initial signal shown in Figure \ref{fig:eda} the filtering and preprocessing stage was done by an \gls{iir} filter to remove high frequency noise, a low-pass filter of $0.6Hz$ to diminish the noise from motion and artifacts as can be seen in Figure \ref{fig:eda_filtered}.
 \begin{figure}[h]
     \centering
     \includegraphics[width=\textwidth]{eda_filtered.png} 
@@ -508,7 +514,7 @@ Taking into account the initial signal shown in figure \ref{fig:eda} the filteri
     \label{fig:eda_filtered}
 \end{figure}
 \\
-Following the procedure introduced by \cite{bizzego2019pyphysio}, the library is able to extract tonic and phasic component of an \gls{eda} data by evaluating a driver function. The graph can be seen in figure \ref{fig:eda_phasic_driver}.
+Following the procedure introduced by \cite{bizzego2019pyphysio}, the library is able to extract tonic and phasic component of an \gls{eda} data by evaluating a driver function. The graph can be seen in Figure \ref{fig:eda_phasic_driver}.
 \begin{figure}[h]
     \centering
     \includegraphics[width=\textwidth]{eda_phasic_driver.png} 
@@ -567,18 +573,63 @@ As for the audio features, we extracted \gls{mfcc} features. We kept $12$ \gls{m
 \\
 For each of the $12$ \gls{mfcc}s are extracted the mean, standard deviation, median, kurtosis and skewness.
 
+\newpage
 \section{Feature selection}\label{feature_selection_5}
 Feature selection become an important step while performing a \gls{ml} task. Given a dataset, every column of the dataset is a feature, and not necessarily every feature is going to have an impact on the output variable.
 \\
 Adding these irrelevant features in the model, it will make the model worst.
 \\
-These feature selection methods are valid for a regression problem, where both the input and the output variables are continuous in nature.
+The feature selection methods that we are going to present are valid for a regression problem, where both the input and the output variables are continuous in nature.
 \\ \indent
 Feature selection can be done in multiple ways but there are broadly 3 categories of it:
 \begin{enumerate}
 	\item Filter Method by filtering and taking only the subset of the relevant features, the filtering is done using correlation matrices. 
 	\item Wrapper Method which needs a \gls{ml} algorithm and uses its performance as evaluation criteria.
-	\item Embedded Method in an iterative way, it takes care of each iteration of the model training process and extract those features which contribute the most to the training for a particular iteration.
+	\item Embedded Method,an iterative method. It takes care of each iteration of the model training process and extract those features which contribute the most to the training for a particular iteration.
+\end{enumerate}
+
+Feature selection step is a very important passage, because the output of this step goes directly into the \gls{ml} process. If is putted in the \gls{ml} process noise data, will come out noise results and a model less accurate.
+\\
+This became more important where the number of features are large. It reduces the training time and the evaluation one.
+\\
+Using less features, applying feature selection algorithms:
+\begin{itemize}
+	\item It reduces overfitting.
+	\item It enables the \gls{ml} algorithm to train faster.
+	\item It reduces the complexity of the model and make it easy to interpret.
+	\item It improves the accuracy of the model if the right subset is chose.
+\end{itemize}
+The last point of the list is very important, because feature selection improve the model only if the right subset is chosen. In the implementation we evaluated the model score, and we saw that applying a feature selection algorithm, the score is improved.
+\\ \indent
+Feature selection methods can be divided into:
+\begin{enumerate}
+	\item Filter methods:
+	\begin{figure}[h]
+		\centering
+		\includegraphics[width=0.8\textwidth]{filter_method.png}
+	\caption{Filter methods scheme}
+	\label{fig:filter_method}
+	\end{figure}
+	\\
+	 Filter methods are independent from the \gls{ml} algorithms. Here, features are selected on the basis of their scores in statistical tests for their correlation with the outcome variable. Filter methods are Pearson's correlation, \gls{lda}, \gls{anova} and Chi-square.
+	 \item Wrapper methods:
+	 \begin{figure}[h]
+		\centering
+		\includegraphics[width=0.8\textwidth]{wrapper_method.png}
+	\caption{Wrapper methods scheme}
+	\label{fig:wrapper_method}
+	\end{figure}
+	\\
+	The idea is to use a subset of features and train the model using them. Basing on the inferences that are drawn from the previous model, is decided to add or remove features from the subset. This problem can be seen as a search problem and of course, these models are computationally expensive due to their nature. Wrapper methods are forward selection, backward elimination and recursive feature elimination.
+	\item Embedded methods:
+	\begin{figure}[h]
+		\centering
+		\includegraphics[width=0.8\textwidth]{embedded_method.png}
+	\caption{Embedded methods scheme}
+	\label{fig:embedded_method}
+	\end{figure}
+	\\
+	They combine the quality of the filter and wrapper methods. It is implemented by algorithms that have their own built-in feature selection methods.
 \end{enumerate}
 In the following paragraphs are taken into account all the audio features extracted for the whole song, in the static case.
 
@@ -605,7 +656,7 @@ where:
 	\item $\sigma_X$ is the standard deviation of $X$
 	\item $\sigma_Y$ is the standard deviation of $Y$
 \end{itemize}
-In figure \ref{fig:Pearson_heatmap} is shown the Pearson correlation heatmap, which represents the correlation of independent variables with the output variable.
+In Figure \ref{fig:Pearson_heatmap} is shown the Pearson correlation heatmap of all the features, before applying any feature selection method, which represents the correlation of independent variables with the output variable.
 \begin{figure}[h]
     \centering
     \includegraphics[width=\textwidth]{Pearson_heatmap.png} 
@@ -613,39 +664,130 @@ In figure \ref{fig:Pearson_heatmap} is shown the Pearson correlation heatmap, wh
     \label{fig:Pearson_heatmap}
 \end{figure}
 \\
-Then are selected just the features that have a Pearson coefficient greater than a certain value, for example features that have a Pearson coefficient greater than $0.5$ based on the output variable of \textit{Valence (mean)} are shown in figure \ref{fig:Pearson_features}.
+Then are selected just the features that have a Pearson coefficient greater than a certain value, for example features that have a Pearson coefficient greater than $0.5$ based on the output variable of \textit{Valence (mean)} are shown in Figure \ref{fig:Pearson_features}.
 \begin{figure}[h]
     \centering
     \includegraphics[width=0.8\textwidth]{Pearson_features.png} 
 	\caption{Pearson most relevant features}
     \label{fig:Pearson_features}
 \end{figure}
+\\
+Features that have a Pearson coefficient greater than $0.5$ based on the output variable of \textit{Valence (mean)} are:
+\begin{table}[h!]
+	\centering
+	\begin{tabular}{|c|c|}
+		\hline
+		Feature & P-coeff. $>0.5$ \\ [0.5ex] 
+		\hline\hline Valence (mean) & 1.0 \\
+		\hline medianMFCC[0] & 0.606916 \\
+		\hline meanMFCC[0] & 0.593028 \\
+		\hline stdMFCC[1] & 0.541788 \\
+		\hline stdMFCC[2] & 0.538732 \\
+		\hline spec\_bw\_std & 0.514848 \\
+		\hline poly\_mean & 0.503954 \\
+		\hline
+	\end{tabular}
+	\caption{Selected features with Pearson correlation method}
+	\label{table:Pearson_features}
+\end{table}
 
 \subsection{Backward elimination}
-Backward elimination is a wrapper feature selection method. The model is fed at first with all the features, than is check the performance of the model and iteratively is removed the worst performing features one by one till the overall performance of the model comes in acceptable range.
+Backward elimination is a wrapper feature selection method. The model is fed at first with all the features, than the performance of the model is checked and iteratively is removed the worst performing features one by one till the overall performance of the model comes in acceptable range.
 \\
 The performance metric used here to evaluate feature performance is pvalue. If the pvalue is above $0.05$ then we remove the feature, else it is kept.
 \\
-Features that have a pvalue smaller than $0.05$ are:
-\\ \linebreak 
-\textit{['chroma\_cq\_mean', 'chroma\_cq\_std', 'chroma\_cq\_var', 'chroma\_cens\_mean', 'melspectrogram\_mean', 'cent\_mean', 'contrast\_mean', 'contrast\_std', 'tonnetz\_std', 'tonnetz\_var', 'harm\_var', 'perc\_std', 'frame\_std', 'frame\_var', 'meanMFCC[0]', 'stdMFCC[0]', 'skewMFCC[0]', 'medianMFCC[1]', 'skewMFCC[1]', 'meanMFCC[2]', 'medianMFCC[2]', 'stdMFCC[3]', 'medianMFCC[3]', 'skewMFCC[3]', 'kurtMFCC[4]', 'skewMFCC[4]', 'stdMFCC[5]', 'medianMFCC[5]', 'skewMFCC[5]', 'meanMFCC[7]', 'stdMFCC[8]', 'medianMFCC[8]', 'meanMFCC[9]', 'meanMFCC[11]', 'mfcc\_delta\_std', 'mfcc\_delta\_var']}
+Features that have a pvalue smaller than $0.05$ are shown in Table \ref{table:backward_features}.
+\begin{table}[h!]
+	\centering
+	\begin{tabular}{|c|c||c|c|}
+		\hline
+		Feature & pvalue $<0.05$ & Feature &  pvalue $<0.05$\\ [0.5ex] 
+		\hline\hline chroma\_cq\_mean & 1.178195e-03 & chroma\_cq\_std &  1.880319e-02\\
+		\hline chroma\_cq\_var &  1.078829e-02 & chroma\_cens\_mean & 1.128383e-07 \\
+		\hline melspectrogram\_mean &  2.689379e-02 & cent\_mean &  2.045630e-04 \\
+		\hline contrast\_mean & 3.953641e-03 & contrast\_std & 3.293580e-02 \\
+		\hline tonnetz\_std & 1.684936e-02 & tonnetz\_var & 2.160709e-02 \\
+		\hline harm\_var & 5.003698e-03 & perc\_std & 2.241721e-03 \\
+		\hline frame\_std & 1.172305e-02 & frame\_var & 1.691725e-02 \\
+		\hline stdMFCC[0] & 6.128907e-05  & skewMFCC[0] & 3.544928e-02 \\
+		\hline medianMFCC[1] & 7.279576e-07  & skewMFCC[1] & 3.116653e-05 \\
+		\hline meanMFCC[2] & 1.603156e-02 & medianMFCC[2] & 4.386178e-03 \\
+		\hline stdMFCC[3] & 1.041871e-02 & medianMFCC[3] & 2.085640e-02 \\
+		\hline skewMFCC[3]' & 1.353325e-03 & kurtMFCC[4] & 1.293951e-03 \\
+		\hline skewMFCC[4] & 3.583275e-03 & stdMFCC[5] & 2.307732e-02 \\
+		\hline medianMFCC[5] &  5.428031e-03 & skewMFCC[5] & 2.791598e-02 \\
+		\hline meanMFCC[7] & 1.521483e-02 & stdMFCC[8] & 3.149996e-06 \\
+		\hline medianMFCC[8] & 1.441910e-04 & meanMFCC[9] & 4.847923e-04 \\
+		\hline meanMFCC[11] & 1.331274e-03  & mfcc\_delta\_std & 8.903809e-03 \\
+		\hline mfcc\_delta\_var & 1.039878e-02 & const & 1.503598e-8 \\
+		\hline
+	\end{tabular}
+	\caption{Selected features with Backward elimination method}
+	\label{table:backward_features}
+\end{table}
 
 \subsection{Recursive feature elimination}
 The \gls{rfe} method is another wrapper method and works by recursively removing attributes and building a model on those attributes that remain.
 \\
 It uses accuracy metric to rank the feature according to their importance. The \gls{rfe} method takes the model to be used and the number of required features as input. As output it gives the ranking of all the variables, where $1$ is the most important.
 \\
-Most relevant features extracted are:
-\\ \linebreak 
-\textit{['chroma\_stft\_mean', 'chroma\_stft\_std', 'chroma\_stft\_var', 'chroma\_cq\_mean', 'chroma\_cq\_std', 'chroma\_cq\_var', 'chroma\_cens\_mean', 'chroma\_cens\_std', 'chroma\_cens\_var', 'melspectrogram\_mean', 'contrast\_mean', 'contrast\_std', 'contrast\_var', 'poly\_mean', 'poly\_std', 'poly\_var', 'tonnetz\_mean', 'tonnetz\_std', 'tonnetz\_var', 'zcr\_mean', 'zcr\_std', 'zcr\_var', 'harm\_mean', 'harm\_std', 'harm\_var', 'perc\_mean', 'perc\_std', 'perc\_var', 'frame\_mean', 'frame\_std',  'frame\_var', 'meanMFCC[0]', 'stdMFCC[0]', 'kurtMFCC[0]', 'skewMFCC[0]', 'meanMFCC[1]', 'medianMFCC[1]', 'kurtMFCC[1]', 'skewMFCC[1]', 'meanMFCC[2]', 'stdMFCC[2]', 'medianMFCC[2]', 'kurtMFCC[2]', 'skewMFCC[2]', 'meanMFCC[3]', 'stdMFCC[3]', 'medianMFCC[3]', 'kurtMFCC[3]', 'skewMFCC[3]', 'meanMFCC[4]', 'stdMFCC[4]', 'medianMFCC[4]', 'kurtMFCC[4]', 'skewMFCC[4]', 'meanMFCC[5]', 'stdMFCC[5]', 'medianMFCC[5]', 'kurtMFCC[5]', 'skewMFCC[5]', 'meanMFCC[6]', 'medianMFCC[6]', 'kurtMFCC[6]', 'skewMFCC[6]', 'meanMFCC[7]', 'stdMFCC[7]', 'medianMFCC[7]', 'kurtMFCC[7]', 'skewMFCC[7]', 'meanMFCC[8]', 'stdMFCC[8]', 'medianMFCC[8]',  'kurtMFCC[8]', 'skewMFCC[8]', 'meanMFCC[9]', 'stdMFCC[9]', 'medianMFCC[9]', 'kurtMFCC[9]', 'skewMFCC[9]', 'meanMFCC[10]', 'stdMFCC[10]', 'medianMFCC[10]', 'kurtMFCC[10]', 'skewMFCC[10]', 'meanMFCC[11]', 'stdMFCC[11]', 'medianMFCC[11]', 'kurtMFCC[11]', 'skewMFCC[11]', 'mfcc\_delta\_mean', 'mfcc\_delta\_std', 'mfcc\_delta\_var']}
+Most relevant features extracted are shown in Table \ref{table:rfe_features}.
+\begin{table}[h!]
+	\centering
+	\begin{tabular}{|c|c|}
+		\hline
+		Feature & Ranking\\ [0.5ex] 
+		\hline\hline chroma\_stft\_std & 1 \\
+		\hline chroma\_stft\_var & 1 \\
+		\hline chroma\_cq\_mean & 1 \\
+		\hline chroma\_cens\_std & 2\\
+		\hline melspectrogram\_mean & 2\\
+		\hline cent\_mean & 3\\
+		\hline contrast\_std & 3\\
+		\hline contrast\_var & 3\\
+		\hline zcr\_std & 3 \\
+		\hline zcr\_var & 4 \\
+		\hline harm\_std & 5 \\
+		\hline harm\_var & 5 \\
+		\hline perc\_std & 5 \\
+		\hline frame\_var & 5 \\
+		\hline meanMFCC[0] & 7 \\
+		\hline meanMFCC[1] & 7 \\
+		\hline medianMFCC[2] & 8 \\
+		\hline meanMFCC[2] & 9 \\
+		\hline meanMFCC[3] & 9 \\
+		\hline medianMFCC[6] & 9 \\
+		\hline meanMFCC[2] & 9 \\
+		\hline meanMFCC[6] & 9 \\
+		\hline meanMFCC[7] & 10 \\
+		\hline
+	\end{tabular}
+	\caption{Selected features with RFE method}
+	\label{table:rfe_features}
+\end{table}
 
 \subsection{Embedded method}
 Embedded methods are iterative in a sense that takes care of each iteration of the model training process and carefully extract those features which contribute the most to the training for a particular iteration. Regularization methods are the most commonly used embedded methods which penalize a feature given a coefficient threshold.
 Here we will do feature selection using Lasso regularization. If the feature is irrelevant, lasso penalizes its coefficient and make it $0$. Hence the features with coefficient equal to $0$ are removed and the rest are taken.
 \\
-Most relevant features extracted are:
-\\ \linebreak 
-\textit{['rolloff\_var', 'cent\_var', 'total\_beats', 'melspectrogram\_var', 'spec\_bw\_var'}
+Most relevant features extracted are in Table \ref{table:embedded_features}.
+\begin{table}[h!]
+	\centering
+	\begin{tabular}{|c|}
+		\hline
+		Feature\\ [0.5ex] 
+		\hline\hline rolloff\_var \\
+		\hline cent\_var \\
+		\hline total\_beats \\
+		\hline chroma\_cens\_std \\
+		\hline melspectrogram\_mean \\
+		\hline melspectrogram\_var\\
+		\hline spec\_bw\_var \\
+		\hline
+	\end{tabular}
+	\caption{Selected features with Embedded method}
+	\label{table:embedded_features}
+\end{table}
 
 \subsection{RReliefF}
 As already explained in \ref{feature_selection}, the RReliefF algorithm is based on the quality estimation of each features, between instances that are close each other.
@@ -654,23 +796,50 @@ The main benefit of Relief-based algorithms is that they identify feature intera
 \\
 In this case, features were automatically ordered given a score, based on the RReliefF algorithm and a random forest classifier with $100$ estimators. In this implementation, as input of the function we need to specify the number of features we want to keep.
 \\
-Features selected with this method are:
-\\ \linebreak 
-\textit{['stdMFCC[0]',	 'rolloff\_var', 'chroma\_cens\_mean', 'chroma\_cens\_std', 'meanMFCC[1]', 'frame\_var', 'chroma\_cq\_var', 'poly\_mean', 'poly\_std', 'melspectrogram\_var']}
+Features selected with this method are shown in Table \ref{table:rrelieff_features}.
+\begin{table}[h!]
+	\centering
+	\begin{tabular}{|c|}
+		\hline
+		Feature\\ [0.5ex] 
+		\hline\hline stdMFCC[0] \\
+		\hline rolloff\_var \\
+		\hline chroma\_cens\_mean \\
+		\hline chroma\_cens\_std \\
+		\hline meanMFCC[1] \\
+		\hline frame\_var \\
+		\hline chroma\_cq\_var \\
+		\hline poly\_mean \\
+		\hline poly\_std \\
+		\hline melspectrogram\_var \\
+		\hline
+	\end{tabular}
+	\caption{Selected features with RReliefF method}
+	\label{table:rrelieff_features}
+\end{table}
 
+\newpage
 \section{Machine Learning methods}
-The task of \gls{mer} is a problem that can be classified in the field of supervised \gls{ml}, because we have an input variable $x$, the song, and an output variable $Y$, the emotion, and we want to find an algorithm that lean the mapping function from the input to the output, $Y=f(x)$.
+The task of \gls{mer} is a problem that can be classified in the field of supervised \gls{ml}, because we have an input variable which is given by the sum of $\textbf{F}_\textbf{A}^*$ and $\textbf{F}_\textbf{E}^*$, called $x$.
+\\
+$x$ is a vector of features composed of audio and \gls{eda} features.
+\\
+The output variable $Y$, the emotion, and we want to find an algorithm that lean the mapping function from the input to the output, $Y=f(x)$.
+\\
+Following the general framework, the input of this process are the audio features and \gls{eda} features, reduced by a feature selection method, defined as $\textbf{F}_\textbf{A}^*$ and $\textbf{F}_\textbf{E}^*$ and the output of the process is the emotion value on the Valence and Arousal plane. This output is described by two scorer, the \gls{rmse} and the $R^2$. They gives the possibility to show how much the model is predicting well the emotion based on the initial data of \gls{va} values given by the subjects.
 \\ \indent
 General goal is to approximate the mapping function so well that when there is a new input, the algorithm can predict the output data.
 \\
 Supervised \gls{ml} is divided in two categories, regression and classification. The main difference between the two tasks is the fact that the dependent attribute is numerical for regression and categorical for classification.
 \\ \indent
 A regression problem is when the output variable is a real or continuous value. Many different models can be used. They are explained in detail in the following paragraphs.
+\\ \indent
+We will use two different regressors, one for the Valence and one for the Arousal, due to the fact that emotions are mapped on the 2-Dimension space and we want to find separate values for Valence and Arousal.
 
 \subsection{Linear Regression}
-\gls{lr} is a type of regression analysis where the number of independent variables is one and there is a linear relationship between the independent $x$ and the dependent one $y$.
+\gls{lr} is a type of regression analysis where there is a linear relationship between the independent $x$ variable and the dependent one $y$.
 \\
-The figure \ref{fig:linear_regression} show a red line referred to the best fit straight line. Dots are the data points and the task of \gls{lr} is to try to plot a line that models the points the best.
+The Figure \ref{fig:linear_regression} show a red line referred to the best fit straight line. Dots are the data points and the task of \gls{lr} is to try to plot a line that models the points the best.
 \begin{figure}[h]
     \centering
     \includegraphics[width=0.8\textwidth]{linear_regression.png} 
@@ -707,12 +876,12 @@ The \gls{lasso} cost function can be written as:
 \begin{equation}
 	J=\sum_{i=1}^{M}{{(y_i-\hat{y}_i)}^2}=\sum_{i=1}^{M}{{ \left( y_i-\sum_{j=0}^{p}{w_jx_{ij}} \right) }^2}+\lambda \sum_{j=0}^{p}{|w_j|}
 \end{equation}\label{lasso_eq}
-It is evident that for $\lambda=0$, the equation \ref{eq:lasso_eq} reduces to equation \ref{eqregression_eq}. Here are taken in account the magnitude of the coefficients $w_j$.
+It is evident that for $\lambda=0$, the equation \ref{lasso_eq} reduces to equation \ref{regression_eq}.
 \\
-\gls{lasso} can have zero coefficient, which lead to neglecting some features for the evaluation of the output. This help as a feature selection step. Feature selection using \gls{lasso} regression can be depicted well by changing the regularization parameter $\lambda$. This is called $L_2$ regularization.
+\gls{lasso} can have zero coefficient, which lead to neglecting some features for the evaluation of the output. This helps as a feature selection step. Feature selection using \gls{lasso} regression can be depicted well by changing the regularization parameter $\lambda$. This is called $L_2$ regularization.
 
 \subsection{Ridge}
-Ridge is another regression analysis method, similar to \gls{lasso}. Assuming the linear model described before in \ref{eq:linear_model}, the cost function for Ridge is:
+Ridge is another regression analysis method, similar to \gls{lasso}. Assuming the linear model described before in \ref{linear_model}, the cost function for Ridge is:
 \begin{equation}
 	J=\sum_{i=1}^{M}{{(y_i-\hat{y}_i)}^2}=\sum_{i=1}^{M}{{ \left( y_i-\sum_{j=0}^{p}{w_jx_{ij}} \right) }^2}+\lambda \sum_{j=0}^{p}{{(w_j)}^2}
 \end{equation}\label{ridge_eq}
@@ -734,7 +903,7 @@ The \gls{knn} algorithm, is a non-parametric algorithm used for regression, wher
 \subsection{Support Vector}
 Goal of a regression problem is to minimize the error rate. In \gls{svr} tries to fit the error within a certain threshold.
 \\
-The error term is handled in constraints by setting the absolute error less than or equal to a specified margin, called maximum error $\varepsilon$. The problem is a minimization proble $minimize \: \dfrac{1}{2}||w||^2$ with the constraint $|y_i-w_ix_i| \leq \varepsilon$ showed in figure \ref{fig:support_vector_regression}.
+The error term is handled in constraints by setting the absolute error less than or equal to a specified margin, called maximum error $\varepsilon$. The problem is a minimization problem $minimize \: \dfrac{1}{2}||w||^2$ with the constraint $|y_i-w_ix_i| \leq \varepsilon$ showed in Figure \ref{fig:support_vector_regression}.
 \begin{figure}[h]
     \centering
     \includegraphics[width=0.8\textwidth]{support_vector_regression.png} 
@@ -763,24 +932,3 @@ Figure \ref{fig:random_forest} show an ideal representation of \gls{rf}.
 \gls{rf} operates by constructing a multitude of decision trees at training time and outputting the class that is the mean prediction of the individual trees.
 \\
 \gls{rf} allows to aggregate many \gls{dt} and this gives the possibility to split the features but limited to some percentage of the total (the hyperparameter). This allows to have a balanced weight on all the features.
-
-\section{Evaluation parameters}
-To evaluate how much the \gls{ml} model is precise and correct we used two different parameters, the \gls{rmse} and the coefficient of determination $R^2$.
-\\ \indent
-For both cases, to evaluate the score we applied a cross-validation with $10$ fold to train the data and one remaining to test the data.
-\\
-A division example is shown in figure \ref{fig:cross_validation}.
-\begin{figure}[h]
-    \centering
-    \includegraphics[width=0.6\textwidth]{cross_validation.png} 
-	\caption{k-fold cross validation}
-    \label{fig:cross_validation}
-\end{figure} 
-\\
-A well-fitting regression model results in predicted values close to the observed data values.
-\\
-The \gls{rmse} is the square root of the variance of the residuals. It indicates the absolute fit of the model to the data, how much close the observed data points are to the model's predicted values. \gls{rmse} is an absolute measure of fit. It is a good measure of how accurately the model predicts the response, and it is the most important criterion for fit if the main purpose of the model is prediction.
-\\ \indent
-$R^2$ is a statistical measure that represents the proportion of the variance for a dependent variable that is explained by variables in a regression model.
-\\
-It scales from $0$ to $1$ where $0$ indicates that the proposed model does not improve prediction over the mean model and $1$ indicates the perfect prediction. It can be also negative, in the case where the model can be arbitrarily worse.

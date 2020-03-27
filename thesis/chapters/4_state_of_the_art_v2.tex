@@ -44,7 +44,7 @@ In general, emotion recognition methods could be classified into two major categ
 	\end{itemize}
 	\gls{eeg}, \gls{ecg}, \gls{emg}, \gls{gsr} and \gls{rsp} change in a certain way when people face some specific situations. Physiological signals are in response to the \gls{cns} and \gls{ans}. Due to the fact that \gls{cns} and \gls{ans} are involuntarily activated, they cannot be controlled.
 \end{itemize}
-In the table \ref{table:biological_signals} is shown a summary of various papers using different biological signals.
+In the Table \ref{table:biological_signals} is shown a summary of various papers using different biological signals.
 \begin{table}[h!]
 	\centering
 	\begin{tabular}{|l|l|}
@@ -62,7 +62,7 @@ In the table \ref{table:biological_signals} is shown a summary of various papers
 	\label{table:biological_signals}
 \end{table}
 \newpage
-In table \ref{table:physiological_features_relation} is presented the relationship between emotions and physiological features, thanks to \cite{shu2018review}. Arrows indicate increased ($\uparrow$), decreased ($\downarrow$), no change in activation from the baseline ($-$) or both increases and decreases in different studies ($\uparrow\downarrow$).
+In Table \ref{table:physiological_features_relation} is presented the relationship between emotions and physiological features, thanks to \cite{shu2018review}. Arrows indicate increased ($\uparrow$), decreased ($\downarrow$), no change in activation from the baseline ($-$) or both increases and decreases in different studies ($\uparrow\downarrow$).
 \begin{table}[h!]
 \begin{adjustwidth}{-3cm}{-1cm}
 	\centering
@@ -112,7 +112,7 @@ In table \ref{table:physiological_features_relation} is presented the relationsh
 	\label{table:physiological_features_relation}
 \end{table}
 \newpage
-The position of different biosensors is shown in figure \ref{fig:biosensors_position}.
+The position of different biosensors is shown in Figure \ref{fig:biosensors_position}.
 \begin{figure}[h]
     \centering
     \includegraphics[width=0.8\textwidth]{biosensors_position.png} 
@@ -132,7 +132,7 @@ However, most of the available studies on emotion-specific \gls{eeg} response ha
 \subsection{Electrocardiogram}
 \gls{ecg} is a recording of the electrical activity of the hearth using electrodes placed on the skin. These electrodes detect small electrical changes that are a consequence of cardiac muscle depolarization followed by repolarization during each cardiac cycle, the heartbeat.
 \\ \indent
-There are three main components to an \gls{eeg}: the P wave, which represents the depolarization of the atria; the QRS complex, which represents the depolarization of the ventricles; and the T wave, which represents the repolarization of the ventricles, as in figure \ref{fig:ECG}.
+There are three main components to an \gls{eeg}: the P wave, which represents the depolarization of the atria; the QRS complex, which represents the depolarization of the ventricles; and the T wave, which represents the repolarization of the ventricles, as in Figure \ref{fig:ECG}.
 \begin{figure}[h]
     \centering
     \includegraphics[width=0.4\textwidth]{ECG.png} 
@@ -155,7 +155,7 @@ In psychophysiology, \gls{emg} was often used to find the correlation between co
 A reduced \gls{hrv} is linked to psychiatric illness as depression, anxiety. The heart rate is the most natural choice for arousal detection using comparison of sympathetic and parasympathetic frequency bands of the time series. However, it is highly dependent on the position of the body during monitoring.
 
 \subsection{Electrodermal Activity}
-As already been studied in chapter \ref{chap:TheoreticalBackgroundEDA}, \gls{eda} measures the resistance of the skin and the skin conductivity applying electrodes to the skin. The skin conductivity decreases during relaxed states, and increase when exposed to effort.
+As already been studied in Chapter \ref{chap:TheoreticalBackgroundEDA}, \gls{eda} measures the resistance of the skin and the skin conductivity applying electrodes to the skin. The skin conductivity decreases during relaxed states, and increase when exposed to effort.
 
 \subsection{Respiration}
 \gls{rsp} is the process of moving air into an out of the lungs to facilitate gas exchange with the internal environment, mostly bringing in oxygen and flushing out carbon dioxide.
@@ -166,10 +166,10 @@ The respiration can be measured with a latex rubber band, the amount of stretch 
 \\
 Due to the fact that \gls{rsp} is closely linked to the cardiac function, \gls{rsp} can be affect other measures, like \gls{emg} and \gls{sc} measurements.
 \\
-Positions to the left, and typical waveform of the signals to the right are presented in the figure \ref{fig:waveform_biosensors}.
+Positions to the left, and typical waveform of the signals to the right are presented in the Figure \ref{fig:waveform_biosensors}.
 \begin{figure}[h]
     \centering
-    \includegraphics[width=0.8\textwidth]{waveform_biosensors.png} 
+    \includegraphics[width=\textwidth]{waveform_biosensors.png} 
 	\caption{Positions (left) and waveform of the signals (right), (a) ECG, (b) RSP, (c) SC, (d) EMG}
     \label{fig:waveform_biosensors}
 \end{figure}
@@ -180,7 +180,7 @@ For physiological signal-based emotion recognition, there is a common methodolog
 	\item Traditional \gls{ml} methods: model specific methods, which require carefully designed hand-crafted features and feature optimization methods.
 	\item Deep learning methods, which are model-free methods and can learn the inherent principle of the data and extract features automatically.
 \end{itemize}
-The whole emotion recognition framework is shown in figure \ref{fig:emotion_recognition_process}.
+The whole emotion recognition framework is shown in Figure \ref{fig:emotion_recognition_process}.
 \begin{figure}[h]
     \centering
     \includegraphics[width=\textwidth]{emotion_recognition_process.png} 
@@ -240,6 +240,7 @@ To reinforce model assessment it is possible to use k-fold cross-validation, whe
 \\ \indent
 To evaluate the performance of the experiment there is the accuracy, which is the proportion of samples that are correctly classified to the total samples.
 
+\newpage
 \section{Issues of physiological signals}
 A lot of efforts have been made in revealing the relationships between explicit physiological signals and implicit psychological feelings. However, there are still several challenges in emotion recognition based on physiological signals:
 \begin{itemize}
@@ -251,6 +252,7 @@ A lot of efforts have been made in revealing the relationships between explicit 
 	\item The reliability of facial expressions cannot be guaranteed sometimes.
 \end{itemize}
 
+\newpage
 \section{Related works based on physiological signals}
 In this section some recent works regarding the relationship between EDA signals and human emotions will be presented. 
 
@@ -286,7 +288,7 @@ The work \cite{naji2015emotion} the feasibility of usign 3-channel forehead bios
 The inputs of the classifiers were obtained by applying a fuzzy rough model feature evaluation criterion and sequential forward floating selection algorithm. An averaged classification accuracy of 87.05\% was achieved, corresponding to average valence classification accuracy of 93.66 \% and average arousal classification accuracy of 93.29 \%.
 
 \subsection{Physiological changes in music listening}
-The paper \cite{kim2008emotion} investigates the potential of physiological signals as reliable channels for emotion recognition. Were used four-channel biosensors to measure \gls{emg}, \gls{ecg}, \gls{sc} and \gls{rsp} changes, as can be seen in figure \ref{fig:waveform_biosensors}. They extracted some features in various analysis domain i.e. the time/frequency, entropy, geometric analysis, subband spectra.
+The paper \cite{kim2008emotion} investigates the potential of physiological signals as reliable channels for emotion recognition. Were used four-channel biosensors to measure \gls{emg}, \gls{ecg}, \gls{sc} and \gls{rsp} changes, as can be seen in Figure \ref{fig:waveform_biosensors}. They extracted some features in various analysis domain i.e. the time/frequency, entropy, geometric analysis, subband spectra.
 \\ \indent
 Classification of four musical emotion (one for each quadrant of the valence-arousal diagram) is performed by using an extended \gls{lda} (p\gls{lda}). They also provided a novel scheme of emotion-specific multilevel dichotomous classification, gaining an accuracy of 95\% for subject-dependent and 70\% for subject-independent classification.
  
@@ -311,8 +313,8 @@ In \cite{hu2018relationships} the study explores the possibility of using physio
 \\ \indent
 A user experiment was conducted with $23$ participants, during music listening, a series of physiological signals like \gls{hrv} and \gls{sc} were recorded using a wearable wristband.
 \\ Here, arousal and mood values rated by participants were grouped into three main categories (i.e. positive, negative, neutral), for mood ratings, they combined the mood categories into positive, negative and neutral moods.
-\\
-After some data preprocessing, were extracted the features in table \ref{table:features_hu2018}:
+\newpage
+After some data preprocessing, were extracted the features in Table \ref{table:features_hu2018}.
 \begin{table}[h!]
 	\centering
 	\begin{tabular}{|p{0.3\textwidth}|p{0.5\textwidth}|}
@@ -329,6 +331,7 @@ After some data preprocessing, were extracted the features in table \ref{table:f
 \\
 A \gls{ml} approach was applied to measure the extent to which physiological signals could be used to recognize users’ emotion responses to music listening, in positive and negative categories of arousal and mood. Specifically, they trained and compared the performance of several classification models, namely decision tree, \gls{knn}, naïve Bayes and \gls{svm}.
 
+\newpage
 \section{Related works based on EDA signals}
 In this section some recent works regarding the relationship between EDA signals and human emotions will be presented. 
 
@@ -366,10 +369,11 @@ The supervised classification was implemented using a \gls{knn} classifier.
 \\ \indent
 Results, thanks to \textit{cvxEDA} showed a recognition accuracy of 80 \% on the arousal dimension and 84 \% in valence classification.
 
+\newpage
 \section{Conclusions}
-In this chapter we have shown a review of the state of the art about human emotion recognition based on physiological data. A schematic block of the general algorithm can be seen in figure \ref{fig:emotion_recognition_process}.
+In this chapter we have shown a review of the state of the art about human emotion recognition based on physiological data. A schematic block of the general algorithm can be seen in Figure \ref{fig:emotion_recognition_process}.
 \\
-Summing up, the majority of the works deal with a small number of subjects (25/30 maximum) and they evaluated their accuracy based on valence-arousal space grouped in four main labels as schematized in figure \ref{fig:va_groups}.
+Summing up, the majority of the works deal with a small number of subjects (25/30 maximum) and they evaluated their accuracy based on valence-arousal space grouped in four main labels as schematized in Figure \ref{fig:va_groups}.
 \begin{figure}[h]
     \centering
     \includegraphics[width=0.6\textwidth]{va_groups.png} 
