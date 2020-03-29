@@ -41,21 +41,13 @@ In the Figure \ref{fig:signal_phasic} can be seen the plot over time of an \gls{
 \begin{figure}[h]
     \centering
     \includegraphics[width=0.7\textwidth]{signal_phasic.png} 
-	\caption{Representation EDA signal (in red), driver signal (in blue) and phasic signal (in green)}
+	\caption{Representation EDA signal (in blue), driver signal (in red) and phasic signal (in green)}
     \label{fig:signal_phasic}
 \end{figure}
 \\
-%Another useful graph is shown in the figure \ref{fig:phasic_tonic} from \cite{hernandez2014using} that represent division between the complete signal (in blue), the tonic component (in dashed green) and the phasic component (in red).
-%\begin{figure}[h]
-%    \centering
-%    \includegraphics[width=0.8\textwidth]{phasic_tonic.png} 
-%	\caption{Representation of EDA signal (in red), driver signal (in blue) and phasic signal (in dashed green) from \cite{hernandez2014using}}
-%    \label{fig:phasic_tonic}
-%\end{figure}
-%\\
 The time series of the change of \gls{sc} is characterized by a slowly varying tonic activity and fast varying phasic activity. The \gls{scr} shows a steep incline to the peak and a slow decline to the baseline. The successions of \gls{scr} usually results in a superposition of subsequent \gls{scr} as one \gls{scr} arises on top of the declining trail of the preceding one.
 \\
-The Figure \ref{fig:skin_conductance} from \cite{benedek2010continuous} shows a \gls{sc} data section, the upper row shows the original \gls{sc} data. The middle row shows the driver signal which results from deconvolution of the \gls{sc} data. Inter-impulse data are used to estimate the tonic part of the driver at 10-s intervals (tonic grid points). The tonic driver is used to compute the tonic \gls{sc} (see upper row). Subtraction of the tonic part from the driver results in the phasic driver (lower row). The phasic driver shows a virtually zero baseline and distinct phasic responses. 
+The Figure \ref{fig:skin_conductance} from \cite{benedek2010continuous} shows a \gls{sc} data section. The upper row shows the original \gls{sc} data. The middle row shows the driver signal which results from deconvolution of the \gls{sc} data. Inter-impulse data are used to estimate the tonic part of the driver at 10-s intervals (tonic grid points). The tonic driver is used to compute the tonic \gls{sc} (see upper row). Subtraction of the tonic part from the driver results in the phasic driver (lower row). The phasic driver shows a virtually zero baseline and distinct phasic responses. 
 \begin{figure}[h]
     \centering
     \includegraphics[width=\textwidth]{skin_conductance.png} 
@@ -68,7 +60,7 @@ To process \gls{eda} data dividing in phasic and tonic component, in the literat
 \\ \indent
 To separate the signal components, generally is designed an \gls{iir} Butterworth low-pass filter with a cut-off frequency of $0.001Hz$ (stop frequency of $1Hz$ at $-60dB$). The tonic component is then extracted from the output of the \gls{iir} filter, while the phasic component is obtained from the difference between the original signal (supplied to the \gls{iir} filter) and the tonic component.
 \\ \indent
-To separate phasic and tonic components, is also used an algorithm called \textit{cvxEDA}. The model of the \textit{cvxEDA} assumes that the observed \gls{scr} ($y$) is the sum of the phasic activity ($r$), a slow tonic component ($t$), and an additive independent and identically distributed zero-average Gaussian noise term ($\varepsilon$):
+To separate phasic and tonic components, is also used an algorithm called \textit{cvxEDA}. The model of the \href{https://github.com/Iciti/cvxEDA}{\textit{cvxEDA}}\footnote{https://github.com/Iciti/cvxEDA} assumes that the observed \gls{scr} ($y$) is the sum of the phasic activity ($r$), a slow tonic component ($t$), and an additive independent and identically distributed zero-average Gaussian noise term ($\varepsilon$):
 \begin{equation}
 	y=r+t+\varepsilon
 \end{equation}
@@ -130,7 +122,7 @@ Figure \ref{fig:electrode_sites} illustrate the preferred palmar recording areas
 \end{figure}
 
 \subsection{Wearable technologies}
-During the last years, some wearable devices were made, in order to extract \gls{eda} data from a human through sensors.
+During the last years, some wearable devices were made, in order to extract \gls{eda} data through sensors.
 \\ \indent
 For example, one wearable device is from \href{https://www.empatica.com/en-eu/}{Empatica}\footnote{https://www.empatica.com/en-eu/}. Product examples can be seen in Figure \ref{fig:empatica_devices}.
 \begin{figure}[h]
@@ -190,7 +182,7 @@ They may be mistaken for a skin conductance response, and this must be avoided.
 Typically, as Boucsein \cite{boucsein2012electrodermal} report, the shape of an \gls{scr} lasts between $1s$ to $5s$, has a steep onset and an exponential decay and reaches an amplitude of at least $0.01\mu S$. An example of a typical \gls{scr} in Figure \ref{fig:SCR_example}.
 \begin{figure}[h]
     \centering
-    \includegraphics[scale=0.4]{SCR_example.png} 
+    \includegraphics[width=0.8\textwidth]{SCR_example.png} 
 	\caption{Example of a SCR shape}
     \label{fig:SCR_example}
 \end{figure}
@@ -204,13 +196,13 @@ There are much relevant techniques that are also able to recognize and compensat
 In \cite{taylor2015automatic} is presented a figure reported at Figure \ref{fig:eda_artifacts}, which shows a portion of signal that contains three artifacts, in which the fast decrease could not be produced by human physiology. Comparing the raw signal and the filtered version, the low-pass filter has not removed the artifacts.
 \begin{figure}[h]
     \centering
-    \includegraphics[scale=0.4]{eda_artifacts.png} 
+    \includegraphics[width=0.8\textwidth]{eda_artifacts.png} 
 	\caption{Portion of an EDA signal, the raw signal on the left in red, a $1Hz$ low-pass filter applied on the signal to the left in blue in \cite{taylor2015automatic} }
     \label{fig:eda_artifacts}
 \end{figure}
 \\
 Some researchers, as Boucsein analysis \cite{boucsein2012electrodermal}, develop heuristic techniques for removing atypical portion of the \gls{eda} signal. Someone decide to discard portion of their data where the signal increased more than 20\% per second or decreased more than 10\% per second.
-\\
+\\ \indent
 In another case, a study which collected \gls{eda} from two sensors (on both the ankle and wrist) \cite{hedman2010situ} was able to detect artifacts by looking for epochs when only one of the two sensors had an abnormally low signal, or showed an unusually rapid increase or decrease.
 \\ \indent
 In \cite{taylor2015automatic} developed a \gls{ml} algorithm for automatically detecting \gls{eda} artifacts, providing empirical evaluation of classification performances.

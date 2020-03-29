@@ -80,7 +80,7 @@ The Table \ref{table:browse_music} represent the responses of 427 subjects to th
 \\
 Into another survey \cite{juslin2004expression}, they present findings from an exploratory questionnaire study featuring 141 music listeners (between 17 and 74 years of age) that offers some novel insights. 
 \\
-Emotions induced by music are subjective phenomena, there are significant differences between individuals. One of the most exciting but difficult endeavors in research on music is to understand how listeners respond to music. It has often been suggested that a great deal of the attraction of music comes from its “emotional powers”. That is, people tend to value music because it expresses and induces emotions.
+Emotions induced by music are subjective phenomena, there are significant differences between individuals. One of the most exciting but difficult endeavors in research on music is to understand how listeners respond to music. It has often been suggested that a great deal of the attraction of music comes from its \textit{emotional powers}. That is, people tend to value music because it expresses and induces emotions.
 \newpage
 The Table \ref{table:motivation_music} tries to resume the motivations to the answer \textit{"Why do we listen to music?"}
 \begin{table}[h!]
@@ -122,7 +122,7 @@ From an engineering point of view, one of the main interests is to develop a com
 \\
 \gls{mir} community has made many efforts for automatic recognition of the perceived emotion of music, various implementations will be presented further in Chapter \ref{chap:StateOfTheArt}.
 \\ \indent
-One of the aims of this thesis, is trying to link perceived and felt emotions, the former through the analysis of the music, the latter, through biometric signals and understand how are they related.
+One of the aim of this thesis, is trying to link perceived and felt emotions, the former through the analysis of the music, the latter, through biometric signals and understand how are they related.
 
 \section{Emotion space}
 Now we will focus on the emotion conceptualization alone, since it's central to have a theoretical background to apply then to \gls{mer}.
@@ -132,7 +132,7 @@ The celebrated paper of Hevner \cite{hevner1935expression} from 1934, studied th
 Emotions, in the years, were conceptualized in two main approaches, the \textbf{categorical approach} and the \textbf{dimensional approach}. In the following sections will be presented these two different approaches, along with another one used for dynamic emotion recognition.
 
 \subsection{Categorical approach} \label{categorical_approach}
-The first assumption of this emotion conceptualization is that emotions are categorized and categories are distinct from each other. Within this approach, it is necessary to assume that there are a limited number of innate and universal emotion categories such as:
+The first assumption of this emotion conceptualization is that emotions are categorized and categories are distinct from each other. Within this approach, it is necessary to assume that there are a limited number of innate and universal emotion categories, such as:
 \begin{itemize}
 	\item Happiness
 	\item Sadness
@@ -141,7 +141,7 @@ The first assumption of this emotion conceptualization is that emotions are cate
 	\item Disgust
 	\item Surprise
 \end{itemize}
-All the other emotions can be derived from these "\textit{basic emotions}".
+All the other emotions can be derived from these \textit{basic emotions}.
 \\
 In psychological studies, different researchers have come up with different sets of basic emotions.
 \\
@@ -197,7 +197,7 @@ To overcome this issue, some researchers tired to add a third dimension called \
 \subsection{Music Emotion Variation Detection}
 An important aspect that is not addressed in the previous two Paragraphs (\ref{categorical_approach} and \ref{dimensional_approach}) is temporal dynamics. Most researches has focused on music piece that are homogeneous with respect to the emotional plane. However, music can change its emotional expression during the song, becomes important to investigate the time-varying relationship between music and emotion. Here is more useful the dimensional approach to capture the continuous changes of emotional expression as \gls{mevd}. Usually subjects are asked to rate valence and arousal in response of the stimulus over time.
 \\
-For example, songs can be described by valence and arousal curves as in the following figure:
+For example, songs can be described by valence and arousal curves as in Figure \ref{fig:va_curves}.
 \begin{figure}[h]
     \centering
     \includegraphics[width=\textwidth]{va_curves.png} 
@@ -273,7 +273,7 @@ Pros and cons of categorical and dimensional approach are schematized in the Tab
 
 \newpage
 \section{Music features}\label{music_features}
-In MER analysis, an important step is to extract audio features and than apply a feature selection method.
+In \gls{mer} analysis, an important step is to extract audio features and than apply a feature selection method.
 \\
 There are several features that can be extracted from audio signal in order to represent five of the most useful perceptual dimensions of music listening:
 \begin{itemize}
@@ -287,7 +287,7 @@ These features are just an example of an infinite series of features that can be
 \\ \indent
 Gabrielsson et al. \cite{gabrielsson2001influence} noted that there are corresponding relations between the dimensional models and music features. Among these features, intensity is a basic feature, which is highly correlated with arousal and is used to predict the arousal dimension \cite{zhang2017feature}.
 \\
-In \cite{panda2018novel} is shown a table summary of musical characteristics relevant to emotion, reported in \ref{table:musical_features_relevant}.
+In \cite{panda2018novel} is shown a table summary of musical characteristics relevant to emotion, reported in Table \ref{table:musical_features_relevant}.
 \begin{table}[h!]
 \centering
 	\begin{tabular}{|l|l|}
