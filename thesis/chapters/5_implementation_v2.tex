@@ -189,6 +189,8 @@ Will follow now, a list of symbols and terminology used in the explanation of th
 	\item $f_E^n$ is the vector of the $n^{th}$ feature contained into the matrix $\textbf{F}_\textbf{E}$.
 	\item $\textbf{F}_\textbf{A}^*$ is the matrix of audio features that are extracted after a feature selection method.
 	\item $\textbf{F}_\textbf{E}^*$ is the matrix of \gls{eda} features that are extracted after a feature selection method.
+	\item The sum of $\textbf{F}_\textbf{A}^*$ and $\textbf{F}_\textbf{E}^*$ is denoted as $\textbf{x}$, as the vector of audio and \gls{eda} features.
+	\item The output variable of the system is $Y$, which is composed of the Valence and the Arousal values, $Y=(Y_a,Y_v)$ and the objective of the model is to estimate $mean(Y_a)$, $mean(Y_v)$, $std(Y_a)$ and $std(Y_v)$.
 \end{itemize}
 From the dataset containing audio and \gls{eda} files, we extracted a certain number of features, creating a matrix for all the features extracted. This is the way to represents the input data to the \gls{ml} model.
 \\
